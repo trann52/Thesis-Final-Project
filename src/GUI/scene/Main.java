@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 
-public class StartMenu extends Application {
+public class Main extends Application {
 
 
     @Override

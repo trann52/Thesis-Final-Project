@@ -8,11 +8,20 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The start menu was based off a tutorial which can be found at: https://www.youtube.com/watch?v=YuiXnPefmhU
+ */
+
 public class StartMenuController implements Initializable {
 
     @FXML
-    private AnchorPane anchorBack;
+    private Button passSelfCheckBtn;
 
+    @FXML
+    private Button staffLoginBtn;
+
+    @FXML
+    private Button LuggStatusBtn;
 
 
     @Override
