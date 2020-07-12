@@ -6,9 +6,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="550.0" prefWidth="850.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controller.PassengerSelfCheckInController">
    <children>
@@ -43,19 +45,34 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <TextField fx:id="typeBookingHereLabel" layoutX="272.0" layoutY="217.0" prefHeight="31.0" prefWidth="352.0" promptText="Type Booking Information here" AnchorPane.bottomAnchor="302.0" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="226.0" />
-      <Text fx:id="textLabel" fill="#cd3030" layoutX="330.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Place holder" textAlignment="CENTER" wrappingWidth="213.0" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="307.0" />
-      <Button fx:id="confirmBtn" contentDisplay="RIGHT" layoutX="377.0" layoutY="372.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Confirm" AnchorPane.bottomAnchor="133.0" AnchorPane.rightAnchor="200.0">
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/search_32px.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
+      <GridPane layoutX="-215.0" layoutY="182.0" prefHeight="375.0" prefWidth="902.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-215.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="175.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <TextField fx:id="typeBookingHereLabel" layoutX="37.0" layoutY="56.0" prefHeight="31.0" prefWidth="352.0" promptText="Type Booking Information here" />
+                  <Button fx:id="confirmBtn" contentDisplay="RIGHT" layoutX="150.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#confirmAndNext" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Confirm">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/search_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="textLabel" alignment="CENTER" layoutX="97.0" layoutY="187.0" prefHeight="17.0" prefWidth="213.0" text="Label" textAlignment="CENTER" textFill="#ee0000" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

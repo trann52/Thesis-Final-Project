@@ -13,7 +13,7 @@ public class SceneTester extends Application {
 
     @Override
     public void start(Stage initialStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassengerSelfCheckIn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
 
 
         Scene scene = new Scene(root);

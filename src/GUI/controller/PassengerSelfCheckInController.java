@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -30,6 +31,9 @@ public class PassengerSelfCheckInController implements Initializable {
     @FXML
     private Button confirmBtn;
 
+    @FXML
+    private Label textLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -43,6 +47,27 @@ public class PassengerSelfCheckInController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    @FXML
+    void confirmAndNext(MouseEvent confirmEvent) throws IOException {
+        Node node2 = (Node) confirmEvent.getSource();
+        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) node2.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+//    @FXML
+//    void confirmAndNext(MouseEvent confirmEvent) throws IOException {
+//        Node node2 = (Node) confirmEvent.getSource();
+//        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
+//        Scene scene = new Scene(parent);
+//        Stage stage = (Stage) node2.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
 
 
