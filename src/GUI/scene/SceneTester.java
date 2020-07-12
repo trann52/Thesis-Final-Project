@@ -1,24 +1,19 @@
 package GUI.scene;
 
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
-public class Main extends Application {
+public class SceneTester extends Application {
 
 
     @Override
     public void start(Stage initialStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StartMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassengerSelfCheckIn.fxml"));
 
 
         Scene scene = new Scene(root);
