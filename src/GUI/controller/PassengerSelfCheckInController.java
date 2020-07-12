@@ -51,23 +51,23 @@ public class PassengerSelfCheckInController implements Initializable {
 
     @FXML
     void confirmAndNext(MouseEvent confirmEvent) throws IOException {
-        Node node2 = (Node) confirmEvent.getSource();
-        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) node2.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+
+        String bookingRef = typeBookingHereLabel.getText();
+
+        if (bookingRef.isEmpty()){
+            textLabel.setText("Unable to find booking reference. \n Please try again");
+        }
+        else {
+            Node node2 = (Node) confirmEvent.getSource();
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) node2.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+
     }
 
-//    @FXML
-//    void confirmAndNext(MouseEvent confirmEvent) throws IOException {
-//        Node node2 = (Node) confirmEvent.getSource();
-//        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
-//        Scene scene = new Scene(parent);
-//        Stage stage = (Stage) node2.getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 
 
 

@@ -69,7 +69,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Label fx:id="textLabel" alignment="CENTER" layoutX="97.0" layoutY="187.0" prefHeight="17.0" prefWidth="213.0" text="Label" textAlignment="CENTER" textFill="#ee0000" />
+                  <Label fx:id="textLabel" alignment="CENTER" layoutX="15.0" layoutY="176.0" prefHeight="73.0" prefWidth="418.0" textAlignment="CENTER" textFill="#ee0000" />
                </children>
             </Pane>
          </children>
