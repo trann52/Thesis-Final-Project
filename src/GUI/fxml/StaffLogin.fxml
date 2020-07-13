@@ -58,7 +58,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <TextField fx:id="loginLabel" layoutX="37.0" layoutY="56.0" prefHeight="31.0" prefWidth="352.0" promptText="Type Login here" />
-                  <Button fx:id="confirm2btn" contentDisplay="RIGHT" layoutX="150.0" layoutY="254.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Confirm">
+                  <Button fx:id="confirm2btn" contentDisplay="RIGHT" layoutX="150.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#checkAndConfirm" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Confirm">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>

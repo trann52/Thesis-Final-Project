@@ -14,19 +14,35 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * The start menu was based off a tutorial which can be found at: https://www.youtube.com/watch?v=YuiXnPefmhU
- */
 
 public class StaffMenuController implements Initializable {
 
+    @FXML
+    private Button printTicketsBtn;
 
+    @FXML
+    private Button luggCheckInBtn;
+
+    @FXML
+    private Button sortBtn;
+
+    @FXML
+    private Button loadBtn;
+
+    @FXML
+    private Button unloadBtn;
+
+    @FXML
+    private Button logoutBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    @FXML
+    void logout(MouseEvent logoutEvent) {
 
+    }
 
 
 }

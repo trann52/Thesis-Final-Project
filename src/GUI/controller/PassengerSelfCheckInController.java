@@ -42,12 +42,12 @@ public class PassengerSelfCheckInController implements Initializable {
      */
     @FXML
     void goHome(MouseEvent homeEvent) throws IOException {
-        Node node = (Node) homeEvent.getSource();
-        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/StartMenu.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Node n = (Node) homeEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StartMenu.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
     }
 
 
@@ -60,12 +60,12 @@ public class PassengerSelfCheckInController implements Initializable {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         }
         else {
-            Node node2 = (Node) confirmEvent.getSource();
-            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = (Stage) node2.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            Node n = (Node) confirmEvent.getSource();
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
         }
 
     }

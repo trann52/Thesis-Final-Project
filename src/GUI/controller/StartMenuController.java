@@ -36,37 +36,51 @@ public class StartMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    /**
+     * When the passSelfCheckBtn is clicked the user is sent to the PassengerSelfCheckin scene in the
+     * same window
+     * @param passCheckEvent The action of clicking the button
+     * @throws IOException
+     */
     @FXML
     void goToPassSelfCheckIn(MouseEvent passCheckEvent) throws IOException {
-        Node node = (Node) passCheckEvent.getSource();
-        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassengerSelfCheckIn.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Node n = (Node) passCheckEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassengerSelfCheckIn.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
     }
 
+    /**
+     * When the staffLoginBtn is clicked the user is sent to the StaffLogin page
+     * @param staffLoginEvent The action of clicking the button
+     * @throws IOException
+     */
     @FXML
     void goToStaffLogin(MouseEvent staffLoginEvent) throws IOException{
-        Node node2 = (Node) staffLoginEvent.getSource();
-        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffLogin.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) node2.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Node n = (Node) staffLoginEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffLogin.fxml"));
+        Scene scene = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scene);
+        stg.show();
     }
 
+    /**
+     * When the luggStatusBtn is clicked the user is sent to the LuggStatSearch page
+     * @param luggSearchEvent
+     * @throws IOException
+     */
     @FXML
     void goToLuggSearch(MouseEvent luggSearchEvent) throws IOException{
-        Node node2 = (Node) luggSearchEvent.getSource();
-        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggStatSearch.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) node2.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Node n = (Node) luggSearchEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggStatSearch.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
     }
-
-
 
 
 

@@ -53,7 +53,25 @@ public class StaffLoginController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void checkAndConfirm(MouseEvent confirmEvent) throws IOException {
 
+        String loginName = loginLabel.getText();
+        String password = passwordLabel.getText();
+
+        if (loginName.isEmpty() && password.isEmpty() || loginName.isEmpty() ||
+                password.isEmpty()) {
+            promptLabel.setText("Unable to login. Please try again.");
+        } else{
+
+            Node node = (Node) confirmEvent.getSource();
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
 
 
