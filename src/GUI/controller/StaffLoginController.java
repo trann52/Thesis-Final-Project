@@ -7,34 +7,41 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class PassSelfSuccessController implements Initializable {
+public class StaffLoginController implements Initializable {
 
 
     @FXML
     private Button homeBtn;
 
     @FXML
-    private Text infoLabel;
+    private TextField loginLabel;
 
     @FXML
-    private Text infoLabel1;
+    private Button confirm2btn;
 
     @FXML
-    private Button printBtn;
+    private Label promptLabel;
+
+    @FXML
+    private PasswordField passwordLabel;
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
+
 
     @FXML
     void goHome(MouseEvent homeEvent) throws IOException {
@@ -46,6 +53,11 @@ public class PassSelfSuccessController implements Initializable {
         stage.show();
     }
 
-    // need to add in the print method (best inherit it from the printer class)
+
+
+
+
+
+
 
 }

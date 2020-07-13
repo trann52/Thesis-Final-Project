@@ -29,7 +29,7 @@ public class StartMenuController implements Initializable {
     private Button staffLoginBtn;
 
     @FXML
-    private Button LuggStatusBtn;
+    private Button luggStatusBtn;
 
 
     @Override
@@ -45,6 +45,28 @@ public class StartMenuController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    void goToStaffLogin(MouseEvent staffLoginEvent) throws IOException{
+        Node node2 = (Node) staffLoginEvent.getSource();
+        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffLogin.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) node2.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void goToLuggSearch(MouseEvent luggSearchEvent) throws IOException{
+        Node node2 = (Node) luggSearchEvent.getSource();
+        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggStatSearch.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) node2.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 
 
 

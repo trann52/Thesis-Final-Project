@@ -16,9 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * The start menu was based off a tutorial which can be found at: https://www.youtube.com/watch?v=YuiXnPefmhU
- */
 
 public class PassengerSelfCheckInController implements Initializable {
 
@@ -38,6 +35,11 @@ public class PassengerSelfCheckInController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    /**
+     * This method is attached to the home button. It will send the user to the StartMenu
+     * @param homeEvent The action of sending the user to the homepage
+     * @throws IOException
+     */
     @FXML
     void goHome(MouseEvent homeEvent) throws IOException {
         Node node = (Node) homeEvent.getSource();
