@@ -34,6 +34,8 @@ public class LuggTicketsController implements Initializable {
     @FXML
     private Button nextBtn;
 
+//    private String bookingNumber = typeBookingHereLabel.getText();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -57,7 +59,6 @@ public class LuggTicketsController implements Initializable {
 
     @FXML
     void confirmAndPrint(MouseEvent confirmEvent) throws IOException {
-
         String bookingNumber = typeBookingHereLabel.getText();
 
         if (bookingNumber.isEmpty()) {
@@ -68,13 +69,22 @@ public class LuggTicketsController implements Initializable {
 
     @FXML
     void goToNext(MouseEvent nextEvent) throws IOException {
+        String bookingNumber = typeBookingHereLabel.getText();
 
-        Node n = (Node) nextEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
+        if (bookingNumber.isEmpty()){
+            textLabel.setText("Please enter a booking reference.");
+        }
+        else {
+            Node n = (Node) nextEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+            Parent root = (Parent) loader.load();
+            LuggInfoController luggInfoController = loader.getController();
+            luggInfoController.getBookingNumber(typeBookingHereLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+        }
     }
 
 

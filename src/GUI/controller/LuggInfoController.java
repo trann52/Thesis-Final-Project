@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -18,6 +17,8 @@ import java.util.ResourceBundle;
 
 
 public class LuggInfoController implements Initializable {
+
+    String bookingNumber;
 
     @FXML
     private Button menuBtn;
@@ -57,6 +58,7 @@ public class LuggInfoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+
     /**
      * This method is attached to the home button. It will send the user to the StaffMenu
      * @param menuEvent The action of sending the user to the staff menu
@@ -72,7 +74,30 @@ public class LuggInfoController implements Initializable {
         stg.show();
     }
 
+    // need to make method addLugageInfo() which adds all the data here into a database
 
+    @FXML
+    void moreLuggInfo(MouseEvent event) throws IOException {
+        Node n = (Node) event.getSource();
+//        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+//        Scene scn = new Scene(root);
+//        Stage stg = (Stage) n.getScene().getWindow();
+//        stg.setScene(scn);
+//        stg.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+        Parent root = (Parent) loader.load();
+        LuggInfoController luggInfoController = loader.getController();
+        luggInfoController.getBookingNumber(pbnLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
+
+    public void getBookingNumber(String passOnBarcode){
+        bookingNumber = passOnBarcode;
+        pbnLabel.setText(bookingNumber);
+    }
 
 
 
