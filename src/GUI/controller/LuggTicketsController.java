@@ -17,10 +17,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class PassengerSelfCheckInController implements Initializable {
+public class LuggTicketsController implements Initializable {
 
     @FXML
-    private Button homeBtn;
+    private Button menuBtn;
 
     @FXML
     private TextField typeBookingHereLabel;
@@ -31,19 +31,23 @@ public class PassengerSelfCheckInController implements Initializable {
     @FXML
     private Label textLabel;
 
+    @FXML
+    private Button nextBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     /**
-     * This method is attached to the home button. It will send the user to the StartMenu
-     * @param homeEvent The action of sending the user to the homepage
+     * This method is attached to the home button. It will send the user to the StaffMenu
+     *
+     * @param menuEvent The action of sending the user to the staff menu
      * @throws IOException
      */
     @FXML
-    void goHome(MouseEvent homeEvent) throws IOException {
-        Node n = (Node) homeEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StartMenu.fxml"));
+    void goMenu(MouseEvent menuEvent) throws IOException {
+        Node n = (Node) menuEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
@@ -52,24 +56,26 @@ public class PassengerSelfCheckInController implements Initializable {
 
 
     @FXML
-    void confirmAndNext(MouseEvent confirmEvent) throws IOException {
+    void confirmAndPrint(MouseEvent confirmEvent) throws IOException {
 
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty()){
+        if (bookingNumber.isEmpty()) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         }
-        else {
-            Node n = (Node) confirmEvent.getSource();
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
-            Scene scn = new Scene(root);
-            Stage stg = (Stage) n.getScene().getWindow();
-            stg.setScene(scn);
-            stg.show();
-        }
-
+        // else statement should be a print
     }
 
+    @FXML
+    void goToNext(MouseEvent nextEvent) throws IOException {
+
+        Node n = (Node) nextEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
 
 
 

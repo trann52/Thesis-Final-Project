@@ -39,9 +39,35 @@ public class StaffMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    // need to also log user out, not just send to loin page
     @FXML
-    void logout(MouseEvent logoutEvent) {
+    void logout(MouseEvent outEvent) throws IOException {
+        Node n = (Node) outEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffLogin.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
 
+    @FXML
+    void goToLuggTicket(MouseEvent luggTicEvent) throws IOException {
+        Node n = (Node) luggTicEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggTickets.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
+
+    @FXML
+    void goToLuggInfo(MouseEvent luggInfoEvent) throws IOException {
+        Node n = (Node) luggInfoEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
     }
 
 
