@@ -22,6 +22,36 @@ public class LuggInfoController implements Initializable {
     @FXML
     private Button menuBtn;
 
+    @FXML
+    private TextField pbnLabel;
+
+    @FXML
+    private TextField barNumLabel;
+
+    @FXML
+    private TextField typeLabel;
+
+    @FXML
+    private TextField weightLabel;
+
+    @FXML
+    private TextField colourLabel;
+
+    @FXML
+    private TextField dimenLabel;
+
+    @FXML
+    private TextField fragileLabel;
+
+    @FXML
+    private TextField excessLabel;
+
+    @FXML
+    private Button submitBtn;
+
+    @FXML
+    private Button nextBtn1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
