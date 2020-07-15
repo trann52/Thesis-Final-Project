@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +17,8 @@ import java.util.ResourceBundle;
 
 
 public class StaffMenuController implements Initializable {
+
+    String username;
 
     @FXML
     private Button printTicketsBtn;
@@ -35,6 +38,9 @@ public class StaffMenuController implements Initializable {
     @FXML
     private Button logoutBtn;
 
+    @FXML
+    private Label userLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -53,11 +59,15 @@ public class StaffMenuController implements Initializable {
     @FXML
     void goToLuggTicket(MouseEvent luggTicEvent) throws IOException {
         Node n = (Node) luggTicEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggTickets.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggTickets.fxml"));
+        Parent root = (Parent) loader.load();
+        LuggTicketsController luggTicketsController = loader.getController();
+        luggTicketsController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
+
     }
 
     @FXML
@@ -68,6 +78,12 @@ public class StaffMenuController implements Initializable {
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
+    }
+
+
+    public void getUsername (String passOnUsername) {
+        username = passOnUsername;
+        userLabel.setText(username);
     }
 
 

@@ -139,5 +139,15 @@
             <Label layoutY="21.0" prefHeight="25.0" prefWidth="119.0" text="with more lugagge" textFill="#2d75eb" />
          </children>
       </Pane>
+      <HBox layoutX="687.0" layoutY="133.0" prefHeight="33.0" prefWidth="140.0" AnchorPane.rightAnchor="13.0">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/person_24px.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="userLabel" prefHeight="38.0" prefWidth="125.0" underline="true" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -45,12 +45,12 @@ public class StaffLoginController implements Initializable {
 
     @FXML
     void goHome(MouseEvent homeEvent) throws IOException {
-        Node node = (Node) homeEvent.getSource();
-        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/StartMenu.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Node n = (Node) homeEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StartMenu.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
     }
 
     @FXML
@@ -64,12 +64,16 @@ public class StaffLoginController implements Initializable {
             promptLabel.setText("Unable to login. Please try again.");
         } else{
 
-            Node node = (Node) confirmEvent.getSource();
-            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            Node n = (Node) confirmEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
+            Parent root = (Parent) loader.load();
+            StaffMenuController staffMenuController = loader.getController();
+            staffMenuController.getUsername(loginLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+
         }
     }
 

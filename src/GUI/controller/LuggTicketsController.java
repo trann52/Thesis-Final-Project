@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 public class LuggTicketsController implements Initializable {
 
+    String username;
+
     @FXML
     private Button menuBtn;
 
@@ -33,6 +35,9 @@ public class LuggTicketsController implements Initializable {
 
     @FXML
     private Button nextBtn;
+
+    @FXML
+    private Label userLabel;
 
 //    private String bookingNumber = typeBookingHereLabel.getText();
 
@@ -49,7 +54,10 @@ public class LuggTicketsController implements Initializable {
     @FXML
     void goMenu(MouseEvent menuEvent) throws IOException {
         Node n = (Node) menuEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
+        Parent root = (Parent) loader.load();
+        StaffMenuController staffMenuController = loader.getController();
+        staffMenuController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
@@ -87,6 +95,10 @@ public class LuggTicketsController implements Initializable {
         }
     }
 
+    public void getUsername (String passOnUsername) {
+        username = passOnUsername;
+        userLabel.setText(username);
+    }
 
 
 }

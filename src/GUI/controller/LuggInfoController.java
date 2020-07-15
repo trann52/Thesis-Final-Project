@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -17,6 +18,8 @@ import java.util.ResourceBundle;
 
 
 public class LuggInfoController implements Initializable {
+
+    String username;
 
     String bookingNumber;
 
@@ -53,6 +56,9 @@ public class LuggInfoController implements Initializable {
     @FXML
     private Button nextBtn1;
 
+    @FXML
+    private Label userLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,7 +73,10 @@ public class LuggInfoController implements Initializable {
     @FXML
     void goMenu(MouseEvent menuEvent) throws IOException {
         Node n = (Node) menuEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/StaffMenu.fxml"));
+        Parent root = (Parent) loader.load();
+        StaffMenuController staffMenuController = loader.getController();
+        staffMenuController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
@@ -79,11 +88,6 @@ public class LuggInfoController implements Initializable {
     @FXML
     void moreLuggInfo(MouseEvent event) throws IOException {
         Node n = (Node) event.getSource();
-//        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
-//        Scene scn = new Scene(root);
-//        Stage stg = (Stage) n.getScene().getWindow();
-//        stg.setScene(scn);
-//        stg.show();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
         Parent root = (Parent) loader.load();
         LuggInfoController luggInfoController = loader.getController();
@@ -99,7 +103,10 @@ public class LuggInfoController implements Initializable {
         pbnLabel.setText(bookingNumber);
     }
 
-
+    public void getUsername (String passOnUsername) {
+        username = passOnUsername;
+        userLabel.setText(username);
+    }
 
 
 
