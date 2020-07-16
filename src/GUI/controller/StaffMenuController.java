@@ -97,6 +97,33 @@ public class StaffMenuController implements Initializable {
         stg.show();
     }
 
+    @FXML
+    void goToLoading(MouseEvent loadEvent) throws IOException {
+        Node n = (Node) loadEvent.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Loading.fxml"));
+        Parent root = (Parent) loader.load();
+        LoadingController loadingController = loader.getController();
+        loadingController.getUsername(userLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+
+    }
+
+    @FXML
+    void goToUnloading(MouseEvent unloadEvent) throws IOException {
+        Node n = (Node) unloadEvent.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Unloading.fxml"));
+        Parent root = (Parent) loader.load();
+        UnloadingController unloadingController = loader.getController();
+        unloadingController.getUsername(userLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
+
 
     public void getUsername (String passOnUsername) {
         username = passOnUsername;

@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class SortingController implements Initializable {
+public class UnloadingController implements Initializable {
 
     String username;
 
@@ -28,13 +28,13 @@ public class SortingController implements Initializable {
     private TextField barcodeLabel;
 
     @FXML
-    private TextField sortByLabel;
+    private TextField unloadByLabel;
 
     @FXML
-    private TextField timeSortLabel;
+    private TextField timeUnloadLabel;
 
     @FXML
-    private Button sortSubmitBtn;
+    private Button loadSubmitBtn;
 
     @FXML
     private Label userLabel;
@@ -66,17 +66,16 @@ public class SortingController implements Initializable {
 
 
     @FXML
-    void sortAgain(MouseEvent sortMoreEvent) throws IOException {
-        Node n = (Node) sortMoreEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Sorting.fxml"));
+    void unloadAgain(MouseEvent unloadMoreEvent) throws IOException {
+        Node n = (Node) unloadMoreEvent.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Unloading.fxml"));
         Parent root = (Parent) loader.load();
-        SortingController sortingController = loader.getController();
-        sortingController.getUsername(userLabel.getText());
+        UnloadingController unloadingController = loader.getController();
+        unloadingController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
-        // need to also add data to database
     }
 
 
@@ -84,7 +83,7 @@ public class SortingController implements Initializable {
     public void getUsername (String passOnUsername) {
         username = passOnUsername;
         userLabel.setText(username);
-        sortByLabel.setText(username);
+        unloadByLabel.setText(username);
     }
 
 

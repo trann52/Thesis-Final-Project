@@ -73,6 +73,9 @@ public class LuggTicketsController implements Initializable {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         }
         // else statement should be a print
+        else {
+            textLabel.setText("Booking found.");
+        }
     }
 
     @FXML
