@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LuggTicketsController implements Initializable {
+public class SortingController implements Initializable {
 
     String username;
 
@@ -25,29 +25,28 @@ public class LuggTicketsController implements Initializable {
     private Button menuBtn;
 
     @FXML
-    private TextField typeBookingHereLabel;
+    private TextField barcodeLabel;
 
     @FXML
-    private Button confirmBtn;
+    private TextField sortByLabel;
 
     @FXML
-    private Label textLabel;
+    private TextField timeSortLabel;
 
     @FXML
-    private Button nextBtn;
+    private Button sortSubmitBtn;
 
     @FXML
     private Label userLabel;
 
-//    private String bookingNumber = typeBookingHereLabel.getText();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+
     /**
      * This method is attached to the home button. It will send the user to the StaffMenu
-     *
      * @param menuEvent The action of sending the user to the staff menu
      * @throws IOException
      */
@@ -64,42 +63,30 @@ public class LuggTicketsController implements Initializable {
         stg.show();
     }
 
+    // need to make method addLugageInfo() which adds all the data here into a database
 
     @FXML
-    void confirmAndPrint(MouseEvent confirmEvent) throws IOException {
-        String bookingNumber = typeBookingHereLabel.getText();
-
-        if (bookingNumber.isEmpty()) {
-            textLabel.setText("Unable to find booking reference. \n Please try again");
-        }
-        // else statement should be a print
+    void sortAgain(MouseEvent sortMoreEvent) throws IOException {
+        Node n = (Node) sortMoreEvent.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Sorting.fxml"));
+        Parent root = (Parent) loader.load();
+        SortingController sortingController = loader.getController();
+        sortingController.getUsername(userLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
     }
 
-    @FXML
-    void goToNext(MouseEvent nextEvent) throws IOException {
-        String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty()){
-            textLabel.setText("Please enter a booking reference.");
-        }
-        else {
-            Node n = (Node) nextEvent.getSource();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
-            Parent root = (Parent) loader.load();
-            LuggInfoController luggInfoController = loader.getController();
-            luggInfoController.getBookingNumber(typeBookingHereLabel.getText());
-            luggInfoController.getUsername(userLabel.getText());
-            Scene scn = new Scene(root);
-            Stage stg = (Stage) n.getScene().getWindow();
-            stg.setScene(scn);
-            stg.show();
-        }
-    }
 
     public void getUsername (String passOnUsername) {
         username = passOnUsername;
         userLabel.setText(username);
+        sortByLabel.setText(username);
     }
+
+
 
 
 }

@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 /**
  * The start menu was based off a tutorial which can be found at: https://www.youtube.com/watch?v=YuiXnPefmhU
+ * The owner of this video is Amos Chepchieng and the video was released on 22nd June 2018
  */
 
 public class StartMenuController implements Initializable {

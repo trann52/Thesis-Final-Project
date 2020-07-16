@@ -61,7 +61,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="sortBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Sorting" GridPane.rowIndex="1">
+            <Button fx:id="sortBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToSorting" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Sorting" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>

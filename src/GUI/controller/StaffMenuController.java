@@ -73,7 +73,24 @@ public class StaffMenuController implements Initializable {
     @FXML
     void goToLuggInfo(MouseEvent luggInfoEvent) throws IOException {
         Node n = (Node) luggInfoEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
+        Parent root = (Parent) loader.load();
+        LuggInfoController luggInfoController = loader.getController();
+        luggInfoController.getUsername(userLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
+
+
+    @FXML
+    void goToSorting(MouseEvent sortEvent) throws IOException {
+        Node n = (Node) sortEvent.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Sorting.fxml"));
+        Parent root = (Parent) loader.load();
+        SortingController sortingController = loader.getController();
+        sortingController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);

@@ -83,7 +83,7 @@ public class LuggInfoController implements Initializable {
         stg.show();
     }
 
-    // need to make method addLugageInfo() which adds all the data here into a database
+    // need to make method addLugageInfo() which adds all the data here into a database for the submit button
 
     @FXML
     void moreLuggInfo(MouseEvent event) throws IOException {
@@ -92,10 +92,12 @@ public class LuggInfoController implements Initializable {
         Parent root = (Parent) loader.load();
         LuggInfoController luggInfoController = loader.getController();
         luggInfoController.getBookingNumber(pbnLabel.getText());
+        luggInfoController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
+        // need to also update database when clicked
     }
 
     public void getBookingNumber(String passOnBarcode){
