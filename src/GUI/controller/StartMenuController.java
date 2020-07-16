@@ -1,6 +1,5 @@
 package GUI.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -76,12 +74,13 @@ public class StartMenuController implements Initializable {
     @FXML
     void goToLuggSearch(MouseEvent luggSearchEvent) throws IOException{
         Node n = (Node) luggSearchEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggStatSearch.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggSearch.fxml"));
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
     }
+
 
 
 
