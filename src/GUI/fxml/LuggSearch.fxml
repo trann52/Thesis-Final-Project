@@ -75,7 +75,7 @@
             </Pane>
          </children>
       </GridPane>
-      <Button fx:id="nextBtn" contentDisplay="RIGHT" layoutX="687.0" layoutY="428.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Next" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="44.0">
+      <Button fx:id="nextBtn" contentDisplay="RIGHT" layoutX="687.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#goToCurrentStatus" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Next" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="44.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="29.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>

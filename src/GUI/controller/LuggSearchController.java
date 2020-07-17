@@ -63,15 +63,22 @@ public class LuggSearchController implements Initializable {
 
         if (boardPassNumber.isEmpty() && barcodeNumber.isEmpty() || boardPassNumber.isEmpty() ||
         barcodeNumber.isEmpty()) {
-            promptLabel.setText("Unable to find luggage. Please try again");
+            promptLabel.setText("Unable to find luggage. Please try again.");
         }
         else {
             promptLabel.setText("Match found.");
         }
-
     }
 
-
+    @FXML
+    void goToCurrentStatus(MouseEvent statusEvent) throws IOException {
+        Node n = (Node) statusEvent.getSource();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/CurrentStatus.fxml"));
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
 
 
 
