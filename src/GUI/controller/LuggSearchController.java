@@ -66,7 +66,7 @@ public class LuggSearchController implements Initializable {
             promptLabel.setText("Unable to find luggage. Please try again");
         }
         else {
-            promptLabel.setText("Luggage found.");
+            promptLabel.setText("Match found.");
         }
 
     }

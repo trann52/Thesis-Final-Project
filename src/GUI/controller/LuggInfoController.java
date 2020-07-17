@@ -1,5 +1,7 @@
 package GUI.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -20,8 +23,11 @@ import java.util.ResourceBundle;
 public class LuggInfoController implements Initializable {
 
     String username;
-
     String boardPassNumber;
+    ObservableList<String> typeLuggList = FXCollections.observableArrayList(" ","Hand Luggage","Carry On",
+            "Oversized","Pet","Other");
+    ObservableList<String> fragileList = FXCollections.observableArrayList(" ","Yes", "No");
+    ObservableList<String> excessList = FXCollections.observableArrayList(" ", "Yes","No");
 
     @FXML
     private Button menuBtn;
@@ -33,9 +39,6 @@ public class LuggInfoController implements Initializable {
     private TextField barNumLabel;
 
     @FXML
-    private TextField typeLabel;
-
-    @FXML
     private TextField weightLabel;
 
     @FXML
@@ -45,10 +48,7 @@ public class LuggInfoController implements Initializable {
     private TextField dimenLabel;
 
     @FXML
-    private TextField fragileLabel;
-
-    @FXML
-    private TextField excessLabel;
+    private Label warningLabel;
 
     @FXML
     private Button submitBtn;
@@ -57,11 +57,24 @@ public class LuggInfoController implements Initializable {
     private Button nextBtn1;
 
     @FXML
+    private ChoiceBox<String> typeLuggBox;
+
+    @FXML
+    private ChoiceBox<String> fragileBox;
+
+    @FXML
+    private ChoiceBox<String> excessBox;
+
+
+    @FXML
     private Label userLabel;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        typeLuggBox.setItems(typeLuggList);
+        fragileBox.setItems(fragileList);
+        excessBox.setItems(excessList);
     }
 
 
@@ -83,7 +96,19 @@ public class LuggInfoController implements Initializable {
         stg.show();
     }
 
-    // need to make method addLugageInfo() which adds all the data here into a database for the submit button
+    @FXML
+    void addToLuggInfoDatabase(MouseEvent event) {
+        if (bpnLabel.getText().isEmpty() && barNumLabel.getText().isEmpty() && weightLabel.getText().isEmpty() &&
+        fragileBox.getItems().isEmpty() && excessBox.getItems().isEmpty() || bpnLabel.getText().isEmpty() ||
+                barNumLabel.getText().isEmpty() || weightLabel.getText().isEmpty() || fragileBox.getItems().isEmpty() ||
+                excessBox.getItems().isEmpty()) {
+            warningLabel.setText("Fields with a * cannot be empty.");
+        }
+        else {
+            warningLabel.setText("Luggage Information successfully submitted.");
+        }
+        // need to change the else to add to database here
+    }
 
     @FXML
     void moreLuggInfo(MouseEvent event) throws IOException {
@@ -97,7 +122,6 @@ public class LuggInfoController implements Initializable {
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
-        // need to also update database when clicked
     }
 
     public void getBookingNumber(String passOnBarcode){
