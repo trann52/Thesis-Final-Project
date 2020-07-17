@@ -90,7 +90,7 @@ public class LuggTicketsController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
             Parent root = (Parent) loader.load();
             LuggInfoController luggInfoController = loader.getController();
-            luggInfoController.getBookingNumber(typeBookingHereLabel.getText());
+//            luggInfoController.getBookingNumber(typeBookingHereLabel.getText());
             luggInfoController.getUsername(userLabel.getText());
             Scene scn = new Scene(root);
             Stage stg = (Stage) n.getScene().getWindow();

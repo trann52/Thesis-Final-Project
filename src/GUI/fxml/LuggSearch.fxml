@@ -56,7 +56,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <TextField fx:id="bookingNumberLabel" layoutX="37.0" layoutY="56.0" prefHeight="31.0" prefWidth="352.0" promptText="Type Booking Number here" />
+                  <TextField fx:id="boardPassNumberLabel" layoutX="37.0" layoutY="56.0" prefHeight="31.0" prefWidth="352.0" promptText="Type Boarding Pass Number here" />
                   <Button fx:id="searchBtn" contentDisplay="RIGHT" layoutX="150.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#searchAndCheck" prefHeight="45.0" prefWidth="119.0" styleClass="button1" text="Search">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">

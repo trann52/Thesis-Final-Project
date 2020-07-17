@@ -59,8 +59,8 @@
                <children>
                   <HBox prefHeight="25.0" prefWidth="466.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="195.0" text="Passenger Booking Number" />
-                        <TextField fx:id="pbnLabel" prefHeight="25.0" prefWidth="283.0" />
+                        <Label prefHeight="25.0" prefWidth="195.0" text="Boarding Pass Number" />
+                        <TextField fx:id="bpnLabel" prefHeight="25.0" prefWidth="283.0" />
                      </children>
                   </HBox>
                   <HBox layoutY="30.0" prefHeight="25.0" prefWidth="466.0">

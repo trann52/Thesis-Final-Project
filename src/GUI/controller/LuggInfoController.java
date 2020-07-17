@@ -21,13 +21,13 @@ public class LuggInfoController implements Initializable {
 
     String username;
 
-    String bookingNumber;
+    String boardPassNumber;
 
     @FXML
     private Button menuBtn;
 
     @FXML
-    private TextField pbnLabel;
+    private TextField bpnLabel;
 
     @FXML
     private TextField barNumLabel;
@@ -91,7 +91,7 @@ public class LuggInfoController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
         Parent root = (Parent) loader.load();
         LuggInfoController luggInfoController = loader.getController();
-        luggInfoController.getBookingNumber(pbnLabel.getText());
+        luggInfoController.getBookingNumber(bpnLabel.getText());
         luggInfoController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
@@ -101,8 +101,8 @@ public class LuggInfoController implements Initializable {
     }
 
     public void getBookingNumber(String passOnBarcode){
-        bookingNumber = passOnBarcode;
-        pbnLabel.setText(bookingNumber);
+        boardPassNumber = passOnBarcode;
+        bpnLabel.setText(boardPassNumber);
     }
 
     public void getUsername (String passOnUsername) {

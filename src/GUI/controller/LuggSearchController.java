@@ -24,7 +24,7 @@ public class LuggSearchController implements Initializable {
     private Button homeBtn;
 
     @FXML
-    private TextField bookingNumberLabel;
+    private TextField boardPassNumberLabel;
 
     @FXML
     private Button searchBtn;
@@ -58,10 +58,10 @@ public class LuggSearchController implements Initializable {
 
     @FXML
     void searchAndCheck(MouseEvent event) {
-        String bookingNumber = bookingNumberLabel.getText();
+        String boardPassNumber = boardPassNumberLabel.getText();
         String barcodeNumber = barcodeLabel.getText();
 
-        if (bookingNumber.isEmpty() && barcodeNumber.isEmpty() || bookingNumber.isEmpty() ||
+        if (boardPassNumber.isEmpty() && barcodeNumber.isEmpty() || boardPassNumber.isEmpty() ||
         barcodeNumber.isEmpty()) {
             promptLabel.setText("Unable to find luggage. Please try again");
         }
