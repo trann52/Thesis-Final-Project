@@ -1,5 +1,3 @@
-package GUI.scene;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +11,7 @@ public class SceneTester extends Application {
 
     @Override
     public void start(Stage initialStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/CurrentStatus.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
 
 
         Scene scene = new Scene(root);

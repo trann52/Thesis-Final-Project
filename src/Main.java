@@ -1,5 +1,3 @@
-package GUI.scene;
-
 import javafx.application.Application;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
