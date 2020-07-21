@@ -24,10 +24,10 @@ public class LuggInfoController implements Initializable {
 
     String username;
     String boardPassNumber;
-    ObservableList<String> typeLuggList = FXCollections.observableArrayList("Hand Luggage","Carry On",
+    ObservableList<String> typeLuggList = FXCollections.observableArrayList("","Hand Luggage","Carry On",
             "Oversized","Pet","Other");
-    ObservableList<String> fragileList = FXCollections.observableArrayList("Yes", "No");
-    ObservableList<String> excessList = FXCollections.observableArrayList( "Yes","No");
+    ObservableList<String> fragileList = FXCollections.observableArrayList("","Yes", "No");
+    ObservableList<String> excessList = FXCollections.observableArrayList( "","Yes","No");
 
     @FXML
     private Button menuBtn;
@@ -72,8 +72,11 @@ public class LuggInfoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        typeLuggBox.setValue("");
         typeLuggBox.setItems(typeLuggList);
+        fragileBox.setValue("");
         fragileBox.setItems(fragileList);
+        excessBox.setValue("");
         excessBox.setItems(excessList);
     }
 
@@ -97,11 +100,11 @@ public class LuggInfoController implements Initializable {
     }
 
     @FXML
-    void addToLuggInfoDatabase(MouseEvent event) {
+    void addToLuggInfoDatabase(MouseEvent event) throws NullPointerException {
         if (bpnLabel.getText().isEmpty() && barNumLabel.getText().isEmpty() && weightLabel.getText().isEmpty() &&
-        fragileBox.getValue().isBlank() && excessBox.getValue().isBlank() && typeLuggBox.getValue().isBlank() ||
-                bpnLabel.getText().isEmpty() || barNumLabel.getText().isEmpty() || weightLabel.getText().isEmpty() ||
-                fragileBox.getValue().isBlank() || excessBox.getValue().isBlank() || typeLuggBox.getValue().isBlank())
+                fragileBox.getValue().isBlank() && excessBox.getValue().isBlank() && typeLuggBox.getValue().isBlank()
+                || bpnLabel.getText().isEmpty() || barNumLabel.getText().isEmpty() || weightLabel.getText().isEmpty()
+                || fragileBox.getValue().isBlank() || excessBox.getValue().isBlank() || typeLuggBox.getValue().isBlank())
         {
             warningLabel.setText("Fields with a * cannot be empty.");
         }
