@@ -24,10 +24,10 @@ public class LuggInfoController implements Initializable {
 
     String username;
     String boardPassNumber;
-    ObservableList<String> typeLuggList = FXCollections.observableArrayList(" ","Hand Luggage","Carry On",
+    ObservableList<String> typeLuggList = FXCollections.observableArrayList("Hand Luggage","Carry On",
             "Oversized","Pet","Other");
-    ObservableList<String> fragileList = FXCollections.observableArrayList(" ","Yes", "No");
-    ObservableList<String> excessList = FXCollections.observableArrayList(" ", "Yes","No");
+    ObservableList<String> fragileList = FXCollections.observableArrayList("Yes", "No");
+    ObservableList<String> excessList = FXCollections.observableArrayList( "Yes","No");
 
     @FXML
     private Button menuBtn;
@@ -99,9 +99,10 @@ public class LuggInfoController implements Initializable {
     @FXML
     void addToLuggInfoDatabase(MouseEvent event) {
         if (bpnLabel.getText().isEmpty() && barNumLabel.getText().isEmpty() && weightLabel.getText().isEmpty() &&
-        fragileBox.getItems().isEmpty() && excessBox.getItems().isEmpty() || bpnLabel.getText().isEmpty() ||
-                barNumLabel.getText().isEmpty() || weightLabel.getText().isEmpty() || fragileBox.getItems().isEmpty() ||
-                excessBox.getItems().isEmpty()) {
+        fragileBox.getValue().isBlank() && excessBox.getValue().isBlank() && typeLuggBox.getValue().isBlank() ||
+                bpnLabel.getText().isEmpty() || barNumLabel.getText().isEmpty() || weightLabel.getText().isEmpty() ||
+                fragileBox.getValue().isBlank() || excessBox.getValue().isBlank() || typeLuggBox.getValue().isBlank())
+        {
             warningLabel.setText("Fields with a * cannot be empty.");
         }
         else {
