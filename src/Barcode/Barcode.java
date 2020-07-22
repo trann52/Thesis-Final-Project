@@ -11,5 +11,10 @@ import org.krysalis.barcode4j.impl.code128.Code128Bean;
  *
  * I have used this code as it will create barcodes in the Code128 format
  */
-public class Barcode {
+public class Barcode extends BarcodeGenerator{
+
+    public Barcode(){
+        super(new Code128Bean());
+    }
+
 }
