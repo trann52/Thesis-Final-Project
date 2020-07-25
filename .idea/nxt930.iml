@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="barcode4j" level="project" />
+    <orderEntry type="library" name="jsf-api-1.2_15-06" level="project" />
   </component>
 </module>

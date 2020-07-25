@@ -39,9 +39,4 @@ public abstract class BarcodeGenerator {
         this.barcodeBean = barcodeBean;
     }
 
-
-
-
-
-
 }

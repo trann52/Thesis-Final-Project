@@ -14,12 +14,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 
 
 public class SortingController implements Initializable {
 
     String username;
+    String dateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now());
 
     @FXML
     private Button menuBtn;
@@ -42,6 +46,7 @@ public class SortingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        timeSortLabel.setText(dateTime);
     }
 
 
@@ -76,7 +81,7 @@ public class SortingController implements Initializable {
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
-        // need to also add data to database
+        // need to also add data to database TODO
     }
 
 
@@ -86,6 +91,7 @@ public class SortingController implements Initializable {
         userLabel.setText(username);
         sortByLabel.setText(username);
     }
+
 
 
 
