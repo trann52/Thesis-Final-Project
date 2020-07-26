@@ -7,11 +7,13 @@ import java.sql.SQLException;
 
 public class Database {
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws SQLException {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String username = "nxt930";
         String password = "654321";
 
         Connection connection = DriverManager.getConnection(url, username, password);
+        System.out.println("A connection has been made");
+
     }
 }
