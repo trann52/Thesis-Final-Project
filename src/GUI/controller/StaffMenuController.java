@@ -39,6 +39,9 @@ public class StaffMenuController implements Initializable {
     private Button logoutBtn;
 
     @FXML
+    private Button missingBtn;
+
+    @FXML
     private Label userLabel;
 
     @Override
@@ -124,6 +127,18 @@ public class StaffMenuController implements Initializable {
         stg.show();
     }
 
+    @FXML
+    void goToMissingSearch(MouseEvent missingEvent) throws IOException {
+        Node n = (Node) missingEvent.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingSearch.fxml"));
+        Parent root = (Parent) loader.load();
+        MissingSearchController missingSearchController = loader.getController();
+        missingSearchController.getUsername(userLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+    }
 
     public void getUsername (String passOnUsername) {
         username = passOnUsername;

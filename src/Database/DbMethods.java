@@ -14,7 +14,8 @@ public class DbMethods {
      * -----------------------------------------------------------------------------------------------------------------
      * A constructor created that makes a connection to the database. This constructor will also
      * login into the database using the credentials provided in database.properties. If the login
-     * is successful, then a message will appear showing a successful connection.
+     * is successful, then a message will appear showing a successful connection. Otherwise an
+     * exception is thrown.
      */
 
     public DbMethods() {
@@ -31,7 +32,7 @@ public class DbMethods {
             username = properties.getProperty("username");
             password = properties.getProperty("password");
 
-            this.connection = DriverManager.getConnection(url,username,password); // database login
+            this.connection = DriverManager.getConnection(url,username,password);
             System.out.println("A connection to the database has been made");
 
         } catch (Exception e) {

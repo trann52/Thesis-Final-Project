@@ -88,6 +88,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="missingBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToMissingSearch" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Missing Luggage" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/search_40px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </GridPane>
       <Button fx:id="logoutBtn" layoutX="15.0" layoutY="133.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="31.0" prefWidth="102.0" styleClass="button1" text="Logout">
