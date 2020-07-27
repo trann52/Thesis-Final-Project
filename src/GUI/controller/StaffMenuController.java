@@ -130,9 +130,9 @@ public class StaffMenuController implements Initializable {
     @FXML
     void goToMissingSearch(MouseEvent missingEvent) throws IOException {
         Node n = (Node) missingEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingSearch.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingSearch1.fxml"));
         Parent root = (Parent) loader.load();
-        MissingSearchController missingSearchController = loader.getController();
+        MissingSearch1Controller missingSearchController = loader.getController();
         missingSearchController.getUsername(userLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
