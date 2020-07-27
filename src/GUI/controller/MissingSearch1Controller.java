@@ -20,7 +20,7 @@ import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 
 
-public class MissingSearchController implements Initializable {
+public class MissingSearch1Controller implements Initializable {
 
     String username;
     String dateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now());
@@ -87,6 +87,22 @@ public class MissingSearchController implements Initializable {
             promptLabel.setText("Match found.");
         }
     }
+
+
+    @FXML
+    void goToView(MouseEvent event) throws IOException {
+        Node n = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingView.fxml"));
+        Parent root = (Parent) loader.load();
+        MissingViewController missingViewController = loader.getController();
+        missingViewController.getUsername(userLabel.getText());
+        Scene scn = new Scene(root);
+        Stage stg = (Stage) n.getScene().getWindow();
+        stg.setScene(scn);
+        stg.show();
+
+    }
+
 
 
 
