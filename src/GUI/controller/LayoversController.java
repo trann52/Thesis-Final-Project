@@ -76,9 +76,16 @@ public class LayoversController implements Initializable {
     @FXML
     void layAgain(MouseEvent layMoreEvent) throws IOException {
 
-        if (barcodeLabel.getText().isEmpty()) {
+        if (barcodeLabel.getText().isEmpty() && locationLabel.getText().isEmpty()) {
+            promptLabel.setText("The barcode number and location cannot be empty.");
+        }
+        else if (barcodeLabel.getText().isEmpty()){
+            promptLabel.setText("The location cannot be empty.");
+        }
+        else if (locationLabel.getText().isEmpty()){
             promptLabel.setText("The barcode number cannot be empty.");
-        } else {
+        }
+        else {
             Node n = (Node) layMoreEvent.getSource();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Layovers.fxml"));
             Parent root = (Parent) loader.load();

@@ -91,6 +91,14 @@ public class MissingSearch1Controller implements Initializable {
 
     @FXML
     void goToView(MouseEvent event) throws IOException {
+        String boardPassNumber = boardPassNumberLabel.getText();
+        String barcodeNumber = barcodeLabel.getText();
+
+        if (boardPassNumber.isEmpty() && barcodeNumber.isEmpty() || boardPassNumber.isEmpty() ||
+                barcodeNumber.isEmpty()) {
+            promptLabel.setText("Please enter luggage information.");
+        }
+
         Node n = (Node) event.getSource();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingView.fxml"));
         Parent root = (Parent) loader.load();
