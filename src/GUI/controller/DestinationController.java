@@ -43,6 +43,9 @@ public class DestinationController implements Initializable {
     @FXML
     private Label userLabel;
 
+    @FXML
+    private Label promptLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,16 +75,21 @@ public class DestinationController implements Initializable {
 
     @FXML
     void destAgain(MouseEvent destMoreEvent) throws IOException {
-        Node n = (Node) destMoreEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Destination.fxml"));
-        Parent root = (Parent) loader.load();
-        DestinationController destinationController = loader.getController();
-        destinationController.getUsername(userLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
-        // need to also add data to database TODO
+
+        if (barcodeLabel.getText().isEmpty()) {
+            promptLabel.setText("The barcode number cannot be empty.");
+        } else {
+            Node n = (Node) destMoreEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Destination.fxml"));
+            Parent root = (Parent) loader.load();
+            DestinationController destinationController = loader.getController();
+            destinationController.getUsername(userLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+            // need to also add data to database TODO
+        }
     }
 
 

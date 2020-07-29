@@ -43,6 +43,9 @@ public class LayoversController implements Initializable {
     @FXML
     private Label userLabel;
 
+    @FXML
+    private Label promptLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,16 +75,21 @@ public class LayoversController implements Initializable {
 
     @FXML
     void layAgain(MouseEvent layMoreEvent) throws IOException {
-        Node n = (Node) layMoreEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Layovers.fxml"));
-        Parent root = (Parent) loader.load();
-        LayoversController layoversController = loader.getController();
-        layoversController.getUsername(userLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
-        // need to also add data to database TODO
+
+        if (barcodeLabel.getText().isEmpty()) {
+            promptLabel.setText("The barcode number cannot be empty.");
+        } else {
+            Node n = (Node) layMoreEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Layovers.fxml"));
+            Parent root = (Parent) loader.load();
+            LayoversController layoversController = loader.getController();
+            layoversController.getUsername(userLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+            // need to also add data to database TODO
+        }
     }
 
 

@@ -39,6 +39,9 @@ public class UnloadingController implements Initializable {
     @FXML
     private Label userLabel;
 
+    @FXML
+    private Label promptLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,15 +70,21 @@ public class UnloadingController implements Initializable {
 
     @FXML
     void unloadAgain(MouseEvent unloadMoreEvent) throws IOException {
-        Node n = (Node) unloadMoreEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Unloading.fxml"));
-        Parent root = (Parent) loader.load();
-        UnloadingController unloadingController = loader.getController();
-        unloadingController.getUsername(userLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
+
+        if (barcodeLabel.getText().isEmpty()) {
+            promptLabel.setText("The barcode number cannot be empty.");
+        }
+        else {
+            Node n = (Node) unloadMoreEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Unloading.fxml"));
+            Parent root = (Parent) loader.load();
+            UnloadingController unloadingController = loader.getController();
+            unloadingController.getUsername(userLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+        }
     }
 
 

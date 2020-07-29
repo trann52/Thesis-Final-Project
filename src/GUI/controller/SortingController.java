@@ -43,6 +43,9 @@ public class SortingController implements Initializable {
     @FXML
     private Label userLabel;
 
+    @FXML
+    private Label promptLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,16 +75,24 @@ public class SortingController implements Initializable {
 
     @FXML
     void sortAgain(MouseEvent sortMoreEvent) throws IOException {
-        Node n = (Node) sortMoreEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Sorting.fxml"));
-        Parent root = (Parent) loader.load();
-        SortingController sortingController = loader.getController();
-        sortingController.getUsername(userLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
-        // need to also add data to database TODO
+
+        if (barcodeLabel.getText().isEmpty()) {
+            promptLabel.setText("The barcode number cannot be empty.");
+        }
+        else {
+
+            Node n = (Node) sortMoreEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Sorting.fxml"));
+            Parent root = (Parent) loader.load();
+            SortingController sortingController = loader.getController();
+            sortingController.getUsername(userLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+            // need to also add data to database TODO
+        }
+
     }
 
 
