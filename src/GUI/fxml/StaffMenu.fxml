@@ -32,10 +32,11 @@
                </image>
             </ImageView>
          </children></Pane>
-      <GridPane alignment="CENTER" hgap="15.0" layoutX="242.0" layoutY="154.0" prefHeight="352.0" prefWidth="417.0" vgap="15.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="154.0">
+      <GridPane alignment="CENTER" hgap="15.0" layoutX="206.0" layoutY="151.0" prefHeight="355.0" prefWidth="453.0" vgap="15.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="151.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,7 +62,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="sortBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToSorting" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Sorting" GridPane.rowIndex="1">
+            <Button fx:id="sortBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToSorting" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Sorting" GridPane.columnIndex="2">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +71,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="loadBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToLoading" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Loading" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="loadBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToLoading" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Loading" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,7 +80,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="unloadBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToUnloading" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Unloading" GridPane.rowIndex="2">
+            <Button fx:id="unloadBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToUnloading" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Unloading" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="45.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -93,6 +94,24 @@
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/search_40px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="layoverBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToLayover" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Layovers" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/airplane_take_off_40px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="destBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToDest" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Destination" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/finish_flag_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
