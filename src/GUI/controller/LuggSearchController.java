@@ -17,6 +17,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Nicky Tran
+ * @version 16/07/2020: 1.4
+ * This class is the controller class for the 'LuggSearch' fxml, so it contains
+ * all appropriate methods for the GUI such as moving between different GUI scenes.
+ */
 public class LuggSearchController implements Initializable {
 
 

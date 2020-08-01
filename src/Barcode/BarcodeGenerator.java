@@ -6,6 +6,8 @@ import org.krysalis.barcode4j.output.CanvasProvider;
 import java.io.IOException;
 
 /**
+ * @author Nicky Tran
+ * @version 22/07/2020: 1.1
  * This class has been created using the code found here:
  * https://github.com/primefaces/primefaces/blob/master/src/main/java/org/primefaces/application/resource/barcode/BarcodeGenerator.java
  * There are 4 authors: Thomas Andraschko, Cagatay Civici, mertsincan and Melloware

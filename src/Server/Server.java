@@ -6,6 +6,11 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Nicky Tran
+ * @version 25/07/2020: 1.1
+ * This class will contain the code for the server
+ */
 public class Server {
 
     public Server() throws IOException{

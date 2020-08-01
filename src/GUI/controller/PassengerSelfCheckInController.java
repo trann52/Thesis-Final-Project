@@ -16,7 +16,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/**
+ * @author Nicky Tran
+ * @version 12/07/2020: 1.2
+ * This class is the controller class for the 'PassengerSelfCheckIn' fxml, so it contains
+ * all appropriate methods for the GUI such as moving between different GUI scenes.
+ */
 public class PassengerSelfCheckInController implements Initializable {
 
     @FXML

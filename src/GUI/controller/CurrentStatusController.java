@@ -15,6 +15,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * @author Nicky Tran
+ * @version 17/07/2020: 1.1
+ * This class is the controller class for the 'CurrentStatus' fxml, so it contains
+ * all appropriate methods for the GUI such as moving between different GUI scenes.
+ */
 public class CurrentStatusController implements Initializable {
 
     @FXML

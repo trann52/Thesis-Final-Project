@@ -4,6 +4,8 @@ import org.krysalis.barcode4j.impl.code128.Code128Bean;
 
 
 /**
+ * @author Nicky Tran
+ * @version 22/07/2020: 1.2
  * This class is based off:
  * https://github.com/primefaces/primefaces/blob/master/src/main/java/org/primefaces/application/resource/barcode/Code128Generator.java
  * There are 4 authors: Thomas Andraschko, Cagatay Civici, mertsincan and Melloware

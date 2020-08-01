@@ -7,6 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 
+/**
+ * @author Nicky Tran
+ * @version 25/07/2020: 1.1
+ */
 //I have used this code because it will get the time and date that the barcode was created on
 // TODO: 26/07/2020 may delete this later, may not be needed 
 public abstract class BaseHandle implements Handle {

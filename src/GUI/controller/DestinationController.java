@@ -19,6 +19,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 
+/**
+ * @author Nicky Tran
+ * @version 29/07/2020: 1.1
+ * This class is the controller class for the 'Destination' fxml, so it contains
+ * all appropriate methods for the GUI such as moving between different GUI scenes.
+ */
+
 
 public class DestinationController implements Initializable {
 

@@ -19,7 +19,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 
-
+/**
+ * @author Nicky Tran
+ * @version 27/07/2020: 1.2
+ * This class is the controller class for the 'MissingView' fxml, so it contains
+ * all appropriate methods for the GUI such as moving between different GUI scenes.
+ */
 public class MissingViewController implements Initializable {
 
     String username;

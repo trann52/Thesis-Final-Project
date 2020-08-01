@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 
+
+/**
+ * @author Nicky Tran
+ * @version 11/07/2020: 1.1
+ * This class is the main class which will load the StartMenu GUI, basically the running of the entire application.
+ */
 public class Main extends Application {
 
 

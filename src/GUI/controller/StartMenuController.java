@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * @author Nicky Tran
+ * @version 10/07/2020: 1.4
+ * This is the controller for the 'StartMenu' fxml.
  * The start menu was based off a tutorial which can be found at: https://www.youtube.com/watch?v=YuiXnPefmhU
  * The owner of this video is Amos Chepchieng and the video was released on 22nd June 2018
  */

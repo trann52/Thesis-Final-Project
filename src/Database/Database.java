@@ -5,6 +5,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+/**
+ * @author Nicky Tran
+ * @version 19/07/2020: 1.2
+ * This class contains information about connecting to the database
+ */
 public class Database {
 
     public static void main(String[] args) throws SQLException {
