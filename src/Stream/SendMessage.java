@@ -64,4 +64,21 @@ public class SendMessage implements Serializable {
         this.message = message;
         this.staff = staff;
     }
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public Luggage getLuggage() {
+        return luggage;
+    }
 }
