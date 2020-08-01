@@ -39,7 +39,7 @@ public class DbMethods {
             username = properties.getProperty("username");
             password = properties.getProperty("password");
 
-            this.connection = DriverManager.getConnection(url,username,password);
+            this.connection = DriverManager.getConnection(url, username, password);
             System.out.println("A connection to the database has been made");
 
         } catch (Exception e) {
@@ -49,24 +49,10 @@ public class DbMethods {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     *
      */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void checkBookingNumber() {
+    }
 
 
 }

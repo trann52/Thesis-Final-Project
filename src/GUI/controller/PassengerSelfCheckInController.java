@@ -42,6 +42,7 @@ public class PassengerSelfCheckInController implements Initializable {
 
     /**
      * This method is attached to the home button. It will send the user to the StartMenu
+     *
      * @param homeEvent The action of sending the user to the homepage
      * @throws IOException
      */
@@ -61,10 +62,9 @@ public class PassengerSelfCheckInController implements Initializable {
 
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty()){
+        if (bookingNumber.isEmpty()) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
-        }
-        else {
+        } else {
             Node n = (Node) confirmEvent.getSource();
             Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/PassSelfSuccess.fxml"));
             Scene scn = new Scene(root);
@@ -74,8 +74,6 @@ public class PassengerSelfCheckInController implements Initializable {
         }
 
     }
-
-
 
 
 }

@@ -23,6 +23,10 @@ public class Client {
         in = new ObjectInputStream(socket.getInputStream());
     }
 
+    public static void main(String[] args) throws IOException {
+        Client startClient = new Client();
+    }
+
 
 
 

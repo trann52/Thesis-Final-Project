@@ -33,7 +33,7 @@ public class LuggInfoController implements Initializable {
      * Creating the lists of strings that will be shown in a drop down box
      */
     ObservableList<String> typeLuggList = FXCollections.observableArrayList("","Hand Luggage","Carry On",
-            "Oversized","Pet","Other");
+            "Oversized","Pet", "Stream");
     ObservableList<String> fragileList = FXCollections.observableArrayList("","Yes", "No");
     ObservableList<String> excessList = FXCollections.observableArrayList( "","Yes","No");
 
