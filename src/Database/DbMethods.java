@@ -1,5 +1,6 @@
 package Database;
 
+import GUI.controller.LuggInfoController;
 import Stream.Passenger;
 import Stream.Staff;
 
@@ -67,14 +68,13 @@ public class DbMethods {
             ps.setString(1, passenger.getBookingNumber());
             ResultSet rs = ps.executeQuery();
 
-            while (rs.first()){
-                if (rs.getString(1).equals(passenger.getBookingNumber())){
+            while (rs.first()) {
+                if (rs.getString(1).equals(passenger.getBookingNumber())) {
                     return true;
                 }
             }
 
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -82,7 +82,7 @@ public class DbMethods {
     }
 
     /**
-     *------------------------------------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------------------------------------
      *
      * @return checks if the username that is used by the staff matches the password that is
      * in the database
@@ -97,8 +97,8 @@ public class DbMethods {
             ps.setString(1, staff.getUsername());
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()){
-                if (rs.getString(1).equals(staff.getPassword())){
+            while (rs.next()) {
+                if (rs.getString(1).equals(staff.getPassword())) {
                     return true;
                 }
             }
@@ -110,5 +110,29 @@ public class DbMethods {
         return false;
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    public void submitToAboutLuggage() {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.aboutluggage(" +
+                    "boardpass_number, barcode, type, weight, colour, dimension, fragile, excess) " +
+                    "VALUES(?,?,?,?,?,?,?,?)");
+
+//            ps.setString(1, );
+
+        } catch (SQLException e) {
+
+        }
+
+
+    }
+
+
+
 
 }
+
+
