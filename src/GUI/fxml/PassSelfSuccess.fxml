@@ -92,7 +92,7 @@
             </Text>
          </children>
       </GridPane>
-      <Button fx:id="printBtn" layoutX="374.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#goHome" prefHeight="31.0" prefWidth="102.0" styleClass="button1" text="Print" AnchorPane.leftAnchor="374.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="453.0">
+      <Button fx:id="printBtn" layoutX="374.0" layoutY="453.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="102.0" styleClass="button1" text="Print" AnchorPane.leftAnchor="374.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="453.0">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>

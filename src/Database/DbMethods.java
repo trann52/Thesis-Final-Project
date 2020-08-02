@@ -50,7 +50,10 @@ public class DbMethods {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     * @return
+     *
+     * This method will check the entered booking number against the ones in the database.
+     * This method will be available for passengers and staff
+     *@return the booking number
      */
 
     public boolean checkBookingNumber(Passenger passenger) throws SQLException {
