@@ -11,28 +11,18 @@ import java.io.Serializable;
 public class Passenger implements Serializable {
 
     private String bookingNumber;
+    private String boardPassNumber;
 
-    /**
-     * This is a constructor which will be used to initialise the booking number.
-     * @param bookingNumber the booking number the passenger has for their flight
-     */
-    public Passenger(String bookingNumber) {
+    public Passenger(String bookingNumber, String boardPassNumber) {
         this.bookingNumber = bookingNumber;
+        this.boardPassNumber = boardPassNumber;
     }
 
     public String getBookingNumber() {
         return bookingNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Passenger{" +
-                "bookingNumber='" + bookingNumber + '\'' +
-                '}';
+    public String getBoardPassNumber() {
+        return boardPassNumber;
     }
-
-
-
-
-
 }

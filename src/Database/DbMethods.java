@@ -11,7 +11,7 @@ import java.util.Properties;
 
 /**
  * @author Nicky Tran
- * @version 26/07/2020: 1.11
+ * @version 26/07/2020: 1.12
  * This class will contain all the methods used in my system to upload data to the
  * database or to retrieve data from the database.
  */
