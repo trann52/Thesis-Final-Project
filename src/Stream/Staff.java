@@ -12,7 +12,6 @@ public class Staff implements Serializable {
 
     private String username;
     private String password;
-    private String name;
 
     /**
      * This is a constructor that initialises the staff username, password and name.
@@ -23,7 +22,6 @@ public class Staff implements Serializable {
     public Staff(String username, String password, String name) {
         this.username = username;
         this.password = password;
-        this.name = name;
     }
 
     public String getUsername() {
@@ -34,7 +32,4 @@ public class Staff implements Serializable {
         return password;
     }
 
-    public String getName() {
-        return name;
-    }
 }

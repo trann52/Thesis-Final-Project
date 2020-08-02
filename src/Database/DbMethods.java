@@ -1,6 +1,7 @@
 package Database;
 
 import Stream.Passenger;
+import Stream.Staff;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,13 +51,14 @@ public class DbMethods {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     *
+     * <p>
      * This method will check the entered booking number against the ones in the database.
      * This method will be available for passengers and staff
-     *@return the booking number
+     *
+     * @return the booking number
      */
 
-    public boolean checkBookingNumber(Passenger passenger) throws SQLException {
+    public boolean checkBookingNumber(Passenger passenger) {
 
         try {
             PreparedStatement ps = connection.prepareStatement(
@@ -76,6 +78,35 @@ public class DbMethods {
             e.printStackTrace();
         }
 
+        return false;
+    }
+
+    /**
+     *------------------------------------------------------------------------------------------------------------------
+     *
+     * @return checks if the username that is used by the staff matches the password that is
+     * in the database
+     */
+
+    public boolean checkStaffUserWithPassword(Staff staff) {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT password FROM luggageproject.public.stafflogin " +
+                            "WHERE username = ?");
+            ps.setString(1, staff.getUsername());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                if (rs.getString(1).equals(staff.getPassword())){
+                    return true;
+                }
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
