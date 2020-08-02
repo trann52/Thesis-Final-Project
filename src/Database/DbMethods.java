@@ -1,6 +1,7 @@
 package Database;
 
 import GUI.controller.LuggInfoController;
+import Stream.Luggage;
 import Stream.Passenger;
 import Stream.Staff;
 
@@ -114,14 +115,26 @@ public class DbMethods {
      * -----------------------------------------------------------------------------------------------------------------
      */
 
-    public void submitToAboutLuggage() {
+    public void submitToAboutLuggage(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.aboutluggage(" +
                     "boardpass_number, barcode, type, weight, colour, dimension, fragile, excess) " +
                     "VALUES(?,?,?,?,?,?,?,?)");
 
-//            ps.setString(1, );
+            ps.setString(1, luggage.getBoardPassNumber());
+            ps.setString(2, luggage.getBarcodeNumber());
+            ps.setString(3, luggage.getType());
+            ps.setDouble(4, luggage.getWeight());
+            ps.setString(5, luggage.getColour());
+            ps.setArray(6, luggage.getDimension());
+            ps.setString(7, luggage.getFragile());
+            ps.setString(8, luggage.getExcess());
+
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
+
 
         } catch (SQLException e) {
 
