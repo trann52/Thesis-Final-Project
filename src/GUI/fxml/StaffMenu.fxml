@@ -32,7 +32,7 @@
                </image>
             </ImageView>
          </children></Pane>
-      <GridPane alignment="CENTER" hgap="15.0" layoutX="206.0" layoutY="151.0" prefHeight="355.0" prefWidth="453.0" vgap="15.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="151.0">
+      <GridPane alignment="CENTER" hgap="15.0" layoutX="164.0" layoutY="151.0" prefHeight="355.0" prefWidth="517.0" vgap="15.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="169.0" AnchorPane.topAnchor="151.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +40,6 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -89,29 +88,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="missingBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToMissingSearch" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Missing Luggage" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="missingBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToMissingSearch" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Missing Luggage" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/search_40px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="layoverBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToLayover" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Layovers" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <graphic>
-                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/airplane_take_off_40px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="destBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#goToDest" prefHeight="145.0" prefWidth="218.0" styleClass="button1" text="Destination" GridPane.rowIndex="2">
-               <graphic>
-                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/finish_flag_40px.png" />
                      </image>
                   </ImageView>
                </graphic>

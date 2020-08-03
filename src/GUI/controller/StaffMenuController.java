@@ -44,11 +44,6 @@ public class StaffMenuController implements Initializable {
     @FXML
     private Button logoutBtn;
 
-    @FXML
-    private Button layoverBtn;
-
-    @FXML
-    private Button destBtn;
 
     @FXML
     private Button missingBtn;
@@ -152,31 +147,6 @@ public class StaffMenuController implements Initializable {
         stg.show();
     }
 
-    @FXML
-    void goToLayover(MouseEvent layoverEvent) throws IOException {
-        Node n = (Node) layoverEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Layovers.fxml"));
-        Parent root = (Parent) loader.load();
-        LayoversController layoversController = loader.getController();
-        layoversController.getUsername(userLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
-    }
-
-    @FXML
-    void goToDest(MouseEvent destEvent) throws IOException {
-        Node n = (Node) destEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Destination.fxml"));
-        Parent root = (Parent) loader.load();
-        DestinationController destinationController = loader.getController();
-        destinationController.getUsername(userLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
-    }
 
 
 

@@ -226,25 +226,44 @@ public class DbMethods {
      *
      */
 
-    public void sortToLuggageStatus(SendMessage sendMessage){
+    public void sortToLuggageStatus(SendMessage sendMessage) {
 
-////        PreparedStatement ps;
-//        try {
-//            PreparedStatement ps = connection.prepareStatement("select sortedby, sortedtime from luggagestatus " +
-//                    "where boardpass_number = 'testpass1' and barcode = '123456'; ")
-//
-//
-//
-//
-//        }catch (SQLException e) {
-//
-//        }
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.luggagestatus");
 
 
+//      update luggagestatus SET sortedby[0] = 'janed4', sortedtime[0] = 'testime' where boardpass_number = 'testpass1' and barcode = '123456';
+
+        } catch (SQLException e) {
+
+        }
     }
 
+    /**
+     *------------------------------------------------------------------------------------------------------------------
+     *
+     */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     *------------------------------------------------------------------------------------------------------------------
+     *
+     */
 
 
 
