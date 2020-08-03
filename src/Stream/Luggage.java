@@ -11,7 +11,6 @@ import java.sql.Array;
  */
 public class Luggage implements Serializable {
 
-    private String boardPassNumber;
     private String barcodeNumber;
     private String type;
     private double weight;
@@ -21,8 +20,7 @@ public class Luggage implements Serializable {
     private String excess;
 
     // constructor
-    public Luggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) {
-        this.boardPassNumber = boardPassNumber;
+    public Luggage(String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) {
         this.barcodeNumber = barcodeNumber;
         this.type = type;
         this.weight = weight;
@@ -33,10 +31,6 @@ public class Luggage implements Serializable {
     }
 
     // getter methods
-    public String getBoardPassNumber() {
-        return boardPassNumber;
-    }
-
     public String getBarcodeNumber() {
         return barcodeNumber;
     }

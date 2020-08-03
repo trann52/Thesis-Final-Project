@@ -164,26 +164,25 @@ public class DbMethods {
      * This method should occur at the same time as 'submitToLuggageStatus()'.
      */
 
-    public void submitToAboutLuggage(Luggage luggage) {
+    public void submitToAboutLuggage(SendMessage sendMessage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.aboutluggage(" +
                     "boardpass_number, barcode, type, weight, colour, dimension, fragile, excess) " +
                     "VALUES(?,?,?,?,?,?,?,?)");
 
-            ps.setString(1, luggage.getBoardPassNumber());
-            ps.setString(2, luggage.getBarcodeNumber());
-            ps.setString(3, luggage.getType());
-            ps.setDouble(4, luggage.getWeight());
-            ps.setString(5, luggage.getColour());
-            ps.setArray(6, luggage.getDimension());
-            ps.setString(7, luggage.getFragile());
-            ps.setString(8, luggage.getExcess());
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(3, sendMessage.getLuggage().getType());
+            ps.setDouble(4, sendMessage.getLuggage().getWeight());
+            ps.setString(5, sendMessage.getLuggage().getColour());
+            ps.setArray(6, sendMessage.getLuggage().getDimension());
+            ps.setString(7, sendMessage.getLuggage().getFragile());
+            ps.setString(8, sendMessage.getLuggage().getExcess());
 
             ps.executeUpdate();
 
             System.out.println("Data added to table");
-
 
         } catch (SQLException e) {
 
@@ -197,7 +196,25 @@ public class DbMethods {
      *  This method should occur at the same time that 'submitToAboutLuggage()'.
      */
 
-    public void submitToLuggageStatus(){
+    public void submitToLuggageStatus(SendMessage sendMessage){
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(" INSERT INTO luggageproject.public.luggagestatus(" +
+                    "boardpass_number, barcode, origin, destination, layovers) VALUES(?,?,?,?,?)");
+
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(3, sendMessage.getPassenger().getOrigin());
+            ps.setString(4, sendMessage.getPassenger().getDestination());
+            ps.setArray(5, sendMessage.getPassenger().getLayovers());
+
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -211,12 +228,17 @@ public class DbMethods {
 
     public void sortToLuggageStatus(SendMessage sendMessage){
 
-        try {
-            PreparedStatement ps = connection.prepareStatement("");
-
-        }catch (SQLException e) {
-
-        }
+////        PreparedStatement ps;
+//        try {
+//            PreparedStatement ps = connection.prepareStatement("select sortedby, sortedtime from luggagestatus " +
+//                    "where boardpass_number = 'testpass1' and barcode = '123456'; ")
+//
+//
+//
+//
+//        }catch (SQLException e) {
+//
+//        }
 
 
     }
