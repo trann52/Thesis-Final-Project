@@ -3,6 +3,7 @@ package Database;
 import GUI.controller.LuggInfoController;
 import Stream.Luggage;
 import Stream.Passenger;
+import Stream.SendMessage;
 import Stream.Staff;
 
 import java.io.File;
@@ -13,7 +14,7 @@ import java.util.Properties;
 
 /**
  * @author Nicky Tran
- * @version 26/07/2020: 1.12
+ * @version 26/07/2020: 1.25
  * This class will contain all the methods used in my system to upload data to the
  * database or to retrieve data from the database.
  */
@@ -50,6 +51,7 @@ public class DbMethods {
             e.printStackTrace();
         }
     }
+
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
@@ -113,6 +115,53 @@ public class DbMethods {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
+     * This method will set the staff member to a logged in status in the database
+     *
+     */
+
+    public void isStaffOnline(Staff staff){
+        if (checkStaffUserWithPassword(staff)){
+            try {
+                PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.stafflogin " +
+                        "SET status = ? WHERE username = ?");
+
+                ps.setString(1, "online");
+                ps.setString(2, staff.getUsername());
+                ps.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This method will set the staff member to a logged out status
+     */
+
+    public void logStaffOut(Staff staff){
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.stafflogin " +
+                    "SET status = ? WHERE username = ?");
+
+            ps.setString(1, "offline");
+            ps.setString(2, staff.getUsername());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     *
+     * @return this method should hopefully update the the aboutluggage table with
+     * all the necessary information that has been inputted in the GUI.
+     * This method should occur at the same time as 'submitToLuggageStatus()'.
      */
 
     public void submitToAboutLuggage(Luggage luggage) {
@@ -142,10 +191,39 @@ public class DbMethods {
 
 
     }
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     *  This method will inset the boarding pass number and the barcode number to the luggagestatus table.
+     *  This method should occur at the same time that 'submitToAboutLuggage()'.
+     */
+
+    public void submitToLuggageStatus(){
+
+    }
+
+
+
+
+    /**
+     *------------------------------------------------------------------------------------------------------------------
+     *
+     */
+
+    public void sortToLuggageStatus(SendMessage sendMessage){
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("");
+
+        }catch (SQLException e) {
+
+        }
+
+
+    }
+
+
 
 
 
 
 }
-
-
