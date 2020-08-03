@@ -20,6 +20,7 @@ public class Luggage implements Serializable {
     private String fragile;
     private String excess;
 
+    // constructor
     public Luggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) {
         this.boardPassNumber = boardPassNumber;
         this.barcodeNumber = barcodeNumber;
@@ -31,6 +32,7 @@ public class Luggage implements Serializable {
         this.excess = excess;
     }
 
+    // getter methods
     public String getBoardPassNumber() {
         return boardPassNumber;
     }

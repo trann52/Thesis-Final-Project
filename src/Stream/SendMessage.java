@@ -15,57 +15,15 @@ public class SendMessage implements Serializable {
     private Staff staff;
     private Luggage luggage;
 
-    /**
-     * A constructor to initialise message for sending requests
-     * @param message a message sent to Client.Client
-     */
-    public SendMessage(String message) {
-        this.message = message;
-    }
-
-    /**
-     * A constructor to initialise message and passenger for search the bookingNumber requests
-     * @param message a message sent to Client.Client
-     * @param passenger the passenger information
-     */
-    public SendMessage(String message, Passenger passenger) {
+// constructor
+    public SendMessage(String message, Passenger passenger, Staff staff, Luggage luggage) {
         this.message = message;
         this.passenger = passenger;
-    }
-
-    /**
-     * A constructor to initialise message, passenger and luggage for viewing luggage status requests
-     * @param message a message sent to Client.Client
-     * @param passenger the passenger information
-     * @param luggage the luggage information
-     */
-    public SendMessage(String message, Passenger passenger, Luggage luggage) {
-        this.message = message;
-        this.passenger = passenger;
-        this.luggage = luggage;
-    }
-
-    /**
-     *A constructor to initialise message and luggage for updating luggage status requests
-     * @param message a message sent to Client.Client
-     * @param luggage the luggage information
-     */
-    public SendMessage(String message, Luggage luggage) {
-        this.message = message;
-        this.luggage = luggage;
-    }
-
-    /**
-     * A constructor to initialise message and staff for staff login requests
-     * @param message a message sent to Client.Client
-     * @param staff staff information
-     */
-    public SendMessage(String message, Staff staff) {
-        this.message = message;
         this.staff = staff;
+        this.luggage = luggage;
     }
 
-
+    // getter methods
     public String getMessage() {
         return message;
     }
