@@ -17,9 +17,9 @@ import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
  */
 public class Barcode128 extends BarcodeGenerator {
 
-//    public Barcode128() {
-//        super(new Code128Bean());
-//    }
+    public Barcode128() {
+        super(new Code128Bean());
+    }
 
 
 }
