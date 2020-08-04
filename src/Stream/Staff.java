@@ -14,15 +14,17 @@ public class Staff implements Serializable {
     private String username;
     private String password;
     private Timestamp timestamp;
+    private String location;
 
     // constructor
-    public Staff(String username, String password, Timestamp timestamp) {
+    public Staff(String username, String password, Timestamp timestamp, String location) {
         this.username = username;
         this.password = password;
         this.timestamp = timestamp;
+        this.location = location;
     }
 
-    // getter methods
+    //getter methods
     public String getUsername() {
         return username;
     }
@@ -35,4 +37,7 @@ public class Staff implements Serializable {
         return timestamp;
     }
 
+    public String getLocation() {
+        return location;
+    }
 }

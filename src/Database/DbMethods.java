@@ -220,7 +220,6 @@ public class DbMethods {
 
 
 
-
     /**
      *------------------------------------------------------------------------------------------------------------------
      *
@@ -229,7 +228,7 @@ public class DbMethods {
     public void sortToLuggageStatus(SendMessage sendMessage) {
 
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.luggagestatus");
+            PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.luggagestatus()");
 
 
 //      update luggagestatus SET sortedby[0] = 'janed4', sortedtime[0] = 'testime' where boardpass_number = 'testpass1' and barcode = '123456';
@@ -244,6 +243,20 @@ public class DbMethods {
      *
      */
 
+    public void sortInsertToViewStatus(SendMessage sendMessage){
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
+                    "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
+
+//            ps.setString();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
