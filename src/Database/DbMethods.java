@@ -17,7 +17,7 @@ import java.util.Properties;
 
 /**
  * @author Nicky Tran
- * @version 26/07/2020: 1.25
+ * @version 26/07/2020: 1.38
  * This class will contain all the methods used in my system to upload data to the
  * database or to retrieve data from the database.
  */
@@ -119,11 +119,10 @@ public class DbMethods {
     /**
      * -----------------------------------------------------------------------------------------------------------------
      * This method will set the staff member to a logged in status in the database
-     *
      */
 
-    public void isStaffOnline(Staff staff){
-        if (checkStaffUserWithPassword(staff)){
+    public void isStaffOnline(Staff staff) {
+        if (checkStaffUserWithPassword(staff)) {
             try {
                 PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.stafflogin " +
                         "SET status = ? WHERE username = ?");
@@ -143,11 +142,11 @@ public class DbMethods {
      * This method will set the staff member to a logged out status
      */
 
-    public void logStaffOut(Staff staff){
+    public void logStaffOut(Staff staff) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.stafflogin " +
-                    "SET status = ? WHERE username = ?");
+                    "SET state = ? WHERE username = ?");
 
             ps.setString(1, "offline");
             ps.setString(2, staff.getUsername());
@@ -193,15 +192,16 @@ public class DbMethods {
 
 
     }
+
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     *  This method will inset the boarding pass number and the barcode number to the luggagestatus table.
-     *  This method should occur at the same time that 'submitToAboutLuggage()'.
+     * This method will inset the boarding pass number and the barcode number to the luggagestatus table.
+     * This method should occur at the same time that 'submitToAboutLuggage()'.
      */
 
-    public void submitToLuggageStatus(SendMessage sendMessage){
+    public void submitToLuggageStatus(SendMessage sendMessage) {
 
-        try{
+        try {
             PreparedStatement ps = connection.prepareStatement(" INSERT INTO luggageproject.public.luggagestatus(" +
                     "boardpass_number, barcode, origin, destination, layovers) VALUES(?,?,?,?,?)");
 
@@ -222,9 +222,8 @@ public class DbMethods {
     }
 
 
-
     /**
-     *------------------------------------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------------------------------------
      * The sorted rows in the luggagestatus table is updated.
      * This method should occur at the same time as sortInsertToViewStatus().
      */
@@ -233,34 +232,39 @@ public class DbMethods {
 
 //        for (int i = 0; i <= 15; i++) {
 
-            try {
-                PreparedStatement ps = connection.prepareStatement(
-                        "DECLARE @i int = 0;" +
-                                "WHILE @i <=15 " +
-                                "BEGIN" +
-                                "UPDATE luggageproject.public.luggagestatus() SET sortedby[@i] = ?, sortedtime[@i] =? WHERE boardpass_number = ? AND barcode = ?" +
-                                "BEGIN " +
-                                "@i = @i + 1" +
-                                "END" +
-                                "END");
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "BEGIN " +
+                            "DECLARE @i int = 0;" +
+                            "WHILE @i <=15 " +
+                            "UPDATE luggageproject.public.luggagestatus " +
+                            "SET sortedby[@i] = ?, sortedtime[@i] =?, sortedlocation[@i] = ? " +
+                            "WHERE boardpass_number = ? AND barcode = ? " +
+                            "@i = @i + 1 " +
+                            "END");
 
-                ps.setString(1, sendMessage.getStaff().getUsername());
-                ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(1, sendMessage.getStaff().getUsername());
+            ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(3, sendMessage.getStaff().getLocation());
+            ps.setString(4, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(5, sendMessage.getLuggage().getBarcodeNumber());
+
+            ps.executeUpdate();
 
 
-            } catch (SQLException e) {
+        } catch (SQLException e) {
 
-            }
         }
+    }
 //    }
 
     /**
-     *------------------------------------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------------------------------------
      * Data is inserted into the viewstatus table when luggage is sorted
      * This method should occur at the same time as sortToLuggageStatus().
      */
 
-    public void sortInsertToViewStatus(SendMessage sendMessage){
+    public void sortInsertToViewStatus(SendMessage sendMessage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
@@ -283,10 +287,175 @@ public class DbMethods {
     }
 
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * The loaded rows in the luggagestatus table is updated
+     * This method should occur at the same time as loadIntoViewStatus().
+     */
+
+    // TODO NEED TO CHECK IF WORKS WHEN CONNECTED TO SERVER AND CLIENT
+    public void loadToLuggageStatus(SendMessage sendMessage) {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "BEGIN " +
+                            "DECLARE @i int = 0;" +
+                            "WHILE @i <=15 " +
+                            "UPDATE luggageproject.public.luggagestatus " +
+                            "SET loadedby[@i] = ?, loadedtime[@i] =?, loadedlocation[@i] = ? " +
+                            "WHERE boardpass_number = ? AND barcode = ? " +
+                            "@i = @i + 1 " +
+                            "END");
+
+            ps.setString(1, sendMessage.getStaff().getUsername());
+            ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(3, sendMessage.getStaff().getLocation());
+            ps.setString(4, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(5, sendMessage.getLuggage().getBarcodeNumber());
+
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /**
-     *------------------------------------------------------------------------------------------------------------------
-     *
+     * -----------------------------------------------------------------------------------------------------------------
+     * Data is inserted into the viewstatus table when luggage is loaded
+     * This method should occur at the same time as loadToLuggageStatus()
+     */
+
+    public void loadIntoViewStatus(SendMessage sendMessage) {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
+                    "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
+
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(3, sendMessage.getStaff().getLocation());
+            ps.setString(4, "Loaded");
+            ps.setString(5, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * The unloaded rows in the luggagestatus table is updated
+     * This method should occur at the same time as unloadIntoViewStatus().
+     */
+
+    // TODO NEED TO CHECK IF WORKS WHEN CONNECTED TO SERVER AND CLIENT
+    public void unloadToLuggageStatus(SendMessage sendMessage) {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "BEGIN " +
+                            "DECLARE @i int = 0;" +
+                            "WHILE @i <=15 " +
+                            "UPDATE luggageproject.public.luggagestatus " +
+                            "SET unloadedby[@i] = ?, unloadedtime[@i] =?, unloadedlocation[@i] = ? " +
+                            "WHERE boardpass_number = ? AND barcode = ? " +
+                            "@i = @i + 1 " +
+                            "END");
+
+            ps.setString(1, sendMessage.getStaff().getUsername());
+            ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(3, sendMessage.getStaff().getLocation());
+            ps.setString(4, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(5, sendMessage.getLuggage().getBarcodeNumber());
+
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * Data is inserted into the viewstatus table when luggage is unloaded
+     * This method should occur at the same time as unloadToLuggageStatus()
+     */
+
+    public void unloadIntoViewStatus(SendMessage sendMessage) {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
+                    "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
+
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(3, sendMessage.getStaff().getLocation());
+            ps.setString(4, "Unloaded");
+            ps.setString(5, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * Method to view all data in luggagestatus stable when boardingpass number and barcode are given,
+     * this is intended for staff members when they want to look up missing luggage
+     */
+    public void staffLookupLuggage(SendMessage sendMessage){
+
+        try{
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
+                    "WHERE boardpass_number = ? AND barcode = ?");
+
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * Method to view all data in viewstatus stable when boardingpass number and barcode are given,
+     * this is intended for passengers when they want to look up their luggage.
+     */
+
+    public void passengerLuggageLookup(SendMessage sendMessage) {
+
+        try{
+            PreparedStatement ps = connection.prepareStatement("SELECT location, status, datetime " +
+                    "FROM luggageproject.public.viewstatus WHERE boardpass_number = ? AND barcode = ? ");
+
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
      */
 
 
