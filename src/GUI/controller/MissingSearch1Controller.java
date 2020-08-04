@@ -28,7 +28,6 @@ import java.util.ResourceBundle;
 public class MissingSearch1Controller implements Initializable {
 
     String username;
-    String dateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now());
 
     @FXML
     private Button menuBtn;

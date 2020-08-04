@@ -9,6 +9,9 @@ import Stream.Staff;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.*;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Properties;
 
 
@@ -222,25 +225,39 @@ public class DbMethods {
 
     /**
      *------------------------------------------------------------------------------------------------------------------
-     *
+     * The sorted rows in the luggagestatus table is updated.
+     * This method should occur at the same time as sortInsertToViewStatus().
      */
-
+// TODO NEED TO CHECK IF WORKS WHEN CONNECTED TO SERVER AND CLIENT
     public void sortToLuggageStatus(SendMessage sendMessage) {
 
-        try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE luggageproject.public.luggagestatus()");
+//        for (int i = 0; i <= 15; i++) {
+
+            try {
+                PreparedStatement ps = connection.prepareStatement(
+                        "DECLARE @i int = 0;" +
+                                "WHILE @i <=15 " +
+                                "BEGIN" +
+                                "UPDATE luggageproject.public.luggagestatus() SET sortedby[@i] = ?, sortedtime[@i] =? WHERE boardpass_number = ? AND barcode = ?" +
+                                "BEGIN " +
+                                "@i = @i + 1" +
+                                "END" +
+                                "END");
+
+                ps.setString(1, sendMessage.getStaff().getUsername());
+                ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
 
-//      update luggagestatus SET sortedby[0] = 'janed4', sortedtime[0] = 'testime' where boardpass_number = 'testpass1' and barcode = '123456';
+            } catch (SQLException e) {
 
-        } catch (SQLException e) {
-
+            }
         }
-    }
+//    }
 
     /**
      *------------------------------------------------------------------------------------------------------------------
-     *
+     * Data is inserted into the viewstatus table when luggage is sorted
+     * This method should occur at the same time as sortToLuggageStatus().
      */
 
     public void sortInsertToViewStatus(SendMessage sendMessage){
@@ -249,27 +266,21 @@ public class DbMethods {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
                     "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
 
-//            ps.setString();
+            ps.setString(1, sendMessage.getPassenger().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(3, sendMessage.getStaff().getLocation());
+            ps.setString(4, "Sorted");
+            ps.setString(5, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
