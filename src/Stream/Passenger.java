@@ -12,7 +12,6 @@ import java.sql.Array;
 public class Passenger implements Serializable {
 
     private String bookingNumber;
-    private String boardPassNumber;
     private String origin;
     private String destination;
     private Array layovers;
@@ -21,25 +20,18 @@ public class Passenger implements Serializable {
     // constructors
     public Passenger(String bookingNumber, String boardPassNumber, String origin, String destination, Array layovers) {
         this.bookingNumber = bookingNumber;
-        this.boardPassNumber = boardPassNumber;
         this.origin = origin;
         this.destination = destination;
         this.layovers = layovers;
     }
 
-//    public Passenger(String bookingNumber) {
-//        this.bookingNumber = bookingNumber;
-//    }
-//
-//
-//    public Passenger(String boardPassNumber) {
-//        this.boardPassNumber = boardPassNumber;
-//    }
+    public Passenger(String bookingNumber) {
+        this.bookingNumber = bookingNumber;
+    }
 
 
     public Passenger(String bookingNumber, String boardPassNumber) {
         this.bookingNumber = bookingNumber;
-        this.boardPassNumber = boardPassNumber;
     }
 
     public Passenger(String origin, String destination, Array layovers) {
@@ -53,10 +45,6 @@ public class Passenger implements Serializable {
     // getter methods
     public String getBookingNumber() {
         return bookingNumber;
-    }
-
-    public String getBoardPassNumber() {
-        return boardPassNumber;
     }
 
     public String getOrigin() {

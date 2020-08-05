@@ -29,17 +29,24 @@ public class Client {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     * The method on the client side to check the booking number
+     * The method on the client side to check the booking number.
+     * A request is sent from the client after the input of a booking number.
      */
 
-    public boolean clientBookingNumberCheck (String bookingNumber){
+    public void clientBookingNumberCheck (String bookingNumber) throws IOException, ClassNotFoundException {
 
-        System.out.println("Type your booking number");
+        // sending a new request form the client
+        out.writeObject(new SendMessage("Booking Number Check Request"));
 
-        //bn is shorted for booking number
-        SendMessage bnMessage = new SendMessage("Booking Number Check", new Passenger(bookingNumber,""));
+        SendMessage bncServer = (SendMessage) in.readObject();
 
 
+//        // New request object per question
+//        out.writeObject(new MessageProtocol("Question Request"));
+//        // Create Global.Question object from server response
+//        MessageProtocol questionFromServer = (MessageProtocol) in.readObject();
+//
+//        return questionFromServer.getQuestion();
 
     }
 

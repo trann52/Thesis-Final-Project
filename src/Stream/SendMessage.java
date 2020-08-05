@@ -46,6 +46,10 @@ public class SendMessage implements Serializable {
         this.luggage = luggage;
     }
 
+    public SendMessage(String message) {
+        this.message = message;
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     // getter methods
     public String getMessage() {
