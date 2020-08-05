@@ -15,7 +15,8 @@ public class SendMessage implements Serializable {
     private Staff staff;
     private Luggage luggage;
 
-// constructor
+// ---------------------------------------------------------------------------------------------------------------------
+// constructors
     public SendMessage(String message, Passenger passenger, Staff staff, Luggage luggage) {
         this.message = message;
         this.passenger = passenger;
@@ -23,6 +24,29 @@ public class SendMessage implements Serializable {
         this.luggage = luggage;
     }
 
+    public SendMessage(String message, Passenger passenger) {
+        this.message = message;
+        this.passenger = passenger;
+    }
+
+    public SendMessage(String message, Passenger passenger, Luggage luggage) {
+        this.message = message;
+        this.passenger = passenger;
+        this.luggage = luggage;
+    }
+
+    public SendMessage(String message, Staff staff) {
+        this.message = message;
+        this.staff = staff;
+    }
+
+    public SendMessage(String message, Staff staff, Luggage luggage) {
+        this.message = message;
+        this.staff = staff;
+        this.luggage = luggage;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
     // getter methods
     public String getMessage() {
         return message;

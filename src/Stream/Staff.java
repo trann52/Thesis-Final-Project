@@ -13,18 +13,28 @@ public class Staff implements Serializable {
 
     private String username;
     private String password;
-    private Timestamp timestamp;
     private String location;
 
-    // constructor
-    public Staff(String username, String password, Timestamp timestamp, String location) {
+    // -----------------------------------------------------------------------------------------------------------------
+    // constructors
+    public Staff(String username, String password, String location) {
         this.username = username;
         this.password = password;
-        this.timestamp = timestamp;
         this.location = location;
     }
 
-    //getter methods
+//    public Staff(String username, String password) {
+//        this.username = username;
+//        this.password = password;
+//    }
+
+    public Staff(String username, String location) {
+        this.username = username;
+        this.location = location;
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // getter methods
     public String getUsername() {
         return username;
     }
@@ -33,9 +43,6 @@ public class Staff implements Serializable {
         return password;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
 
     public String getLocation() {
         return location;

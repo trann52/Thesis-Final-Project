@@ -1,6 +1,7 @@
 package Client;
 
 
+import Stream.Passenger;
 import Stream.SendMessage;
 
 import java.io.IOException;
@@ -28,9 +29,19 @@ public class Client {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
+     * The method on the client side to check the booking number
      */
 
-//    public boolean clientBookingNUmberCheck (String )
+    public boolean clientBookingNumberCheck (String bookingNumber){
+
+        System.out.println("Type your booking number");
+
+        //bn is shorted for booking number
+        SendMessage bnMessage = new SendMessage("Booking Number Check", new Passenger(bookingNumber));
+
+
+
+    }
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
