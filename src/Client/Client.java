@@ -1,6 +1,9 @@
 package Client;
 
 
+import Database.DbMethods;
+import Server.Server;
+import Stream.Luggage;
 import Stream.Passenger;
 import Stream.SendMessage;
 
@@ -18,6 +21,8 @@ import java.net.Socket;
 public class Client {
 
     private static SendMessage objectStaffLogin;
+    private static SendMessage objectBookingCheck;
+    private static SendMessage luggageSearch;
     private ObjectOutputStream out;
     private ObjectInputStream in;
 
@@ -33,22 +38,29 @@ public class Client {
      * A request is sent from the client after the input of a booking number.
      */
 
-    public void clientBookingNumberCheck (String bookingNumber) throws IOException, ClassNotFoundException {
+    public boolean clientBookingNumberCheck (String bookingNumber) throws IOException, ClassNotFoundException {
 
-        // sending a new request form the client
-        out.writeObject(new SendMessage("Booking Number Check Request"));
+        objectBookingCheck = new SendMessage("Booking Check", new Passenger(bookingNumber));
 
-        SendMessage bncServer = (SendMessage) in.readObject();
+        System.out.println("Sending to server: " + objectBookingCheck.getPassenger().getBookingNumber());
+        out.writeObject(objectBookingCheck); // the objectBookingCheck object is sent to the server
 
+        System.out.println("Booking Check Object has been sent");
+        String bcnServerMessage = (String) in.readObject();
+        System.out.println(bcnServerMessage);
 
-//        // New request object per question
-//        out.writeObject(new MessageProtocol("Question Request"));
-//        // Create Global.Question object from server response
-//        MessageProtocol questionFromServer = (MessageProtocol) in.readObject();
-//
-//        return questionFromServer.getQuestion();
-
+        if (bcnServerMessage.equals("Booking Number Check is successful")){
+            System.out.println(bcnServerMessage);
+            DbMethods dbBcnObject = new DbMethods();
+            dbBcnObject.checkBookingNumber(objectBookingCheck.getPassenger());
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+
+
 
     /**
      * -----------------------------------------------------------------------------------------------------------------

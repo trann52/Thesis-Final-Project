@@ -18,7 +18,7 @@ public class Passenger implements Serializable {
 
     // -----------------------------------------------------------------------------------------------------------------
     // constructors
-    public Passenger(String bookingNumber, String boardPassNumber, String origin, String destination, Array layovers) {
+    public Passenger(String bookingNumber, String origin, String destination, Array layovers) {
         this.bookingNumber = bookingNumber;
         this.origin = origin;
         this.destination = destination;
@@ -29,17 +29,11 @@ public class Passenger implements Serializable {
         this.bookingNumber = bookingNumber;
     }
 
-
-    public Passenger(String bookingNumber, String boardPassNumber) {
-        this.bookingNumber = bookingNumber;
-    }
-
     public Passenger(String origin, String destination, Array layovers) {
         this.origin = origin;
         this.destination = destination;
         this.layovers = layovers;
     }
-
 
     // -----------------------------------------------------------------------------------------------------------------
     // getter methods
