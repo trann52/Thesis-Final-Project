@@ -36,7 +36,7 @@ public class LoadingController implements Initializable {
     private TextField loadByLabel;
 
     @FXML
-    private TextField timeLoadLabel;
+    private TextField locationLoadLabel;
 
     @FXML
     private Button loadSubmitBtn;

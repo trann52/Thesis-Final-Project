@@ -39,7 +39,7 @@ public class SortingController implements Initializable {
     private TextField sortByLabel;
 
     @FXML
-    private TextField timeSortLabel;
+    private TextField locationSortLabel;
 
     @FXML
     private Button sortSubmitBtn;

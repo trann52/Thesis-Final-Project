@@ -1,6 +1,8 @@
 package Client;
 
 
+import Stream.SendMessage;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,6 +16,7 @@ import java.net.Socket;
  */
 public class Client {
 
+    private static SendMessage objectStaffLogin;
     private ObjectOutputStream out;
     private ObjectInputStream in;
 
@@ -23,6 +26,14 @@ public class Client {
         in = new ObjectInputStream(socket.getInputStream());
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
     public static void main(String[] args) throws IOException {
         Client startClient = new Client();
     }

@@ -36,7 +36,7 @@ public class UnloadingController implements Initializable {
     private TextField unloadByLabel;
 
     @FXML
-    private TextField timeUnloadLabel;
+    private TextField locationUnloadLabel;
 
     @FXML
     private Button loadSubmitBtn;

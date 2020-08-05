@@ -71,8 +71,8 @@
                   </HBox>
                   <HBox layoutY="85.0" prefHeight="25.0" prefWidth="466.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="195.0" text="Time Loaded" />
-                        <TextField fx:id="timeLoadLabel" prefHeight="25.0" prefWidth="283.0" />
+                        <Label prefHeight="25.0" prefWidth="195.0" text="Location Loaded" />
+                        <TextField fx:id="locationLoadLabel" prefHeight="25.0" prefWidth="283.0" />
                      </children>
                   </HBox>
                   <Button fx:id="loadSubmitBtn" layoutX="182.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#loadAgain" prefHeight="31.0" prefWidth="102.0" styleClass="button1" text="Submit">
