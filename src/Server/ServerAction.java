@@ -77,6 +77,18 @@ public class ServerAction {
         }
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the server side for staff logout
+     */
+
+    public void serverStaffLogout(Staff staff){
+        DbMethods dbObject = new DbMethods();
+        dbObject.logStaffOut(staff);
+    }
+
+
+
 
 
 

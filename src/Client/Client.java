@@ -130,6 +130,20 @@ public class Client {
 
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for staff logout
+     */
+
+    public void clientStaffLogout(String username) throws IOException {
+
+        // The object being sent is the message "Logout"
+        SendMessage logoutServerMessage = new SendMessage("Logout", new Staff(username));
+        out.writeObject(logoutServerMessage); // sending the object to the server
+    }
+
+
+
 
 
 

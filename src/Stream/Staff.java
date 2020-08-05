@@ -28,10 +28,9 @@ public class Staff implements Serializable {
         this.password = password;
     }
 
-//    public Staff(String username, String location) {
-//        this.username = username;
-//        this.location = location;
-//    }
+    public Staff(String username) {
+        this.username = username;
+    }
 
     //------------------------------------------------------------------------------------------------------------------
     // getter methods
