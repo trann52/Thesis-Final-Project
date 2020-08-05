@@ -30,9 +30,15 @@ public class Passenger implements Serializable {
 //    public Passenger(String bookingNumber) {
 //        this.bookingNumber = bookingNumber;
 //    }
+//
+//
+//    public Passenger(String boardPassNumber) {
+//        this.boardPassNumber = boardPassNumber;
+//    }
 
 
-    public Passenger(String boardPassNumber) {
+    public Passenger(String bookingNumber, String boardPassNumber) {
+        this.bookingNumber = bookingNumber;
         this.boardPassNumber = boardPassNumber;
     }
 
@@ -41,6 +47,7 @@ public class Passenger implements Serializable {
         this.destination = destination;
         this.layovers = layovers;
     }
+
 
     // -----------------------------------------------------------------------------------------------------------------
     // getter methods

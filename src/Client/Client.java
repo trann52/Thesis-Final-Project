@@ -37,7 +37,7 @@ public class Client {
         System.out.println("Type your booking number");
 
         //bn is shorted for booking number
-        SendMessage bnMessage = new SendMessage("Booking Number Check", new Passenger(bookingNumber));
+        SendMessage bnMessage = new SendMessage("Booking Number Check", new Passenger(bookingNumber,""));
 
 
 
