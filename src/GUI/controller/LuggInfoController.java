@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Stream.SendMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,11 +18,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
  * @author Nicky Tran
- * @version 15/07/2020: 1.4
+ * @version 15/07/2020: 2.1
  * This class is the controller class for the 'LuggInfo' fxml, so it contains
  * all appropriate methods for the GUI such as moving between different GUI scenes.
  */
@@ -29,6 +33,7 @@ public class LuggInfoController implements Initializable {
 
     String username;
     String boardPassNumber;
+    public static Connection connection;
     /**
      * Creating the lists of strings that will be shown in a drop down box
      */
@@ -117,9 +122,12 @@ public class LuggInfoController implements Initializable {
             warningLabel.setText("Fields with a * cannot be empty.");
         }
         else {
+            submitToAboutLuggage();
+            submitToLuggageStatus();
             warningLabel.setText("Luggage Information successfully submitted.");
         }
-        // need to change the else to add to database here
+        // need to change the else to add to database here (DONE)
+        // need to connect server/client
     }
 
     @FXML
@@ -147,6 +155,66 @@ public class LuggInfoController implements Initializable {
     }
 
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This method should hopefully update the the aboutluggage table with
+     * all the necessary information that has been inputted in the GUI.
+     * This method should occur at the same time as 'submitToLuggageStatus()'.
+     */
+
+    public void submitToAboutLuggage() {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.aboutluggage(" +
+                    "boardpass_number, barcode, type, weight, colour, dimension, fragile, excess) " +
+                    "VALUES(?,?,?,?,?,?,?,?)");
+
+            ps.setString(1, bpnLabel.getText());
+            ps.setString(2, barNumLabel.getText());
+            ps.setString(3, typeLuggBox.getValue());
+            ps.setDouble(4, Double.parseDouble(weightLabel.getText()));
+            ps.setString(5, colourLabel.getText());
+            ps.setString(6, dimenLabel.getText());
+            ps.setString(7, fragileBox.getValue());
+            ps.setString(8, excessBox.getValue());
+
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
+
+        } catch (SQLException e) {
+
+        }
+
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This method will inset the boarding pass number and the barcode number to the luggagestatus table.
+     * This method should occur at the same time that 'submitToAboutLuggage()'.
+     */
+
+    public void submitToLuggageStatus() {
+        SendMessage sendMessage = null;
+        try {
+            PreparedStatement ps = connection.prepareStatement(" INSERT INTO luggageproject.public.luggagestatus(" +
+                    "boardpass_number, barcode, origin, destination, layovers) VALUES(?,?,?,?,?)");
+
+            ps.setString(1, bpnLabel.getText());
+            ps.setString(2, barNumLabel.getText());
+            ps.setString(3, sendMessage.getPassenger().getOrigin());
+            ps.setString(4, sendMessage.getPassenger().getDestination());
+            ps.setArray(5, sendMessage.getPassenger().getLayovers());
+
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 }
