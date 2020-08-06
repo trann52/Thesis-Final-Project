@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ServiceLoader;
 
 /**
  * @author Nicky Tran
@@ -29,8 +30,6 @@ public class LuggSearchController implements Initializable {
     @FXML
     private Button homeBtn;
 
-    @FXML
-    private TextField boardPassNumberLabel;
 
     @FXML
     private Button searchBtn;
@@ -64,11 +63,9 @@ public class LuggSearchController implements Initializable {
 
     @FXML
     void searchAndCheck(MouseEvent event) {
-        String boardPassNumber = boardPassNumberLabel.getText();
         String barcodeNumber = barcodeLabel.getText();
 
-        if (boardPassNumber.isEmpty() && barcodeNumber.isEmpty() || boardPassNumber.isEmpty() ||
-        barcodeNumber.isEmpty()) {
+        if (barcodeNumber.isEmpty()) {
             promptLabel.setText("Unable to find luggage. Please try again.");
         }
         else {
@@ -79,11 +76,15 @@ public class LuggSearchController implements Initializable {
     @FXML
     void goToCurrentStatus(MouseEvent statusEvent) throws IOException {
         Node n = (Node) statusEvent.getSource();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/CurrentStatus.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/CurrentStatus.fxml"));
+        Parent root = (Parent) loader.load();
+        CurrentStatusController currentStatusController = loader.getController();
+        currentStatusController.getBarcode(barcodeLabel.getText());
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);
         stg.show();
+
     }
 
 

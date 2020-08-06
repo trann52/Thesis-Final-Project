@@ -243,15 +243,14 @@ public class DbMethods {
                             "WHILE @i <=15 " +
                             "UPDATE luggageproject.public.luggagestatus " +
                             "SET sortedby[@i] = ?, sortedtime[@i] =?, sortedlocation[@i] = ? " +
-                            "WHERE boardpass_number = ? AND barcode = ? " +
+                            "WHERE barcode = ? " +
                             "@i = @i + 1 " +
                             "END");
 
             ps.setString(1, sendMessage.getStaff().getUsername());
             ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
             ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, sendMessage.getLuggage().getBoardPassNumber());
-            ps.setString(5, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
             ps.executeUpdate();
 
@@ -272,13 +271,12 @@ public class DbMethods {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
-                    "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
+                    "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
-            ps.setString(1, sendMessage.getLuggage().getBoardPassNumber());
-            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
-            ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, "Sorted");
-            ps.setString(5, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(2, sendMessage.getStaff().getLocation());
+            ps.setString(3, "Sorted");
+            ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
             ps.executeUpdate();
 
@@ -307,15 +305,14 @@ public class DbMethods {
                             "WHILE @i <=15 " +
                             "UPDATE luggageproject.public.luggagestatus " +
                             "SET loadedby[@i] = ?, loadedtime[@i] =?, loadedlocation[@i] = ? " +
-                            "WHERE boardpass_number = ? AND barcode = ? " +
+                            "WHERE barcode = ? " +
                             "@i = @i + 1 " +
                             "END");
 
             ps.setString(1, sendMessage.getStaff().getUsername());
             ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
             ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, sendMessage.getLuggage().getBoardPassNumber());
-            ps.setString(5, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
             ps.executeUpdate();
 
@@ -336,13 +333,12 @@ public class DbMethods {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
-                    "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
+                    "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
-            ps.setString(1, sendMessage.getLuggage().getBoardPassNumber());
-            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
-            ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, "Loaded");
-            ps.setString(5, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(2, sendMessage.getStaff().getLocation());
+            ps.setString(3, "Loaded");
+            ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
             ps.executeUpdate();
 
@@ -370,15 +366,14 @@ public class DbMethods {
                             "WHILE @i <=15 " +
                             "UPDATE luggageproject.public.luggagestatus " +
                             "SET unloadedby[@i] = ?, unloadedtime[@i] =?, unloadedlocation[@i] = ? " +
-                            "WHERE boardpass_number = ? AND barcode = ? " +
+                            "WHERE barcode = ? " +
                             "@i = @i + 1 " +
                             "END");
 
             ps.setString(1, sendMessage.getStaff().getUsername());
             ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
             ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, sendMessage.getLuggage().getBoardPassNumber());
-            ps.setString(5, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
             ps.executeUpdate();
 
@@ -398,13 +393,12 @@ public class DbMethods {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
-                    "boardpass_number, barcode, location, status, datetime) VALUES(?,?,?,?,?)");
+                    "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
-            ps.setString(1, sendMessage.getLuggage().getBoardPassNumber());
-            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
-            ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, "Unloaded");
-            ps.setString(5, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
+            ps.setString(2, sendMessage.getStaff().getLocation());
+            ps.setString(3, "Unloaded");
+            ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
             ps.executeUpdate();
 
@@ -445,9 +439,8 @@ public class DbMethods {
 
         try{
             PreparedStatement ps = connection.prepareStatement("SELECT location, status, datetime " +
-                    "FROM luggageproject.public.viewstatus WHERE boardpass_number = ? AND barcode = ? ");
+                    "FROM luggageproject.public.viewstatus WHERE barcode = ? ");
 
-            ps.setString(1, luggage.getBoardPassNumber());
             ps.setString(2, luggage.getBarcodeNumber());
 
             ps.execute();

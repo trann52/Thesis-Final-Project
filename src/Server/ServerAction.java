@@ -118,6 +118,34 @@ public class ServerAction {
 
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This method is to update the lugguagestatus table with the appropriate sort information.
+     * The update occurs if the boarding pass number and barcode match the ones in the database
+     */
+
+    public void serverSortToLs(SendMessage sendMessage){
+
+        System.out.println("sorting to luggagestatus server side");
+    }
+
+
+
+//    // PASSWORD RECOVERY. IF DOB AND EMAIL MATCH DATABASE, THEN IT WILL UPDATE
+//    public void passwordRecoveryServerSide(User user, Socket socket) throws IOException {
+//        System.out.println("passwordRecoveryServerSide()");
+//        DatabaseOps databaseOpsObject = new DatabaseOps();
+//
+//        if (databaseOpsObject.recover(user))
+//        {
+//            out.writeObject("Your password was changed successfully");
+//        }
+//        else
+//        {
+//            out.writeObject("Credentials incorrect");
+//        }
+//
+//    }
 
 
 

@@ -24,6 +24,8 @@ import java.util.ResourceBundle;
  */
 public class CurrentStatusController implements Initializable {
 
+    String barcode;
+
     @FXML
     private ProgressBar progressBar;
 
@@ -51,4 +53,9 @@ public class CurrentStatusController implements Initializable {
     public void testBar(){
         progressBar.setProgress(0.5);
     }
+
+    public void getBarcode(String passOnBarcode){
+        barcode = passOnBarcode;
+    }
+
 }

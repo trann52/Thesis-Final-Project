@@ -181,7 +181,31 @@ public class Client {
 
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting data related to sorting to the luggagestatus table
+     */
 
+//    public boolean clientSortToLs(String username, String location, String boardPassNumber, String barcodeNumber ){
+//
+//
+//    }
+
+//    public boolean passwordRecovery(String username, String password, String dob, String emailAddress) throws IOException, ClassNotFoundException {
+//        MessageProtocol passwordRecovery = new MessageProtocol("Password Recovery", new User(username, password, dob, emailAddress));
+//        out.writeObject(passwordRecovery);
+//
+//        String serverResponse = (String) in.readObject();
+//
+//        if (serverResponse.equals("Your password was changed successfully"))
+//        {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
 
 
 
