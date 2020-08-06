@@ -186,10 +186,11 @@ public class Client {
      * This is a method on the client side for submitting data related to sorting to the luggagestatus table
      */
 
-//    public boolean clientSortToLs(String username, String location, String boardPassNumber, String barcodeNumber ){
+    public boolean clientSortToLs(String username, String location, String barcodeNumber ){
+
+//        SendMessage sortToLs = new SendMessage("Sort lugguagestatus", )
 //
-//
-//    }
+    }
 
 
 

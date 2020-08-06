@@ -124,13 +124,23 @@ public class ServerAction {
      * The update occurs if the boarding pass number and barcode match the ones in the database
      */
 
-    public void serverSortToLs(SendMessage sendMessage){
+    public void serverSortToLs(SendMessage sendMessage) throws IOException {
 
         System.out.println("sorting to luggagestatus server side");
         DbMethods dbObject = new DbMethods();
 
+        if (dbObject.sortToLuggageStatus(sendMessage)){
+            out.writeObject("Data successfully added to luggagestatus");
+        }
+        else {
+            out.writeObject("Barcode not found");
+        }
+
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
 
 
 

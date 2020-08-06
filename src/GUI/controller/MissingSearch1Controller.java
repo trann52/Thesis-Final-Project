@@ -36,9 +36,6 @@ public class MissingSearch1Controller implements Initializable {
     private Label userLabel;
 
     @FXML
-    private TextField boardPassNumberLabel;
-
-    @FXML
     private Button searchBtn;
 
     @FXML
@@ -80,11 +77,9 @@ public class MissingSearch1Controller implements Initializable {
 
     @FXML
     void searchAndCheck(MouseEvent event) {
-        String boardPassNumber = boardPassNumberLabel.getText();
         String barcodeNumber = barcodeLabel.getText();
 
-        if (boardPassNumber.isEmpty() && barcodeNumber.isEmpty() || boardPassNumber.isEmpty() ||
-                barcodeNumber.isEmpty()) {
+        if (barcodeNumber.isEmpty()) {
             promptLabel.setText("Unable to find luggage. Please try again.");
         }
         else {
@@ -95,12 +90,10 @@ public class MissingSearch1Controller implements Initializable {
 
     @FXML
     void goToView(MouseEvent event) throws IOException {
-        String boardPassNumber = boardPassNumberLabel.getText();
         String barcodeNumber = barcodeLabel.getText();
 
-        if (boardPassNumber.isEmpty() && barcodeNumber.isEmpty() || boardPassNumber.isEmpty() ||
-                barcodeNumber.isEmpty()) {
-            promptLabel.setText("Please enter luggage information.");
+        if (barcodeNumber.isEmpty()) {
+            promptLabel.setText("Please enter luggage barcode.");
         }
 
         Node n = (Node) event.getSource();
@@ -108,6 +101,7 @@ public class MissingSearch1Controller implements Initializable {
         Parent root = (Parent) loader.load();
         MissingViewController missingViewController = loader.getController();
         missingViewController.getUsername(userLabel.getText());
+        missingViewController.getBarcode(barcodeNumber);
         Scene scn = new Scene(root);
         Stage stg = (Stage) n.getScene().getWindow();
         stg.setScene(scn);

@@ -13,20 +13,14 @@ public class Staff implements Serializable {
 
     private String username;
     private String password;
-    private String location;
 
     // -----------------------------------------------------------------------------------------------------------------
     // constructors
-    public Staff(String username, String password, String location) {
-        this.username = username;
-        this.password = password;
-        this.location = location;
-    }
-
     public Staff(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
 
     public Staff(String username) {
         this.username = username;
@@ -42,8 +36,4 @@ public class Staff implements Serializable {
         return password;
     }
 
-
-    public String getLocation() {
-        return location;
-    }
 }

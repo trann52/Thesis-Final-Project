@@ -260,7 +260,7 @@ public class DbMethods {
 
                     sort.setString(1, sendMessage.getStaff().getUsername());
                     sort.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-                    sort.setString(3, sendMessage.getStaff().getLocation());
+                    sort.setString(3, sendMessage.getLuggage().getLocation());
                     sort.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
                     sort.executeUpdate();
@@ -281,14 +281,14 @@ public class DbMethods {
      * This method should occur at the same time as sortToLuggageStatus().
      */
 
-    public void sortInsertToViewStatus(SendMessage sendMessage) {
+    public void sortInsertToViewStatus(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
                     "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
-            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
-            ps.setString(2, sendMessage.getStaff().getLocation());
+            ps.setString(1, luggage.getBarcodeNumber());
+            ps.setString(2, luggage.getLocation());
             ps.setString(3, "Sorted");
             ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
@@ -313,11 +313,13 @@ public class DbMethods {
     public boolean loadToLuggageStatus(SendMessage sendMessage) {
 
         try {
+            // this statement will query the luggagestatus table to get the barcode
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
                     "WHERE barcode = ? ");
             ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
             ResultSet rs = ps.executeQuery();
 
+            // if the barcode matches, then the next statement will update the sorted rows with the appropriate information
             while (rs.absolute(2)) {
                 if (rs.getString(2).equals(sendMessage.getPassenger().getBookingNumber())) {
 
@@ -333,7 +335,7 @@ public class DbMethods {
 
                     load.setString(1, sendMessage.getStaff().getUsername());
                     load.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-                    load.setString(3, sendMessage.getStaff().getLocation());
+                    load.setString(3, sendMessage.getLuggage().getLocation());
                     load.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
                     load.executeUpdate();
@@ -354,14 +356,14 @@ public class DbMethods {
      * This method should occur at the same time as loadToLuggageStatus()
      */
 
-    public void loadIntoViewStatus(SendMessage sendMessage) {
+    public void loadIntoViewStatus(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
                     "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
-            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
-            ps.setString(2, sendMessage.getStaff().getLocation());
+            ps.setString(1, luggage.getBarcodeNumber());
+            ps.setString(2, luggage.getLocation());
             ps.setString(3, "Loaded");
             ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
@@ -386,11 +388,13 @@ public class DbMethods {
 
         try {
 
+            // this statement will query the luggagestatus table to get the barcode
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
                     "WHERE barcode = ? ");
             ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
             ResultSet rs = ps.executeQuery();
 
+            // if the barcode matches, then the next statement will update the sorted rows with the appropriate information
             while (rs.absolute(2)){
                 if (rs.getString(2).equals(sendMessage.getPassenger().getBookingNumber())){
 
@@ -406,7 +410,7 @@ public class DbMethods {
 
                     unload.setString(1, sendMessage.getStaff().getUsername());
                     unload.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-                    unload.setString(3, sendMessage.getStaff().getLocation());
+                    unload.setString(3, sendMessage.getLuggage().getLocation());
                     unload.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
                     unload.executeUpdate();
@@ -426,14 +430,14 @@ public class DbMethods {
      * This method should occur at the same time as unloadToLuggageStatus()
      */
 
-    public void unloadIntoViewStatus(SendMessage sendMessage) {
+    public void unloadIntoViewStatus(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
                     "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
-            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
-            ps.setString(2, sendMessage.getStaff().getLocation());
+            ps.setString(1, luggage.getBarcodeNumber());
+            ps.setString(2, luggage.getLocation());
             ps.setString(3, "Unloaded");
             ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 

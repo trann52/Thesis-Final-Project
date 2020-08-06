@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 public class MissingViewController implements Initializable {
 
     String username;
+    String barcode;
 
     @FXML
     private Button menuBtn;
@@ -89,6 +90,10 @@ public class MissingViewController implements Initializable {
     public void getUsername (String passOnUsername) {
         username = passOnUsername;
         userLabel.setText(username);
+    }
+
+    public void getBarcode(String passOnBarcode){
+        barcode = passOnBarcode;
     }
 
 
