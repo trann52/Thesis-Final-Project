@@ -188,7 +188,7 @@ public class Client {
      * This is a method on the client side for submitting data related to sorting to the luggagestatus table
      */
 
-    public boolean clientSortToLs(String username,  String barcodeNumber, String location) throws IOException, ClassNotFoundException {
+    public boolean clientSortToLs(String username,  String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Sort lugguagestatus"
         SendMessage sortToLs = new SendMessage("Sort lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));

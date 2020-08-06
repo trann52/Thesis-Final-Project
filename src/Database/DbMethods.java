@@ -260,7 +260,7 @@ public class DbMethods {
 
                     sort.setString(1, sendMessage.getStaff().getUsername());
                     sort.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-                    sort.setString(3, sendMessage.getLuggage().getLocation());
+                    sort.setArray(3, sendMessage.getLuggage().getLocation());
                     sort.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
                     sort.executeUpdate();
@@ -288,7 +288,7 @@ public class DbMethods {
                     "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
             ps.setString(1, luggage.getBarcodeNumber());
-            ps.setString(2, luggage.getLocation());
+            ps.setArray(2, luggage.getLocation());
             ps.setString(3, "Sorted");
             ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
@@ -335,7 +335,7 @@ public class DbMethods {
 
                     load.setString(1, sendMessage.getStaff().getUsername());
                     load.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-                    load.setString(3, sendMessage.getLuggage().getLocation());
+                    load.setArray(3, sendMessage.getLuggage().getLocation());
                     load.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
                     load.executeUpdate();
@@ -363,7 +363,7 @@ public class DbMethods {
                     "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
             ps.setString(1, luggage.getBarcodeNumber());
-            ps.setString(2, luggage.getLocation());
+            ps.setArray(2, luggage.getLocation());
             ps.setString(3, "Loaded");
             ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
@@ -410,7 +410,7 @@ public class DbMethods {
 
                     unload.setString(1, sendMessage.getStaff().getUsername());
                     unload.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-                    unload.setString(3, sendMessage.getLuggage().getLocation());
+                    unload.setArray(3, sendMessage.getLuggage().getLocation());
                     unload.setString(4, sendMessage.getLuggage().getBarcodeNumber());
 
                     unload.executeUpdate();
@@ -437,7 +437,7 @@ public class DbMethods {
                     "barcode, location, status, datetime) VALUES(?,?,?,?)");
 
             ps.setString(1, luggage.getBarcodeNumber());
-            ps.setString(2, luggage.getLocation());
+            ps.setArray(2, luggage.getLocation());
             ps.setString(3, "Unloaded");
             ps.setString(4, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
 
