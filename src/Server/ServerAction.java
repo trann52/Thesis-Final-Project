@@ -3,6 +3,7 @@ package Server;
 import Database.DbMethods;
 import Stream.Luggage;
 import Stream.Passenger;
+import Stream.SendMessage;
 import Stream.Staff;
 
 import java.io.IOException;
@@ -91,7 +92,7 @@ public class ServerAction {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     * This is a method on the server side for submitting information about luggage
+     * This is a method on the server side for submitting information to aboutluggage table
      */
 
     public void serverAddToAboutLuggage(Luggage luggage) throws IOException{
@@ -102,9 +103,20 @@ public class ServerAction {
         DbMethods dbObject = new DbMethods();
        String submitAlToClient =  dbObject.submitToAboutLuggage(luggage);
         out.writeObject(submitAlToClient);
-
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the server side for submitting information to luggagestatus table
+     */
+
+    public void serverInsertToLugguageStatus(SendMessage sendMessage) throws IOException {
+
+        DbMethods dbObject = new DbMethods();
+        String insertLsToClient = dbObject.submitToLuggageStatus(sendMessage);
+        out.writeObject(insertLsToClient);
+
+    }
 
 
 

@@ -144,7 +144,7 @@ public class Client {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     * This is a method on the client side for submitting information about luggage
+     * This is a method on the client side for submitting information to aboutluggage table
      */
 
     public String clientAddToAboutLuggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) throws IOException, ClassNotFoundException {
@@ -158,6 +158,26 @@ public class Client {
         String submitAlFromServer = (String) in.readObject();
         System.out.println("Added to aboutluggage");
         return submitAlFromServer;
+
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting information to luggagestatus table
+     */
+
+    public String clientInsertToLugguageStatus(String bookingNumber, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
+
+        // ls is shortened for luggagestatus
+        SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber, origin, destination, layovers));
+
+        System.out.println("Sending to server: " + lsInsertMessage);
+
+        out.writeObject(lsInsertMessage);
+        System.out.println("Luggage info sent");
+        String insertLsFromServer = (String) in.readObject();
+        System.out.println("Inserted to luggagestatus");
+        return insertLsFromServer;
 
     }
 

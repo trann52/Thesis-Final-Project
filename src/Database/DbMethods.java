@@ -199,9 +199,10 @@ public class DbMethods {
      * -----------------------------------------------------------------------------------------------------------------
      * This method will inset the boarding pass number and the barcode number to the luggagestatus table.
      * This method should occur at the same time that 'submitToAboutLuggage()'.
+     * @return
      */
 
-    public void submitToLuggageStatus(SendMessage sendMessage) {
+    public String submitToLuggageStatus(SendMessage sendMessage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement(" INSERT INTO luggageproject.public.luggagestatus(" +
@@ -221,6 +222,7 @@ public class DbMethods {
             e.printStackTrace();
         }
 
+        return null;
     }
 
 
