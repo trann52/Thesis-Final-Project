@@ -281,7 +281,7 @@ public class DbMethods {
      * This method should occur at the same time as sortToLuggageStatus().
      */
 
-    public void sortInsertToViewStatus(Luggage luggage) {
+    public String sortInsertToViewStatus(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
@@ -300,6 +300,7 @@ public class DbMethods {
             e.printStackTrace();
         }
 
+        return null;
     }
 
 
@@ -356,7 +357,7 @@ public class DbMethods {
      * This method should occur at the same time as loadToLuggageStatus()
      */
 
-    public void loadIntoViewStatus(Luggage luggage) {
+    public String loadIntoViewStatus(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
@@ -374,6 +375,7 @@ public class DbMethods {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 
@@ -430,7 +432,7 @@ public class DbMethods {
      * This method should occur at the same time as unloadToLuggageStatus()
      */
 
-    public void unloadIntoViewStatus(Luggage luggage) {
+    public String unloadIntoViewStatus(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.viewstatus(" +
@@ -447,6 +449,7 @@ public class DbMethods {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     /**

@@ -16,7 +16,7 @@ import java.sql.Array;
 
 /**
  * @author Nicky Tran
- * @version 25/07/2020: 1.1
+ * @version 25/07/2020: 3.1
  * This class contains the code for the client
  */
 public class Client {
@@ -196,7 +196,7 @@ public class Client {
 
         String sortLsMessage = (String) in.readObject(); // receiving object from the server
 
-        if (sortLsMessage.equals("Data successfully added to luggagestatus")){
+        if (sortLsMessage.equals("Sort data successfully added to luggagestatus")){
             return true;
         }
         else {
@@ -206,11 +206,106 @@ public class Client {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting data related to sorting to the viewstatus table
      */
 
+    public String clientSortIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
+        // The object being sent is the message "Sort into viewstatus"
+        SendMessage sortVsServerMessage = new SendMessage("Sort into viewstatus", new Luggage(barcodeNumber,location));
 
+        System.out.println("Sending to server: " + sortVsServerMessage);
 
+        out.writeObject(sortVsServerMessage); // sending object to server
+        System.out.println("Sort data sent");
+        String sortVsFromServer = (String) in.readObject();
+        System.out.println("Sort data added to viewstatus");
+        return sortVsFromServer;
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting data related to loading to the luggagestatus table
+     */
+
+    public boolean clientLoadToLs(String username,  String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+
+        // The object being sent is the message "Load lugguagestatus"
+        SendMessage loadToLs = new SendMessage("Load lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));
+        out.writeObject(loadToLs);
+
+        String loadLsMessage = (String) in.readObject(); // receiving object from the server
+
+        if (loadLsMessage.equals("Load data successfully added to luggagestatus")){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting data related to loading to the viewstatus table
+     */
+
+    public String clientLoadIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+
+        // The object being sent is the message "Load into viewstatus"
+        SendMessage loadVsServerMessage = new SendMessage("Load into viewstatus", new Luggage(barcodeNumber,location));
+
+        System.out.println("Sending to server: " + loadVsServerMessage);
+
+        out.writeObject(loadVsServerMessage); // sending object to server
+        System.out.println("Load data sent");
+        String loadVsFromServer = (String) in.readObject();
+        System.out.println("Load data added to viewstatus");
+        return loadVsFromServer;
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting data related to unloading to the luggagestatus table
+     */
+
+    public boolean clientUnloadToLs(String username,  String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+
+        // The object being sent is the message "Unload lugguagestatus"
+        SendMessage unloadToLs = new SendMessage("Unload lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));
+        out.writeObject(unloadToLs);
+
+        String unloadLsMessage = (String) in.readObject(); // receiving object from the server
+
+        if (unloadLsMessage.equals("Unload data successfully added to luggagestatus")){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting data related to unloading to the viewstatus table
+     */
+
+    public String clientUnloadIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+
+        // The object being sent is the message "Unload into viewstatus"
+        SendMessage unloadVsServerMessage = new SendMessage("Unload into viewstatus", new Luggage(barcodeNumber,location));
+
+        System.out.println("Sending to server: " + unloadVsServerMessage);
+
+        out.writeObject(unloadVsServerMessage); // sending object to server
+        System.out.println("Load data sent");
+        String unloadVsFromServer = (String) in.readObject();
+        System.out.println("Load data added to viewstatus");
+        return unloadVsFromServer;
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
 
 
 
