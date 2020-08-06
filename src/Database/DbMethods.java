@@ -19,7 +19,6 @@ import java.util.Properties;
  * @version 26/07/2020: 1.38
  * This class will contain all the methods used in my system to upload data to the
  * database or to retrieve data from the database.
- *
  */
 public class DbMethods {
 
@@ -160,10 +159,11 @@ public class DbMethods {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     *
+     * <p>
      * This method should hopefully update the the aboutluggage table with
      * all the necessary information that has been inputted in the GUI.
      * This method should occur at the same time as 'submitToLuggageStatus()'.
+     *
      * @return
      */
 
@@ -199,6 +199,7 @@ public class DbMethods {
      * -----------------------------------------------------------------------------------------------------------------
      * This method will inset the boarding pass number and the barcode number to the luggagestatus table.
      * This method should occur at the same time that 'submitToAboutLuggage()'.
+     *
      * @return
      */
 
@@ -232,32 +233,45 @@ public class DbMethods {
      * This method should occur at the same time as sortInsertToViewStatus().
      */
 // TODO NEED TO CHECK IF WORKS WHEN CONNECTED TO SERVER AND CLIENT
-    public void sortToLuggageStatus(SendMessage sendMessage) {
+    public boolean sortToLuggageStatus(SendMessage sendMessage) {
 
 //        for (int i = 0; i <= 15; i++) {
 
         try {
-            PreparedStatement ps = connection.prepareStatement(
-                    "BEGIN " +
-                            "DECLARE @i int = 0;" +
-                            "WHILE @i <=15 " +
-                            "UPDATE luggageproject.public.luggagestatus " +
-                            "SET sortedby[@i] = ?, sortedtime[@i] =?, sortedlocation[@i] = ? " +
-                            "WHERE barcode = ? " +
-                            "@i = @i + 1 " +
-                            "END");
+            // this statement will query the luggagestatus table to get the barcode
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
+                    "WHERE barcode = ? ");
+            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
+            ResultSet rs = ps.executeQuery();
 
-            ps.setString(1, sendMessage.getStaff().getUsername());
-            ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-            ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, sendMessage.getLuggage().getBarcodeNumber());
+            // if the barcode matches, then the next statement will update the sorted rows with the appropriate information
+            while (rs.absolute(2)) {
+                if (rs.getString(2).equals(sendMessage.getPassenger().getBookingNumber())) {
 
-            ps.executeUpdate();
+                    PreparedStatement sort = connection.prepareStatement(
+                            "BEGIN " +
+                                    "DECLARE @i int = 0;" +
+                                    "WHILE @i <=15 " +
+                                    "UPDATE luggageproject.public.luggagestatus " +
+                                    "SET sortedby[@i] = ?, sortedtime[@i] =?, sortedlocation[@i] = ? " +
+                                    "WHERE barcode = ? " +
+                                    "@i = @i + 1 " +
+                                    "END");
 
+                    sort.setString(1, sendMessage.getStaff().getUsername());
+                    sort.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+                    sort.setString(3, sendMessage.getStaff().getLocation());
+                    sort.setString(4, sendMessage.getLuggage().getBarcodeNumber());
+
+                    sort.executeUpdate();
+                    return true;
+                }
+            }
 
         } catch (SQLException e) {
 
         }
+        return false;
     }
 //    }
 
@@ -296,31 +310,42 @@ public class DbMethods {
      */
 
     // TODO NEED TO CHECK IF WORKS WHEN CONNECTED TO SERVER AND CLIENT
-    public void loadToLuggageStatus(SendMessage sendMessage) {
+    public boolean loadToLuggageStatus(SendMessage sendMessage) {
 
         try {
-            PreparedStatement ps = connection.prepareStatement(
-                    "BEGIN " +
-                            "DECLARE @i int = 0;" +
-                            "WHILE @i <=15 " +
-                            "UPDATE luggageproject.public.luggagestatus " +
-                            "SET loadedby[@i] = ?, loadedtime[@i] =?, loadedlocation[@i] = ? " +
-                            "WHERE barcode = ? " +
-                            "@i = @i + 1 " +
-                            "END");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
+                    "WHERE barcode = ? ");
+            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
+            ResultSet rs = ps.executeQuery();
 
-            ps.setString(1, sendMessage.getStaff().getUsername());
-            ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-            ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, sendMessage.getLuggage().getBarcodeNumber());
+            while (rs.absolute(2)) {
+                if (rs.getString(2).equals(sendMessage.getPassenger().getBookingNumber())) {
 
-            ps.executeUpdate();
+                    PreparedStatement load = connection.prepareStatement(
+                            "BEGIN " +
+                                    "DECLARE @i int = 0;" +
+                                    "WHILE @i <=15 " +
+                                    "UPDATE luggageproject.public.luggagestatus " +
+                                    "SET loadedby[@i] = ?, loadedtime[@i] =?, loadedlocation[@i] = ? " +
+                                    "WHERE barcode = ? " +
+                                    "@i = @i + 1 " +
+                                    "END");
 
+                    load.setString(1, sendMessage.getStaff().getUsername());
+                    load.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+                    load.setString(3, sendMessage.getStaff().getLocation());
+                    load.setString(4, sendMessage.getLuggage().getBarcodeNumber());
+
+                    load.executeUpdate();
+                    return true;
+
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return false;
     }
 
     /**
@@ -357,30 +382,42 @@ public class DbMethods {
      */
 
     // TODO NEED TO CHECK IF WORKS WHEN CONNECTED TO SERVER AND CLIENT
-    public void unloadToLuggageStatus(SendMessage sendMessage) {
+    public boolean unloadToLuggageStatus(SendMessage sendMessage) {
 
         try {
-            PreparedStatement ps = connection.prepareStatement(
-                    "BEGIN " +
-                            "DECLARE @i int = 0;" +
-                            "WHILE @i <=15 " +
-                            "UPDATE luggageproject.public.luggagestatus " +
-                            "SET unloadedby[@i] = ?, unloadedtime[@i] =?, unloadedlocation[@i] = ? " +
-                            "WHERE barcode = ? " +
-                            "@i = @i + 1 " +
-                            "END");
 
-            ps.setString(1, sendMessage.getStaff().getUsername());
-            ps.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
-            ps.setString(3, sendMessage.getStaff().getLocation());
-            ps.setString(4, sendMessage.getLuggage().getBarcodeNumber());
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
+                    "WHERE barcode = ? ");
+            ps.setString(1, sendMessage.getLuggage().getBarcodeNumber());
+            ResultSet rs = ps.executeQuery();
 
-            ps.executeUpdate();
+            while (rs.absolute(2)){
+                if (rs.getString(2).equals(sendMessage.getPassenger().getBookingNumber())){
 
+                    PreparedStatement unload = connection.prepareStatement(
+                            "BEGIN " +
+                                    "DECLARE @i int = 0;" +
+                                    "WHILE @i <=15 " +
+                                    "UPDATE luggageproject.public.luggagestatus " +
+                                    "SET unloadedby[@i] = ?, unloadedtime[@i] =?, unloadedlocation[@i] = ? " +
+                                    "WHERE barcode = ? " +
+                                    "@i = @i + 1 " +
+                                    "END");
+
+                    unload.setString(1, sendMessage.getStaff().getUsername());
+                    unload.setString(2, DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(ZonedDateTime.now()));
+                    unload.setString(3, sendMessage.getStaff().getLocation());
+                    unload.setString(4, sendMessage.getLuggage().getBarcodeNumber());
+
+                    unload.executeUpdate();
+                    return true;
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     /**
@@ -413,9 +450,9 @@ public class DbMethods {
      * Method to view all data in luggagestatus stable when boardingpass number and barcode are given,
      * this is intended for staff members when they want to look up missing luggage
      */
-    public void staffLookupLuggage(Luggage luggage){
+    public void staffLookupLuggage(Luggage luggage) {
 
-        try{
+        try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
                     "WHERE boardpass_number = ? AND barcode = ?");
 
@@ -437,11 +474,11 @@ public class DbMethods {
 
     public void passengerLuggageLookup(Luggage luggage) {
 
-        try{
+        try {
             PreparedStatement ps = connection.prepareStatement("SELECT location, status, datetime " +
                     "FROM luggageproject.public.viewstatus WHERE barcode = ? ");
 
-            ps.setString(2, luggage.getBarcodeNumber());
+            ps.setString(1, luggage.getBarcodeNumber());
 
             ps.execute();
 
@@ -454,7 +491,6 @@ public class DbMethods {
     /**
      * -----------------------------------------------------------------------------------------------------------------
      */
-
 
 
 }

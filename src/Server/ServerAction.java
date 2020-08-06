@@ -127,25 +127,13 @@ public class ServerAction {
     public void serverSortToLs(SendMessage sendMessage){
 
         System.out.println("sorting to luggagestatus server side");
+        DbMethods dbObject = new DbMethods();
+
     }
 
 
 
-//    // PASSWORD RECOVERY. IF DOB AND EMAIL MATCH DATABASE, THEN IT WILL UPDATE
-//    public void passwordRecoveryServerSide(User user, Socket socket) throws IOException {
-//        System.out.println("passwordRecoveryServerSide()");
-//        DatabaseOps databaseOpsObject = new DatabaseOps();
-//
-//        if (databaseOpsObject.recover(user))
-//        {
-//            out.writeObject("Your password was changed successfully");
-//        }
-//        else
-//        {
-//            out.writeObject("Credentials incorrect");
-//        }
-//
-//    }
+
 
 
 

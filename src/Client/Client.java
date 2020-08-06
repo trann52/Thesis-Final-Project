@@ -191,21 +191,7 @@ public class Client {
 //
 //    }
 
-//    public boolean passwordRecovery(String username, String password, String dob, String emailAddress) throws IOException, ClassNotFoundException {
-//        MessageProtocol passwordRecovery = new MessageProtocol("Password Recovery", new User(username, password, dob, emailAddress));
-//        out.writeObject(passwordRecovery);
-//
-//        String serverResponse = (String) in.readObject();
-//
-//        if (serverResponse.equals("Your password was changed successfully"))
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
+
 
 
 
