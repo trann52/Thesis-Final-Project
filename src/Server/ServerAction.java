@@ -1,11 +1,13 @@
 package Server;
 
 import Database.DbMethods;
+import Stream.Luggage;
 import Stream.Passenger;
 import Stream.Staff;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 /**
  * @author Nicky Tran
@@ -87,6 +89,21 @@ public class ServerAction {
         dbObject.logStaffOut(staff);
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the server side for submitting information about luggage
+     */
+
+    public void serverAddToAboutLuggage(Luggage luggage) throws IOException{
+
+//        System.out.println("ADD TO ABOUTLUGGAGE");
+//        System.out.println("Received from client: " + luggage);
+
+        DbMethods dbObject = new DbMethods();
+       String submitAlToClient =  dbObject.submitToAboutLuggage(luggage);
+        out.writeObject(submitAlToClient);
+
+    }
 
 
 

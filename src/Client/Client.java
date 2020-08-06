@@ -2,7 +2,6 @@ package Client;
 
 
 import Database.DbMethods;
-import Server.Server;
 import Stream.Luggage;
 import Stream.Passenger;
 import Stream.SendMessage;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.Array;
 
 
 /**
@@ -141,6 +141,26 @@ public class Client {
         SendMessage logoutServerMessage = new SendMessage("Logout", new Staff(username));
         out.writeObject(logoutServerMessage); // sending the object to the server
     }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting information about luggage
+     */
+
+    public String clientAddToAboutLuggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) throws IOException, ClassNotFoundException {
+
+        SendMessage luggInfoServerMessage = new SendMessage("Added to aboutluggage", new Luggage(boardPassNumber, barcodeNumber, type, weight, colour, dimension, fragile, excess));
+
+        System.out.println("Sending to server: " + luggInfoServerMessage);
+
+        out.writeObject(luggInfoServerMessage);
+        System.out.println("Luggage info sent");
+        String submitAlFromServer = (String) in.readObject();
+        System.out.println("Added to aboutluggage");
+        return submitAlFromServer;
+
+    }
+
 
 
 

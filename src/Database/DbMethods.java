@@ -1,6 +1,5 @@
 package Database;
 
-import GUI.controller.LuggInfoController;
 import Stream.Luggage;
 import Stream.Passenger;
 import Stream.SendMessage;
@@ -165,9 +164,10 @@ public class DbMethods {
      * This method should hopefully update the the aboutluggage table with
      * all the necessary information that has been inputted in the GUI.
      * This method should occur at the same time as 'submitToLuggageStatus()'.
+     * @return
      */
 
-    public void submitToAboutLuggage(Luggage luggage) {
+    public String submitToAboutLuggage(Luggage luggage) {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO luggageproject.public.aboutluggage(" +
@@ -192,6 +192,7 @@ public class DbMethods {
         }
 
 
+        return null;
     }
 
     /**
