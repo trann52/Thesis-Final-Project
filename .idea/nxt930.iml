@@ -8,8 +8,5 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="barcode4j" level="project" />
-    <orderEntry type="library" name="pdfbox-2.0.20" level="project" />
-    <orderEntry type="library" name="jaxp-api-1.4.1" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

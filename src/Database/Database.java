@@ -18,8 +18,9 @@ public class Database {
         String username = "nxt930";
         String password = "654321";
 
-        Connection connection = DriverManager.getConnection(url, username, password);
-        System.out.println("A connection has been made");
+        try (Connection connection = DriverManager.getConnection(url, username, password);) {
+            System.out.println("A connection has been made");
+        }
 
     }
 }
