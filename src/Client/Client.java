@@ -149,13 +149,14 @@ public class Client {
 
     public String clientAddToAboutLuggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) throws IOException, ClassNotFoundException {
 
+        // The object being sent is the message "Added to aboutluggage"
         SendMessage luggInfoServerMessage = new SendMessage("Added to aboutluggage", new Luggage(boardPassNumber, barcodeNumber, type, weight, colour, dimension, fragile, excess));
 
         System.out.println("Sending to server: " + luggInfoServerMessage);
 
-        out.writeObject(luggInfoServerMessage);
+        out.writeObject(luggInfoServerMessage); //sending object to server
         System.out.println("Luggage info sent");
-        String submitAlFromServer = (String) in.readObject();
+        String submitAlFromServer = (String) in.readObject(); // receiving object from server
         System.out.println("Added to aboutluggage");
         return submitAlFromServer;
 
@@ -169,13 +170,14 @@ public class Client {
     public String clientInsertToLugguageStatus(String bookingNumber, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
 
         // ls is shortened for luggagestatus
+        // The object being sent is the message "Inserted to luggagestatus"
         SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber, origin, destination, layovers));
 
         System.out.println("Sending to server: " + lsInsertMessage);
 
-        out.writeObject(lsInsertMessage);
+        out.writeObject(lsInsertMessage); // sending object to server
         System.out.println("Luggage info sent");
-        String insertLsFromServer = (String) in.readObject();
+        String insertLsFromServer = (String) in.readObject(); // receiving object from server
         System.out.println("Inserted to luggagestatus");
         return insertLsFromServer;
 
@@ -186,12 +188,25 @@ public class Client {
      * This is a method on the client side for submitting data related to sorting to the luggagestatus table
      */
 
-    public boolean clientSortToLs(String username, String location, String barcodeNumber ){
+    public boolean clientSortToLs(String username,  String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
-//        SendMessage sortToLs = new SendMessage("Sort lugguagestatus", )
-//
+        // The object being sent is the message "Sort lugguagestatus"
+        SendMessage sortToLs = new SendMessage("Sort lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));
+        out.writeObject(sortToLs);
+
+        String sortLsMessage = (String) in.readObject(); // receiving object from the server
+
+        if (sortLsMessage.equals("Data successfully added to luggagestatus")){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
 
 
 

@@ -36,6 +36,17 @@ public class Luggage implements Serializable {
         this.location = location;
     }
 
+    public Luggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) {
+        this.boardPassNumber = boardPassNumber;
+        this.barcodeNumber = barcodeNumber;
+        this.type = type;
+        this.weight = weight;
+        this.colour = colour;
+        this.dimension = dimension;
+        this.fragile = fragile;
+        this.excess = excess;
+    }
+
     public Luggage(String barcodeNumber) {
         this.barcodeNumber = barcodeNumber;
     }
