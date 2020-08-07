@@ -305,7 +305,40 @@ public class Client {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for getting information from luggagestatus table when the barcode is searched.
+     * This is for staff members to lookup the luggage
      */
+
+    //TODO NEED TO CHECK IF WORKS
+    public void clientGetLuggageStatus(String barcodeNumber) throws IOException {
+
+        SendMessage getLsMessage = new SendMessage("Get lugguagestatus", new Luggage(barcodeNumber));
+        out.writeObject(getLsMessage);
+
+//        // The object being sent is the message "Get lugguagestatus"
+//        out.writeObject(new SendMessage("Get lugguagestatus"));
+//        SendMessage lsFromServer = (SendMessage) in.readObject();
+//        return lsFromServer.getLuggage().getBarcodeNumber();
+    }
+
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for getting information from viewstatus table when the barcode is searched.
+     * This is for passengers to lookup the luggage
+     */
+
+    //TODO NEED TO CHECK IF WORKS
+    public void clientGetViewStatus(String barcodeNumber) throws IOException {
+
+        SendMessage getVsMessage = new SendMessage("Get viewstatus", new Luggage(barcodeNumber));
+        out.writeObject(getVsMessage);
+
+    }
+
+
+
+
 
 
 
@@ -315,13 +348,6 @@ public class Client {
     public static void main(String[] args) throws IOException {
         Client startClient = new Client();
     }
-
-
-
-
-
-
-
 
 
 

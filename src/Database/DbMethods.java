@@ -461,16 +461,16 @@ public class DbMethods {
 
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
-                    "WHERE boardpass_number = ? AND barcode = ?");
+                    "WHERE barcode = ?");
 
-            ps.setString(1, luggage.getBoardPassNumber());
-            ps.setString(2, luggage.getBarcodeNumber());
+            ps.setString(1, luggage.getBarcodeNumber());
 
             ps.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     /**

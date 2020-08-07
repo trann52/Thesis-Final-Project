@@ -220,13 +220,29 @@ public class ServerAction {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the server side for getting information from luggagstatus table where the barcode is searched.
+     * This is for staff members to lookup the luggage
      */
 
+    //TODO NEED TO CHECK IF WORKS
+    public void serverGetLuggageStatus(Luggage luggage) {
 
+        DbMethods dbObject = new DbMethods();
+        dbObject.staffLookupLuggage(luggage);
+    }
 
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the server side for getting information from viewstatus table where the barcode is searched.
+     * This is for passengers to lookup the luggage
+     */
 
+    //TODO NEED TO CHECK IF WORKS
+    public void serverGetViewStatus(Luggage luggage){
 
-
+        DbMethods dbObject = new DbMethods();
+        dbObject.passengerLuggageLookup(luggage);
+    }
 
 
 
