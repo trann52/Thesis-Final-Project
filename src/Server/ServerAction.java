@@ -29,23 +29,22 @@ public class ServerAction {
      * barcode number in the database.
      */
 
-    public void serverBookingNumberCheck(Passenger passenger) throws IOException {
+    public void serverBookingNumberCheck(Passenger passenger, Socket socket) throws IOException {
 
         System.out.println("Booking Number server check");
         boolean failBnc = true;
         System.out.println("Received from client: " + passenger);  // passenger is now an object type that can be printed
 
         DbMethods dbObject = new DbMethods();
-        if (dbObject.checkBookingNumber(passenger)){
+        if (dbObject.checkBookingNumber(passenger)) {
             System.out.println("SEARCH FOUND ATTEMPT");
             failBnc = false;
         }
 
-        if(failBnc){
+        if (failBnc) {
             System.out.println("SEARCH NOT FOUND ATTEMPT");
             out.writeObject("The booking number could not be found"); // object sent to client
-        }
-        else {
+        } else {
             System.out.println("SEARCH FOUND");
             out.writeObject("Booking Number Check is successful"); // object sent to client
         }
@@ -58,23 +57,22 @@ public class ServerAction {
      * The staff member is them logged in, if their username and password match what is in the stofflogin database
      */
 
-    public void serverStaffLogin(Staff staff) throws IOException {
+    public void serverStaffLogin(Staff staff, Socket socket) throws IOException {
 
         System.out.println("Login server check");
         boolean failLogin = true;
         System.out.println("Received from client: " + staff); // staff is now an object type that can be printed
 
         DbMethods dbObject = new DbMethods();
-        if (dbObject.checkStaffUserWithPassword(staff)){
+        if (dbObject.checkStaffUserWithPassword(staff)) {
             System.out.println("LOGIN ATTEMPT");
             failLogin = false;
         }
 
-        if (failLogin){
+        if (failLogin) {
             System.out.println("LOGIN BAD ATTEMPT");
             out.writeObject("Invalid username and password combination"); // object sent to client
-        }
-        else {
+        } else {
             System.out.println("LOGIN ATTEMPT SUCCESS");
             out.writeObject("Successfully logged in");
         }
@@ -85,7 +83,7 @@ public class ServerAction {
      * This is a method on the server side for staff logout
      */
 
-    public void serverStaffLogout(Staff staff){
+    public void serverStaffLogout(Staff staff) {
         DbMethods dbObject = new DbMethods();
         dbObject.logStaffOut(staff);
     }
@@ -95,13 +93,13 @@ public class ServerAction {
      * This is a method on the server side for submitting information to aboutluggage table
      */
 
-    public void serverAddToAboutLuggage(Luggage luggage) throws IOException{
+    public void serverAddToAboutLuggage(Luggage luggage, Socket socket) throws IOException {
 
 //        System.out.println("ADD TO ABOUTLUGGAGE");
 //        System.out.println("Received from client: " + luggage);
 
         DbMethods dbObject = new DbMethods();
-       String submitAlToClient =  dbObject.submitToAboutLuggage(luggage);
+        String submitAlToClient = dbObject.submitToAboutLuggage(luggage);
         out.writeObject(submitAlToClient);
     }
 
@@ -110,7 +108,7 @@ public class ServerAction {
      * This is a method on the server side for submitting information to luggagestatus table
      */
 
-    public void serverInsertToLugguageStatus(SendMessage sendMessage) throws IOException {
+    public void serverInsertToLuggageStatus(SendMessage sendMessage, Socket socket) throws IOException {
 
         DbMethods dbObject = new DbMethods();
         String insertLsToClient = dbObject.submitToLuggageStatus(sendMessage);
@@ -124,15 +122,14 @@ public class ServerAction {
      * The update occurs if the boarding pass number and barcode match the ones in the database
      */
 
-    public void serverSortToLs(SendMessage sendMessage) throws IOException {
+    public void serverSortToLs(SendMessage sendMessage, Socket socket) throws IOException {
 
         System.out.println("sorting to luggagestatus server side");
         DbMethods dbObject = new DbMethods();
 
-        if (dbObject.sortToLuggageStatus(sendMessage)){
+        if (dbObject.sortToLuggageStatus(sendMessage)) {
             out.writeObject("Sort data successfully added to luggagestatus");
-        }
-        else {
+        } else {
             out.writeObject("Barcode not found");
         }
 
@@ -144,7 +141,7 @@ public class ServerAction {
      */
 
     // Vs is short for viewstatus
-    public void serverSortIntoVs(Luggage luggage) throws IOException {
+    public void serverSortIntoVs(Luggage luggage, Socket socket) throws IOException {
 
         DbMethods dbObject = new DbMethods();
         String sortVsToClient = dbObject.sortInsertToViewStatus(luggage);
@@ -158,15 +155,14 @@ public class ServerAction {
      * The update occurs if the boarding pass number and barcode match the ones in the database
      */
 
-    public void serverLoadToLs(SendMessage sendMessage) throws IOException {
+    public void serverLoadToLs(SendMessage sendMessage, Socket socket) throws IOException {
 
         System.out.println("loading to luggagestatus server side");
         DbMethods dbObject = new DbMethods();
 
-        if (dbObject.loadToLuggageStatus(sendMessage)){
+        if (dbObject.loadToLuggageStatus(sendMessage)) {
             out.writeObject("Load data successfully added to luggagestatus");
-        }
-        else {
+        } else {
             out.writeObject("Barcode not found");
         }
 
@@ -177,7 +173,7 @@ public class ServerAction {
      * This is a method on the server side for submitting loading information to viewstatus table
      */
 
-    public void serverLoadIntoVs(Luggage luggage) throws IOException {
+    public void serverLoadIntoVs(Luggage luggage, Socket socket) throws IOException {
 
         DbMethods dbObject = new DbMethods();
         String sortVsToClient = dbObject.loadIntoViewStatus(luggage);
@@ -191,15 +187,14 @@ public class ServerAction {
      * The update occurs if the boarding pass number and barcode match the ones in the database
      */
 
-    public void serverUnloadToLs(SendMessage sendMessage) throws IOException {
+    public void serverUnloadToLs(SendMessage sendMessage, Socket socket) throws IOException {
 
         System.out.println("unloading to luggagestatus server side");
         DbMethods dbObject = new DbMethods();
 
-        if (dbObject.unloadToLuggageStatus(sendMessage)){
+        if (dbObject.unloadToLuggageStatus(sendMessage)) {
             out.writeObject("Unload data successfully added to luggagestatus");
-        }
-        else {
+        } else {
             out.writeObject("Barcode not found");
         }
 
@@ -210,7 +205,7 @@ public class ServerAction {
      * This is a method on the server side for submitting loading information to viewstatus table
      */
 
-    public void serverUnloadIntoVs(Luggage luggage) throws IOException {
+    public void serverUnloadIntoVs(Luggage luggage, Socket socket) throws IOException {
 
         DbMethods dbObject = new DbMethods();
         String sortVsToClient = dbObject.unloadIntoViewStatus(luggage);
@@ -238,15 +233,11 @@ public class ServerAction {
      */
 
     //TODO NEED TO CHECK IF WORKS
-    public void serverGetViewStatus(Luggage luggage){
+    public void serverGetViewStatus(Luggage luggage) {
 
         DbMethods dbObject = new DbMethods();
         dbObject.passengerLuggageLookup(luggage);
     }
-
-
-
-
 
 
 }

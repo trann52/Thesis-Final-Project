@@ -39,7 +39,7 @@ public class Client {
      * A request is sent from the client after the input of a booking number.
      */
 
-    public boolean clientBookingNumberCheck (String bookingNumber) throws IOException, ClassNotFoundException {
+    public boolean clientBookingNumberCheck(String bookingNumber) throws IOException, ClassNotFoundException {
 
         // initialising the object to be sent to the server. In this case it is the message "Booking Check"
         objectBookingCheck = new SendMessage("Booking Check", new Passenger(bookingNumber));
@@ -62,18 +62,16 @@ public class Client {
 
         // if either of the 2 Strings sent from the server match the success text, then the data in the first String is printed/
         // the appropriate method in DbMethods is called
-        if (bcnServerMessage.equals("Booking Number Check is successful") || bcnServerMessage2.equals("Booking Number Check is successful")){
+        if (bcnServerMessage.equals("Booking Number Check is successful") || bcnServerMessage2.equals("Booking Number Check is successful")) {
             System.out.println(bcnServerMessage);
             DbMethods dbBcnObject = new DbMethods();
             dbBcnObject.checkBookingNumber(objectBookingCheck.getPassenger());
             return true;
-        }
-        else {
+        } else {
             if (!bcnServerMessage2.equals("blank")) {
                 System.out.println(bcnServerMessage2);
                 return false;
-            }
-            else {
+            } else {
                 System.out.println(bcnServerMessage);
                 return false;
             }
@@ -102,30 +100,27 @@ public class Client {
 
         // if the first string coming in does match the designated text, the second string is received from the server.
         // the second string is then printed
-        if(!loginServerMessage.equals("Successfully logged in") && !loginServerMessage.equals("Invalid username and password combination")){
+        if (!loginServerMessage.equals("Successfully logged in") && !loginServerMessage.equals("Invalid username and password combination")) {
             loginServerMessage2 = (String) in.readObject(); // the string that is coming in from the server
             System.out.println(loginServerMessage2);
         }
 
         // if either of the 2 Strings sent from the server match the success text, then the data in the first String is printed/
         // the appropriate method in DbMethods is called
-        if(loginServerMessage.equals("Successfully logged in") || loginServerMessage2.equals("Successfully logged in")){
+        if (loginServerMessage.equals("Successfully logged in") || loginServerMessage2.equals("Successfully logged in")) {
             System.out.println(loginServerMessage);
             DbMethods dbLoginObject = new DbMethods();
             dbLoginObject.isStaffOnline(objectStaffLogin.getStaff());
             return true;
-        }
-        else {
-            if(!loginServerMessage2.equals("blank")){
+        } else {
+            if (!loginServerMessage2.equals("blank")) {
                 System.out.println(loginServerMessage2);
                 return false;
-            }
-            else {
+            } else {
                 System.out.println(loginServerMessage);
                 return false;
             }
         }
-
 
 
     }
@@ -167,7 +162,7 @@ public class Client {
      * This is a method on the client side for submitting information to luggagestatus table
      */
 
-    public String clientInsertToLugguageStatus(String bookingNumber, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
+    public String clientInsertToLuggageStatus(String bookingNumber, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
 
         // ls is shortened for luggagestatus
         // The object being sent is the message "Inserted to luggagestatus"
@@ -188,18 +183,17 @@ public class Client {
      * This is a method on the client side for submitting data related to sorting to the luggagestatus table
      */
 
-    public boolean clientSortToLs(String username,  String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public boolean clientSortToLs(String username, String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
-        // The object being sent is the message "Sort lugguagestatus"
-        SendMessage sortToLs = new SendMessage("Sort lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));
+        // The object being sent is the message "Sort luggagestatus"
+        SendMessage sortToLs = new SendMessage("Sort luggagestatus", new Staff(username), new Luggage(barcodeNumber, location));
         out.writeObject(sortToLs);
 
         String sortLsMessage = (String) in.readObject(); // receiving object from the server
 
-        if (sortLsMessage.equals("Sort data successfully added to luggagestatus")){
+        if (sortLsMessage.equals("Sort data successfully added to luggagestatus")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -212,7 +206,7 @@ public class Client {
     public String clientSortIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Sort into viewstatus"
-        SendMessage sortVsServerMessage = new SendMessage("Sort into viewstatus", new Luggage(barcodeNumber,location));
+        SendMessage sortVsServerMessage = new SendMessage("Sort into viewstatus", new Luggage(barcodeNumber, location));
 
         System.out.println("Sending to server: " + sortVsServerMessage);
 
@@ -228,18 +222,17 @@ public class Client {
      * This is a method on the client side for submitting data related to loading to the luggagestatus table
      */
 
-    public boolean clientLoadToLs(String username,  String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public boolean clientLoadToLs(String username, String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
-        // The object being sent is the message "Load lugguagestatus"
-        SendMessage loadToLs = new SendMessage("Load lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));
+        // The object being sent is the message "Load luggagestatus"
+        SendMessage loadToLs = new SendMessage("Load luggagestatus", new Staff(username), new Luggage(barcodeNumber, location));
         out.writeObject(loadToLs);
 
         String loadLsMessage = (String) in.readObject(); // receiving object from the server
 
-        if (loadLsMessage.equals("Load data successfully added to luggagestatus")){
+        if (loadLsMessage.equals("Load data successfully added to luggagestatus")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -252,7 +245,7 @@ public class Client {
     public String clientLoadIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Load into viewstatus"
-        SendMessage loadVsServerMessage = new SendMessage("Load into viewstatus", new Luggage(barcodeNumber,location));
+        SendMessage loadVsServerMessage = new SendMessage("Load into viewstatus", new Luggage(barcodeNumber, location));
 
         System.out.println("Sending to server: " + loadVsServerMessage);
 
@@ -268,18 +261,17 @@ public class Client {
      * This is a method on the client side for submitting data related to unloading to the luggagestatus table
      */
 
-    public boolean clientUnloadToLs(String username,  String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public boolean clientUnloadToLs(String username, String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
-        // The object being sent is the message "Unload lugguagestatus"
-        SendMessage unloadToLs = new SendMessage("Unload lugguagestatus", new Staff(username), new Luggage(barcodeNumber, location));
+        // The object being sent is the message "Unload luggagestatus"
+        SendMessage unloadToLs = new SendMessage("Unload luggagestatus", new Staff(username), new Luggage(barcodeNumber, location));
         out.writeObject(unloadToLs);
 
         String unloadLsMessage = (String) in.readObject(); // receiving object from the server
 
-        if (unloadLsMessage.equals("Unload data successfully added to luggagestatus")){
+        if (unloadLsMessage.equals("Unload data successfully added to luggagestatus")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -292,7 +284,7 @@ public class Client {
     public String clientUnloadIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Unload into viewstatus"
-        SendMessage unloadVsServerMessage = new SendMessage("Unload into viewstatus", new Luggage(barcodeNumber,location));
+        SendMessage unloadVsServerMessage = new SendMessage("Unload into viewstatus", new Luggage(barcodeNumber, location));
 
         System.out.println("Sending to server: " + unloadVsServerMessage);
 
@@ -312,7 +304,7 @@ public class Client {
     //TODO NEED TO CHECK IF WORKS
     public void clientGetLuggageStatus(String barcodeNumber) throws IOException {
 
-        SendMessage getLsMessage = new SendMessage("Get lugguagestatus", new Luggage(barcodeNumber));
+        SendMessage getLsMessage = new SendMessage("Get luggagestatus", new Luggage(barcodeNumber));
         out.writeObject(getLsMessage);
 
 //        // The object being sent is the message "Get lugguagestatus"
@@ -337,18 +329,12 @@ public class Client {
     }
 
 
-
-
-
-
-
     /**
      * -----------------------------------------------------------------------------------------------------------------
      */
     public static void main(String[] args) throws IOException {
         Client startClient = new Client();
     }
-
 
 
 }
