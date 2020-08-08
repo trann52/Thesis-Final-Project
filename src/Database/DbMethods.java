@@ -198,9 +198,10 @@ public class DbMethods {
     /**
      * -----------------------------------------------------------------------------------------------------------------
      * This method will inset the boarding pass number and the barcode number to the luggagestatus table.
-     * This method should occur at the same time that 'submitToAboutLuggage()'.
+     * This method should occur at the same time that 'submitToAboutLuggage()'. However this version will not be used
+     * as the origin, destination and layovers information should be retrieved from a table containing all the booking information.
+     * This would be another system, so I have not included this.
      *
-     * @return
      */
 
     public String submitToLuggageStatus(SendMessage sendMessage) {
@@ -214,6 +215,32 @@ public class DbMethods {
             ps.setString(3, sendMessage.getPassenger().getOrigin());
             ps.setString(4, sendMessage.getPassenger().getDestination());
             ps.setArray(5, sendMessage.getPassenger().getLayovers());
+
+            ps.executeUpdate();
+
+            System.out.println("Data added to table");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This method will inset the boarding pass number and the barcode number to the luggagestatus table.
+     *
+     */
+
+    public String submitToLuggageStatus2(SendMessage sendMessage) {
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(" INSERT INTO luggageproject.public.luggagestatus(" +
+                    "boardpass_number, barcode) VALUES(?,?)");
+
+            ps.setString(1, sendMessage.getLuggage().getBoardPassNumber());
+            ps.setString(2, sendMessage.getLuggage().getBarcodeNumber());
 
             ps.executeUpdate();
 

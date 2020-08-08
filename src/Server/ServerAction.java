@@ -105,13 +105,28 @@ public class ServerAction {
 
     /**
      * -----------------------------------------------------------------------------------------------------------------
-     * This is a method on the server side for submitting information to luggagestatus table
+     * This is a method on the server side for submitting information to luggagestatus table. However this version will not be used
+     * as the origin, destination and layovers information should be retrieved from a table containing all the booking information.
+     *  This would be another system, so I have not included this.
      */
 
     public void serverInsertToLuggageStatus(SendMessage sendMessage, Socket socket) throws IOException {
 
         DbMethods dbObject = new DbMethods();
         String insertLsToClient = dbObject.submitToLuggageStatus(sendMessage);
+        out.writeObject(insertLsToClient);
+
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the server side for submitting information to luggagestatus table.
+     */
+
+    public void serverInsertToLuggageStatus2(SendMessage sendMessage, Socket socket) throws IOException {
+
+        DbMethods dbObject = new DbMethods();
+        String insertLsToClient = dbObject.submitToLuggageStatus2(sendMessage);
         out.writeObject(insertLsToClient);
 
     }

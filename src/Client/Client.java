@@ -160,6 +160,9 @@ public class Client {
     /**
      * -----------------------------------------------------------------------------------------------------------------
      * This is a method on the client side for submitting information to luggagestatus table
+     * This method should be added to LuggInfoController.addToLuggInfoDatabase(). However this version will not be used
+     * as the origin, destination and layovers information should be retrieved from a table containing all the booking information.
+     * This would be another system, so I have not included this.
      */
 
     public String clientInsertToLuggageStatus(String bookingNumber, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
@@ -167,6 +170,28 @@ public class Client {
         // ls is shortened for luggagestatus
         // The object being sent is the message "Inserted to luggagestatus"
         SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber, origin, destination, layovers));
+
+        System.out.println("Sending to server: " + lsInsertMessage);
+
+        out.writeObject(lsInsertMessage); // sending object to server
+        System.out.println("Luggage info sent");
+        String insertLsFromServer = (String) in.readObject(); // receiving object from server
+        System.out.println("Inserted to luggagestatus");
+        return insertLsFromServer;
+
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     * This is a method on the client side for submitting information to luggagestatus table
+     * This method should be added to LuggInfoController.addToLuggInfoDatabase().
+     */
+
+    public String clientInsertToLuggageStatus2(String bookingNumber) throws IOException, ClassNotFoundException {
+
+        // ls is shortened for luggagestatus
+        // The object being sent is the message "Inserted to luggagestatus"
+        SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber));
 
         System.out.println("Sending to server: " + lsInsertMessage);
 

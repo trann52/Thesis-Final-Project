@@ -70,7 +70,7 @@ public class Thread implements Runnable {
                 // This is for inserting some luggage information to lugguagestatus
                 if (instruction.getMessage().equals("Inserted to luggagestatus")) {
                     SendMessage sendMessage = instruction;
-                    action.serverInsertToLuggageStatus(sendMessage, socket);
+                    action.serverInsertToLuggageStatus2(sendMessage, socket);
                 }
 
                 // This is for updating the luggagestatus table with sort information
