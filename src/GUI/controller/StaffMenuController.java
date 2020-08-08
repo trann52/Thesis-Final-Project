@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
  */
 public class StaffMenuController implements Initializable {
 
+    Client clientCommand;
     String username;
 
     @FXML
@@ -51,6 +53,7 @@ public class StaffMenuController implements Initializable {
     @FXML
     private Label userLabel;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -58,6 +61,7 @@ public class StaffMenuController implements Initializable {
     // need to also log user out, not just send to loin page
     @FXML
     void logout(MouseEvent outEvent) throws IOException {
+        clientCommand.clientStaffLogout(userLabel.getText());
         Node n = (Node) outEvent.getSource();
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/StaffLogin.fxml"));
         Scene scn = new Scene(root);

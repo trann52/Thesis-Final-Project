@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ import java.util.ResourceBundle;
  */
 public class StaffLoginController implements Initializable {
 
+    Client clientCommand;
 
     @FXML
     private Button homeBtn;
@@ -61,13 +63,13 @@ public class StaffLoginController implements Initializable {
     }
 
     @FXML
-    void checkAndConfirm(MouseEvent confirmEvent) throws IOException {
+    void checkAndConfirm(MouseEvent confirmEvent) throws IOException, ClassNotFoundException {
 
         String loginName = loginLabel.getText();
         String password = passwordLabel.getText();
 
         if (loginName.isEmpty() && password.isEmpty() || loginName.isEmpty() ||
-                password.isEmpty()) {
+                password.isEmpty() || !clientCommand.clientStaffLogin(loginName, password)) {
             promptLabel.setText("Unable to login. Please try again.");
         } else{
 

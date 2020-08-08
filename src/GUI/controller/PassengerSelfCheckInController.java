@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class PassengerSelfCheckInController implements Initializable {
 
-    private Client clientCommand = new Client();
+    Client clientCommand;
 
     @FXML
     private Button homeBtn;
@@ -39,8 +39,6 @@ public class PassengerSelfCheckInController implements Initializable {
     @FXML
     private Label textLabel;
 
-    public PassengerSelfCheckInController() throws IOException {
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

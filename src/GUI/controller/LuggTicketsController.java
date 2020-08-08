@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class LuggTicketsController implements Initializable {
 
-    private Client clientCommand = new Client();
+    Client clientCommand;
     String username;
 
     @FXML
@@ -46,10 +46,8 @@ public class LuggTicketsController implements Initializable {
     @FXML
     private Label userLabel;
 
-    public LuggTicketsController() throws IOException {
-    }
 
-//    private String bookingNumber = typeBookingHereLabel.getText();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
