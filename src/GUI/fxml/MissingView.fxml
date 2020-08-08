@@ -2,11 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="550.0" prefWidth="850.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controller.MissingViewController">
@@ -52,17 +57,55 @@
             <Label fx:id="userLabel" prefHeight="38.0" prefWidth="125.0" underline="true" />
          </children>
       </HBox>
-      <Button fx:id="searchAgainBtn" contentDisplay="RIGHT" layoutX="356.0" layoutY="133.0" mnemonicParsing="false" onMouseClicked="#backToMissSearch" prefHeight="33.0" prefWidth="125.0" styleClass="button1" text="Search Again">
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/search_32px.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
+      <GridPane layoutX="254.0" layoutY="133.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="371.0" AnchorPane.topAnchor="133.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="searchAgainBtn" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#backToMissSearch" prefHeight="33.0" prefWidth="125.0" styleClass="button1" text="Search Again" GridPane.columnIndex="1">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/search_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane layoutX="244.0" layoutY="190.0" prefHeight="17.0" prefWidth="337.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="269.0" AnchorPane.topAnchor="190.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <TableView fx:id="tableView" layoutX="46.0" layoutY="220.0" prefHeight="200.0" prefWidth="735.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="220.0">
+        <columns>
+          <TableColumn fx:id="bpnRow" prefWidth="90.0" text="Boarding Pass" />
+          <TableColumn fx:id="barcodeRow" minWidth="0.0" prefWidth="77.0" text="Barcode" />
+            <TableColumn fx:id="oriRow" prefWidth="50.0" text="Origin" />
+            <TableColumn fx:id="destRow" prefWidth="75.0" text="Destination" />
+            <TableColumn fx:id="layRow" prefWidth="75.0" text="Layovers" />
+            <TableColumn fx:id="sbRow" prefWidth="75.0" text="Sorted By" />
+            <TableColumn fx:id="stRow" prefWidth="75.0" text="Sorted Time" />
+            <TableColumn fx:id="slRow" prefWidth="97.0" text="Sorted Location" />
+            <TableColumn fx:id="lbRow" prefWidth="75.0" text="Loaded By" />
+            <TableColumn fx:id="ltRow" prefWidth="75.0" text="Loaded Time" />
+            <TableColumn fx:id="llRow" prefWidth="75.0" text="Loaded Location" />
+            <TableColumn fx:id="ubRow" prefWidth="75.0" text="Unloaded By" />
+            <TableColumn fx:id="utRow" prefWidth="75.0" text="Unloaded Time" />
+            <TableColumn fx:id="ulRow" prefWidth="75.0" text="Unloaded Location" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

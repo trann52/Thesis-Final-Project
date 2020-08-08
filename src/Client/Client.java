@@ -324,18 +324,56 @@ public class Client {
      * -----------------------------------------------------------------------------------------------------------------
      * This is a method on the client side for getting information from luggagestatus table when the barcode is searched.
      * This is for staff members to lookup the luggage
+     * @return
      */
 
     //TODO NEED TO CHECK IF WORKS
-    public void clientGetLuggageStatus(String barcodeNumber) throws IOException {
+    public boolean clientGetLuggageStatus(String barcodeNumber) throws IOException, ClassNotFoundException {
 
-        SendMessage getLsMessage = new SendMessage("Get luggagestatus", new Luggage(barcodeNumber));
-        out.writeObject(getLsMessage);
+//        SendMessage getLsMessage = new SendMessage("Get luggagestatus", new Luggage(barcodeNumber));
+//        out.writeObject(getLsMessage);
 
 //        // The object being sent is the message "Get lugguagestatus"
 //        out.writeObject(new SendMessage("Get lugguagestatus"));
 //        SendMessage lsFromServer = (SendMessage) in.readObject();
 //        return lsFromServer.getLuggage().getBarcodeNumber();
+//        return false;
+
+        // initialising the object to be sent to the server. In this case it is the message "Get luggagestatus"
+        objectLuggageSearch = new SendMessage("Get luggagestatus", new Luggage(barcodeNumber));
+
+        System.out.println("Sending to server: " + objectLuggageSearch.getLuggage().getBarcodeNumber());
+        out.writeObject(objectLuggageSearch); // the objectLuggageSearch object is sent out to the server
+
+        System.out.println("Luggage Search Object has been sent");
+        String staffSearchServerMessage = (String) in.readObject(); // the string that is coming in from the server
+        System.out.println(staffSearchServerMessage);
+
+        String staffSearchServerMessage2 = "blank";  // a second string
+
+        // if the first string coming in does match the designated text, the second string is received from the server.
+        // the second string is then printed
+        if (!staffSearchServerMessage.equals("Barcode Check is successful") && !staffSearchServerMessage.equals("The barcode could not be found")) {
+            staffSearchServerMessage2 = (String) in.readObject();
+            System.out.println(staffSearchServerMessage2);
+        }
+
+        // if either of the 2 Strings sent from the server match the success text, then the data in the first String is printed/
+        // the appropriate method in DbMethods is called
+        if (staffSearchServerMessage.equals("Barcode Check is successful") || staffSearchServerMessage2.equals("Barcode Check is successful")) {
+            System.out.println(staffSearchServerMessage);
+            DbMethods dbStaffSearchObject = new DbMethods();
+            dbStaffSearchObject.staffLookupLuggage(objectLuggageSearch.getLuggage());
+            return true;
+        } else {
+            if (!staffSearchServerMessage2.equals("blank")) {
+                System.out.println(staffSearchServerMessage2);
+                return false;
+            } else {
+                System.out.println(staffSearchServerMessage);
+                return false;
+            }
+        }
     }
 
 
@@ -343,13 +381,51 @@ public class Client {
      * -----------------------------------------------------------------------------------------------------------------
      * This is a method on the client side for getting information from viewstatus table when the barcode is searched.
      * This is for passengers to lookup the luggage
+     * @return
      */
 
     //TODO NEED TO CHECK IF WORKS
-    public void clientGetViewStatus(String barcodeNumber) throws IOException {
+    public boolean clientGetViewStatus(String barcodeNumber) throws IOException, ClassNotFoundException {
 
-        SendMessage getVsMessage = new SendMessage("Get viewstatus", new Luggage(barcodeNumber));
-        out.writeObject(getVsMessage);
+//        SendMessage getVsMessage = new SendMessage("Get viewstatus", new Luggage(barcodeNumber));
+//        out.writeObject(getVsMessage);
+
+
+        // initialising the object to be sent to the server. In this case it is the message "Get luggagestatus"
+        objectLuggageSearch = new SendMessage("Get viewstatus", new Luggage(barcodeNumber));
+
+        System.out.println("Sending to server: " + objectLuggageSearch.getLuggage().getBarcodeNumber());
+        out.writeObject(objectLuggageSearch); // the objectLuggageSearch object is sent out to the server
+
+        System.out.println("Luggage Search Object has been sent");
+        String pSearchServerMessage = (String) in.readObject(); // the string that is coming in from the server
+        System.out.println(pSearchServerMessage);
+
+        String pSearchServerMessage2 = "blank";  // a second string
+
+        // if the first string coming in does match the designated text, the second string is received from the server.
+        // the second string is then printed
+        if (!pSearchServerMessage.equals("Barcode Check is successful") && !pSearchServerMessage.equals("The barcode could not be found")) {
+            pSearchServerMessage2 = (String) in.readObject();
+            System.out.println(pSearchServerMessage2);
+        }
+
+        // if either of the 2 Strings sent from the server match the success text, then the data in the first String is printed/
+        // the appropriate method in DbMethods is called
+        if (pSearchServerMessage.equals("Barcode Check is successful") || pSearchServerMessage2.equals("Barcode Check is successful")) {
+            System.out.println(pSearchServerMessage);
+            DbMethods dbStaffSearchObject = new DbMethods();
+            dbStaffSearchObject.staffLookupLuggage(objectLuggageSearch.getLuggage());
+            return true;
+        } else {
+            if (!pSearchServerMessage2.equals("blank")) {
+                System.out.println(pSearchServerMessage2);
+                return false;
+            } else {
+                System.out.println(pSearchServerMessage);
+                return false;
+            }
+        }
 
     }
 
