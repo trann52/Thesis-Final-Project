@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import Stream.SendMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,7 @@ import java.util.ResourceBundle;
  */
 public class LuggInfoController implements Initializable {
 
+    Client clientCommand;
     String username;
     String boardPassNumber;
     public static Connection connection;
@@ -117,7 +119,7 @@ public class LuggInfoController implements Initializable {
     }
 
     @FXML
-    void addToLuggInfoDatabase(MouseEvent event) throws NullPointerException {
+    void addToLuggInfoDatabase(MouseEvent event) throws NullPointerException, IOException, ClassNotFoundException {
         if (bpnLabel.getText().isEmpty() && barNumLabel.getText().isEmpty() && weightLabel.getText().isEmpty() &&
                 fragileBox.getValue().isBlank() && excessBox.getValue().isBlank() && typeLuggBox.getValue().isBlank()
                 || bpnLabel.getText().isEmpty() || barNumLabel.getText().isEmpty() || weightLabel.getText().isEmpty()
@@ -126,6 +128,7 @@ public class LuggInfoController implements Initializable {
             warningLabel.setText("Fields with a * cannot be empty.");
         }
         else {
+            clientCommand.clientAddToAboutLuggage(bpnLabel.getText(), barNumLabel.getText(), typeLuggBox.getValue(), weightLabel.getText(), colourLabel.getText(), dimenLabel.getText(), fragileBox.getValue(), excessBox.getValue());
             warningLabel.setText("Luggage Information successfully submitted.");
         }
         // need to change the else to add to database here (DONE)

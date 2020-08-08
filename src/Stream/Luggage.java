@@ -14,9 +14,9 @@ public class Luggage implements Serializable {
     private String boardPassNumber;
     private String barcodeNumber;
     private String type;
-    private double weight;
+    private String weight;
     private String colour;
-    private Array dimension;
+    private String dimension;
     private String fragile;
     private String excess;
     private Array location;
@@ -24,7 +24,7 @@ public class Luggage implements Serializable {
     // -----------------------------------------------------------------------------------------------------------------
     // constructors
 
-    public Luggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess, Array location) {
+    public Luggage(String boardPassNumber, String barcodeNumber, String type, String weight, String colour, String dimension, String fragile, String excess, Array location) {
         this.boardPassNumber = boardPassNumber;
         this.barcodeNumber = barcodeNumber;
         this.type = type;
@@ -36,7 +36,7 @@ public class Luggage implements Serializable {
         this.location = location;
     }
 
-    public Luggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) {
+    public Luggage(String boardPassNumber, String barcodeNumber, String type, String weight, String colour, String dimension, String fragile, String excess) {
         this.boardPassNumber = boardPassNumber;
         this.barcodeNumber = barcodeNumber;
         this.type = type;
@@ -56,7 +56,7 @@ public class Luggage implements Serializable {
         this.location = location;
     }
 
-    public Luggage(String type, double weight, String colour, Array dimension, String fragile, String excess) {
+    public Luggage(String type, String weight, String colour, String dimension, String fragile, String excess) {
         this.type = type;
         this.weight = weight;
         this.colour = colour;
@@ -79,7 +79,7 @@ public class Luggage implements Serializable {
         return type;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
@@ -87,7 +87,7 @@ public class Luggage implements Serializable {
         return colour;
     }
 
-    public Array getDimension() {
+    public String getDimension() {
         return dimension;
     }
 

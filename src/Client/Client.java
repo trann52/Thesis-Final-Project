@@ -142,7 +142,7 @@ public class Client {
      * This is a method on the client side for submitting information to aboutluggage table
      */
 
-    public String clientAddToAboutLuggage(String boardPassNumber, String barcodeNumber, String type, double weight, String colour, Array dimension, String fragile, String excess) throws IOException, ClassNotFoundException {
+    public String clientAddToAboutLuggage(String boardPassNumber, String barcodeNumber, String type, String weight, String colour, String dimension, String fragile, String excess) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Added to aboutluggage"
         SendMessage luggInfoServerMessage = new SendMessage("Added to aboutluggage", new Luggage(boardPassNumber, barcodeNumber, type, weight, colour, dimension, fragile, excess));

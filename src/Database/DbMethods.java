@@ -177,9 +177,9 @@ public class DbMethods {
             ps.setString(1, luggage.getBoardPassNumber());
             ps.setString(2, luggage.getBarcodeNumber());
             ps.setString(3, luggage.getType());
-            ps.setDouble(4, luggage.getWeight());
+            ps.setString(4, luggage.getWeight());
             ps.setString(5, luggage.getColour());
-            ps.setArray(6, luggage.getDimension());
+            ps.setString(6, luggage.getDimension());
             ps.setString(7, luggage.getFragile());
             ps.setString(8, luggage.getExcess());
 
