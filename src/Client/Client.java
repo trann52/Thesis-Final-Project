@@ -208,7 +208,7 @@ public class Client {
      * This is a method on the client side for submitting data related to sorting to the luggagestatus table
      */
 
-    public boolean clientSortToLs(String username, String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public boolean clientSortToLs(String username, String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Sort luggagestatus"
         SendMessage sortToLs = new SendMessage("Sort luggagestatus", new Staff(username), new Luggage(barcodeNumber, location));
@@ -228,7 +228,7 @@ public class Client {
      * This is a method on the client side for submitting data related to sorting to the viewstatus table
      */
 
-    public String clientSortIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public String clientSortIntoVs(String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Sort into viewstatus"
         SendMessage sortVsServerMessage = new SendMessage("Sort into viewstatus", new Luggage(barcodeNumber, location));
@@ -247,7 +247,7 @@ public class Client {
      * This is a method on the client side for submitting data related to loading to the luggagestatus table
      */
 
-    public boolean clientLoadToLs(String username, String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public boolean clientLoadToLs(String username, String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Load luggagestatus"
         SendMessage loadToLs = new SendMessage("Load luggagestatus", new Staff(username), new Luggage(barcodeNumber, location));
@@ -267,7 +267,7 @@ public class Client {
      * This is a method on the client side for submitting data related to loading to the viewstatus table
      */
 
-    public String clientLoadIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public String clientLoadIntoVs(String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Load into viewstatus"
         SendMessage loadVsServerMessage = new SendMessage("Load into viewstatus", new Luggage(barcodeNumber, location));
@@ -286,7 +286,7 @@ public class Client {
      * This is a method on the client side for submitting data related to unloading to the luggagestatus table
      */
 
-    public boolean clientUnloadToLs(String username, String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public boolean clientUnloadToLs(String username, String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Unload luggagestatus"
         SendMessage unloadToLs = new SendMessage("Unload luggagestatus", new Staff(username), new Luggage(barcodeNumber, location));
@@ -306,7 +306,7 @@ public class Client {
      * This is a method on the client side for submitting data related to unloading to the viewstatus table
      */
 
-    public String clientUnloadIntoVs(String barcodeNumber, Array location) throws IOException, ClassNotFoundException {
+    public String clientUnloadIntoVs(String barcodeNumber, String location) throws IOException, ClassNotFoundException {
 
         // The object being sent is the message "Unload into viewstatus"
         SendMessage unloadVsServerMessage = new SendMessage("Unload into viewstatus", new Luggage(barcodeNumber, location));

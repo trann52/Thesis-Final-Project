@@ -19,12 +19,12 @@ public class Luggage implements Serializable {
     private String dimension;
     private String fragile;
     private String excess;
-    private Array location;
+    private String location;
 
     // -----------------------------------------------------------------------------------------------------------------
     // constructors
 
-    public Luggage(String boardPassNumber, String barcodeNumber, String type, String weight, String colour, String dimension, String fragile, String excess, Array location) {
+    public Luggage(String boardPassNumber, String barcodeNumber, String type, String weight, String colour, String dimension, String fragile, String excess, String location) {
         this.boardPassNumber = boardPassNumber;
         this.barcodeNumber = barcodeNumber;
         this.type = type;
@@ -51,7 +51,7 @@ public class Luggage implements Serializable {
         this.barcodeNumber = barcodeNumber;
     }
 
-    public Luggage(String barcodeNumber, Array location) {
+    public Luggage(String barcodeNumber, String location) {
         this.barcodeNumber = barcodeNumber;
         this.location = location;
     }
@@ -99,5 +99,5 @@ public class Luggage implements Serializable {
         return excess;
     }
 
-    public Array getLocation() { return location; }
+    public String getLocation() { return location; }
 }

@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Array;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -26,7 +28,7 @@ import java.util.ResourceBundle;
  * all appropriate methods for the GUI such as moving between different GUI scenes.
  */
 public class SortingController implements Initializable {
-
+    Client clientCommand;
     String username;
 
     @FXML
@@ -59,6 +61,7 @@ public class SortingController implements Initializable {
 
     /**
      * This method is attached to the home button. It will send the user to the StaffMenu
+     *
      * @param menuEvent The action of sending the user to the staff menu
      * @throws IOException
      */
@@ -76,15 +79,14 @@ public class SortingController implements Initializable {
     }
 
 
-
     @FXML
-    void sortAgain(MouseEvent sortMoreEvent) throws IOException {
+    void sortAgain(MouseEvent sortMoreEvent) throws IOException, ClassNotFoundException {
 
         if (barcodeLabel.getText().isEmpty()) {
             promptLabel.setText("The barcode number cannot be empty.");
-        }
-        else {
-
+        } else {
+            clientCommand.clientSortToLs(userLabel.getText(), barcodeLabel.getText(), locationSortLabel.getText());
+            clientCommand.clientSortIntoVs(barcodeLabel.getText(), locationSortLabel.getText());
             Node n = (Node) sortMoreEvent.getSource();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Sorting.fxml"));
             Parent root = (Parent) loader.load();
@@ -100,15 +102,11 @@ public class SortingController implements Initializable {
     }
 
 
-
-    public void getUsername (String passOnUsername) {
+    public void getUsername(String passOnUsername) {
         username = passOnUsername;
         userLabel.setText(username);
         sortByLabel.setText(username);
     }
-
-
-
 
 
 }

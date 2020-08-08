@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
  */
 public class LoadingController implements Initializable {
 
+    Client clientCommand;
     String username;
 
     @FXML
@@ -55,6 +57,7 @@ public class LoadingController implements Initializable {
 
     /**
      * This method is attached to the home button. It will send the user to the StaffMenu
+     *
      * @param menuEvent The action of sending the user to the staff menu
      * @throws IOException
      */
@@ -72,13 +75,14 @@ public class LoadingController implements Initializable {
     }
 
 
-
     @FXML
-    void loadAgain(MouseEvent loadMoreEvent) throws IOException {
+    void loadAgain(MouseEvent loadMoreEvent) throws IOException, ClassNotFoundException {
 
         if (barcodeLabel.getText().isEmpty()) {
             promptLabel.setText("The barcode number cannot be empty.");
         } else {
+            clientCommand.clientLoadToLs(userLabel.getText(), barcodeLabel.getText(), locationLoadLabel.getText());
+            clientCommand.clientLoadIntoVs(barcodeLabel.getText(), locationLoadLabel.getText());
             Node n = (Node) loadMoreEvent.getSource();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/Loading.fxml"));
             Parent root = (Parent) loader.load();
@@ -92,14 +96,11 @@ public class LoadingController implements Initializable {
     }
 
 
-
-    public void getUsername (String passOnUsername) {
+    public void getUsername(String passOnUsername) {
         username = passOnUsername;
         userLabel.setText(username);
         loadByLabel.setText(username);
     }
-
-
 
 
 }
