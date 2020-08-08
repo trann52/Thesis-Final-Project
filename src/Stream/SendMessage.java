@@ -49,6 +49,11 @@ public class SendMessage implements Serializable {
         this.message = message;
     }
 
+    public SendMessage(String message, Passenger passenger, Luggage luggage) {
+        this.message = message;
+        this.passenger = passenger;
+        this.luggage = luggage;
+    }
 
     // -----------------------------------------------------------------------------------------------------------------
     // getter methods

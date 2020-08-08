@@ -129,6 +129,7 @@ public class LuggInfoController implements Initializable {
         }
         else {
             clientCommand.clientAddToAboutLuggage(bpnLabel.getText(), barNumLabel.getText(), typeLuggBox.getValue(), weightLabel.getText(), colourLabel.getText(), dimenLabel.getText(), fragileBox.getValue(), excessBox.getValue());
+            clientCommand.clientInsertToLuggageStatus2(bpnLabel.getText(), barNumLabel.getText());
             warningLabel.setText("Luggage Information successfully submitted.");
         }
         // need to change the else to add to database here (DONE)

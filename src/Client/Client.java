@@ -165,11 +165,11 @@ public class Client {
      * This would be another system, so I have not included this.
      */
 
-    public String clientInsertToLuggageStatus(String bookingNumber, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
+    public String clientInsertToLuggageStatus(String bookingNumber, String barcode, String origin, String destination, Array layovers) throws IOException, ClassNotFoundException {
 
         // ls is shortened for luggagestatus
         // The object being sent is the message "Inserted to luggagestatus"
-        SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber, origin, destination, layovers));
+        SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber, origin, destination, layovers), new Luggage(barcode));
 
         System.out.println("Sending to server: " + lsInsertMessage);
 
@@ -187,11 +187,11 @@ public class Client {
      * This method should be added to LuggInfoController.addToLuggInfoDatabase().
      */
 
-    public String clientInsertToLuggageStatus2(String bookingNumber) throws IOException, ClassNotFoundException {
+    public String clientInsertToLuggageStatus2(String bookingNumber, String barcode) throws IOException, ClassNotFoundException {
 
         // ls is shortened for luggagestatus
         // The object being sent is the message "Inserted to luggagestatus"
-        SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber));
+        SendMessage lsInsertMessage = new SendMessage("Inserted to luggagestatus", new Passenger(bookingNumber), new Luggage(barcode));
 
         System.out.println("Sending to server: " + lsInsertMessage);
 
