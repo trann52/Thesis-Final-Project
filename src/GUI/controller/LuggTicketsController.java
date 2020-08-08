@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
  */
 public class LuggTicketsController implements Initializable {
 
+    private Client clientCommand = new Client();
     String username;
 
     @FXML
@@ -43,6 +45,9 @@ public class LuggTicketsController implements Initializable {
 
     @FXML
     private Label userLabel;
+
+    public LuggTicketsController() throws IOException {
+    }
 
 //    private String bookingNumber = typeBookingHereLabel.getText();
 
@@ -71,10 +76,10 @@ public class LuggTicketsController implements Initializable {
 
 
     @FXML
-    void confirmAndPrint(MouseEvent confirmEvent) throws IOException {
+    void confirmAndPrint(MouseEvent confirmEvent) throws IOException, ClassNotFoundException {
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty()) {
+        if (bookingNumber.isEmpty() || !clientCommand.clientBookingNumberCheck(bookingNumber)) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         }
         // else statement should be a print
@@ -95,7 +100,6 @@ public class LuggTicketsController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
             Parent root = (Parent) loader.load();
             LuggInfoController luggInfoController = loader.getController();
-//            luggInfoController.getBookingNumber(typeBookingHereLabel.getText());
             luggInfoController.getUsername(userLabel.getText());
             Scene scn = new Scene(root);
             Stage stg = (Stage) n.getScene().getWindow();

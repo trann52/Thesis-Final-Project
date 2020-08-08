@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,8 @@ import java.util.ResourceBundle;
  */
 public class PassengerSelfCheckInController implements Initializable {
 
+    private Client clientCommand = new Client();
+
     @FXML
     private Button homeBtn;
 
@@ -35,6 +38,9 @@ public class PassengerSelfCheckInController implements Initializable {
 
     @FXML
     private Label textLabel;
+
+    public PassengerSelfCheckInController() throws IOException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,11 +64,11 @@ public class PassengerSelfCheckInController implements Initializable {
 
 
     @FXML
-    void confirmAndNext(MouseEvent confirmEvent) throws IOException {
+    void confirmAndNext(MouseEvent confirmEvent) throws IOException, ClassNotFoundException {
 
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty()) {
+        if (bookingNumber.isEmpty() || !clientCommand.clientBookingNumberCheck(bookingNumber)) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         } else {
             Node n = (Node) confirmEvent.getSource();
