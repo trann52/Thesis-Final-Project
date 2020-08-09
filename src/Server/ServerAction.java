@@ -31,23 +31,39 @@ public class ServerAction {
 
     public void serverBookingNumberCheck(Passenger passenger, Socket socket) throws IOException {
 
+//        System.out.println("Booking Number server check");
+//        boolean failBnc = true;
+//        System.out.println("Received from client: " + passenger);  // passenger is now an object type that can be printed
+//
+//        DbMethods dbObject = new DbMethods();
+//        if (dbObject.checkBookingNumber(passenger)) {
+//            System.out.println("SEARCH FOUND ATTEMPT");
+//            failBnc = false;
+//        }
+//
+//        if (failBnc) {
+//            System.out.println("SEARCH NOT FOUND ATTEMPT");
+//            out.writeObject("The booking number could not be found"); // object sent to client
+//        } else {
+//            System.out.println("SEARCH FOUND");
+//            out.writeObject("Booking Number Check is successful"); // object sent to client
+//        }
+
         System.out.println("Booking Number server check");
-        boolean failBnc = true;
+        boolean bnCheck = false;
         System.out.println("Received from client: " + passenger);  // passenger is now an object type that can be printed
 
         DbMethods dbObject = new DbMethods();
         if (dbObject.checkBookingNumber(passenger)) {
-            System.out.println("SEARCH FOUND ATTEMPT");
-            failBnc = false;
+            bnCheck = true;
         }
 
-        if (failBnc) {
-            System.out.println("SEARCH NOT FOUND ATTEMPT");
-            out.writeObject("The booking number could not be found"); // object sent to client
+        if (bnCheck) {
+            out.writeObject("Booking number found");
         } else {
-            System.out.println("SEARCH FOUND");
-            out.writeObject("Booking Number Check is successful"); // object sent to client
+            out.writeObject("Try again");
         }
+
 
     }
 
@@ -107,7 +123,7 @@ public class ServerAction {
      * -----------------------------------------------------------------------------------------------------------------
      * This is a method on the server side for submitting information to luggagestatus table. However this version will not be used
      * as the origin, destination and layovers information should be retrieved from a table containing all the booking information.
-     *  This would be another system, so I have not included this.
+     * This would be another system, so I have not included this.
      */
 
     public void serverInsertToLuggageStatus(SendMessage sendMessage, Socket socket) throws IOException {
@@ -241,23 +257,40 @@ public class ServerAction {
 //        dbObject.staffLookupLuggage(luggage);
 
 
-        System.out.println("Luggage Search server check");
-        boolean failStaffSearch = true;
-        System.out.println("Received from client: " + luggage);  // passenger is now an object type that can be printed
+//        System.out.println("Luggage Search server check");
+//        boolean failStaffSearch = true;
+//        System.out.println("Received from client: " + luggage);  // passenger is now an object type that can be printed
+//
+//        DbMethods dbObject = new DbMethods();
+//        if (dbObject.staffLookupLuggage(luggage)) {
+//            System.out.println("SEARCH FOUND ATTEMPT");
+//            failStaffSearch = false;
+//        }
+//
+//        if (failStaffSearch) {
+//            System.out.println("SEARCH NOT FOUND ATTEMPT");
+//            out.writeObject("The barcode could not be found"); // object sent to client
+//        } else {
+//            System.out.println("SEARCH FOUND");
+//            out.writeObject("Barcode Check is successful"); // object sent to client
+//        }
 
+        System.out.println("Luggage Search server check");
+        boolean staffSearch = false;
+        System.out.println("Received from client: " + luggage);  // passenger is now an object type that can be printed
+//
         DbMethods dbObject = new DbMethods();
         if (dbObject.staffLookupLuggage(luggage)) {
-            System.out.println("SEARCH FOUND ATTEMPT");
-            failStaffSearch = false;
+            staffSearch = true;
         }
 
-        if (failStaffSearch) {
-            System.out.println("SEARCH NOT FOUND ATTEMPT");
-            out.writeObject("The barcode could not be found"); // object sent to client
+        if (staffSearch) {
+            out.writeObject("Barcode found"); // object sent to client
         } else {
-            System.out.println("SEARCH FOUND");
-            out.writeObject("Barcode Check is successful"); // object sent to client
+            out.writeObject("Try again");
         }
+
+
     }
 
     /**
@@ -272,24 +305,40 @@ public class ServerAction {
 //        DbMethods dbObject = new DbMethods();
 //        dbObject.passengerLuggageLookup(luggage);
 
+//        System.out.println("Luggage Search server check");
+//        boolean failPSearch = true;
+//        System.out.println("Received from client: " + luggage);  // passenger is now an object type that can be printed
+//
+//        DbMethods dbObject = new DbMethods();
+//        if (dbObject.passengerLuggageLookup(luggage)) {
+//            System.out.println("SEARCH FOUND ATTEMPT");
+//            failPSearch = false;
+//        }
+//
+//        if (failPSearch) {
+//            System.out.println("SEARCH NOT FOUND ATTEMPT");
+//            out.writeObject("The barcode could not be found"); // object sent to client
+//        } else {
+//            System.out.println("SEARCH FOUND");
+//            out.writeObject("Barcode Check is successful"); // object sent to client
+//        }
+//    }
+
         System.out.println("Luggage Search server check");
-        boolean failPSearch = true;
+        boolean pSearch = false;
         System.out.println("Received from client: " + luggage);  // passenger is now an object type that can be printed
 
         DbMethods dbObject = new DbMethods();
         if (dbObject.passengerLuggageLookup(luggage)) {
-            System.out.println("SEARCH FOUND ATTEMPT");
-            failPSearch = false;
+            pSearch = true;
         }
-
-        if (failPSearch) {
-            System.out.println("SEARCH NOT FOUND ATTEMPT");
-            out.writeObject("The barcode could not be found"); // object sent to client
+        if (pSearch) {
+            out.writeObject("Barcode found"); // object sent to client
         } else {
-            System.out.println("SEARCH FOUND");
-            out.writeObject("Barcode Check is successful"); // object sent to client
+            out.writeObject("Try again");
         }
     }
+
 
 
 }
