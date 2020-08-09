@@ -92,7 +92,7 @@
       <TableView fx:id="tableView" layoutX="46.0" layoutY="220.0" prefHeight="200.0" prefWidth="735.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="220.0">
         <columns>
           <TableColumn fx:id="bpnRow" prefWidth="90.0" text="Boarding Pass" />
-          <TableColumn fx:id="barcodeRow" minWidth="0.0" prefWidth="77.0" text="Barcode" />
+          <TableColumn fx:id="barcodeRow" prefWidth="77.0" text="Barcode" />
             <TableColumn fx:id="oriRow" prefWidth="50.0" text="Origin" />
             <TableColumn fx:id="destRow" prefWidth="75.0" text="Destination" />
             <TableColumn fx:id="layRow" prefWidth="75.0" text="Layovers" />

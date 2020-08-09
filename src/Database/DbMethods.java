@@ -542,14 +542,14 @@ public class DbMethods {
 //        }
 
         try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM luggageproject.public.luggagestatus " +
-                    "WHERE barcode = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT location, status, datetime " +
+                    "FROM luggageproject.public.viewstatus WHERE barcode = ? ");
 
             ps.setString(1, luggage.getBarcodeNumber());
             ResultSet rs = ps.executeQuery();
 
-            while (rs.absolute(2)) {
-                if (rs.getString(2).equals(luggage.getBarcodeNumber())) {
+            while (rs.first()) {
+                if (rs.getString(1).equals(luggage.getBarcodeNumber())) {
                     return true;
                 }
             }

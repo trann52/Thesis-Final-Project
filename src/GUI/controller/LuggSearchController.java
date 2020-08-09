@@ -1,5 +1,6 @@
 package GUI.controller;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ import java.util.ServiceLoader;
  */
 public class LuggSearchController implements Initializable {
 
+    Client clientCommand;
 
     @FXML
     private Button homeBtn;
@@ -62,10 +64,10 @@ public class LuggSearchController implements Initializable {
     }
 
     @FXML
-    void searchAndCheck(MouseEvent event) {
+    void searchAndCheck(MouseEvent event) throws IOException, ClassNotFoundException {
         String barcodeNumber = barcodeLabel.getText();
 
-        if (barcodeNumber.isEmpty()) {
+        if (barcodeNumber.isEmpty() || clientCommand.clientGetViewStatus(barcodeNumber)) {
             promptLabel.setText("Unable to find luggage. Please try again.");
         }
         else {
