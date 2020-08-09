@@ -66,7 +66,7 @@ public class PassengerSelfCheckInController implements Initializable {
 
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty() || !clientCommand.clientBookingNumberCheck(bookingNumber)) {
+        if (bookingNumber.isEmpty() || clientCommand.clientBookingNumberCheck(bookingNumber)) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         } else {
             Node n = (Node) confirmEvent.getSource();

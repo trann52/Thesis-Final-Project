@@ -19,7 +19,7 @@ public class SceneTester extends Application {
 
     @Override
     public void start(Stage initialStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/MissingSearch1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/fxml/LuggInfo.fxml"));
 
 
         Scene scene = new Scene(root);

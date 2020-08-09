@@ -94,7 +94,7 @@ public class MissingSearch1Controller implements Initializable {
     void goToView(MouseEvent event) throws IOException, ClassNotFoundException {
         String barcodeNumber = barcodeLabel.getText();
 
-        if (barcodeNumber.isEmpty() || !clientCommand.clientGetLuggageStatus(barcodeNumber)) {
+        if (barcodeNumber.isEmpty() || clientCommand.clientGetLuggageStatus(barcodeNumber)) {
             promptLabel.setText("Please enter luggage barcode.");
         }
 
