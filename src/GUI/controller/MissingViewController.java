@@ -36,7 +36,7 @@ import java.util.ResourceBundle;
  */
 public class MissingViewController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
     public static Connection connection;
     String username;
     String barcodeNumber;
@@ -52,6 +52,9 @@ public class MissingViewController implements Initializable {
 
     @FXML
     private TableView tableView;
+
+    public MissingViewController() throws IOException {
+    }
 
 
     @Override

@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class PassengerSelfCheckInController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
 
     @FXML
     private Button homeBtn;
@@ -38,6 +38,9 @@ public class PassengerSelfCheckInController implements Initializable {
 
     @FXML
     private Label textLabel;
+
+    public PassengerSelfCheckInController() throws IOException {
+    }
 
 
     @Override
@@ -66,7 +69,9 @@ public class PassengerSelfCheckInController implements Initializable {
 
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty() || clientCommand.clientBookingNumberCheck(bookingNumber)) {
+        if (bookingNumber.isEmpty()
+                || clientCommand.clientBookingNumberCheck(bookingNumber)
+        ) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         } else {
             Node n = (Node) confirmEvent.getSource();

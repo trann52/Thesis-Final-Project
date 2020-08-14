@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class LuggTicketsController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
     String username;
 
     @FXML
@@ -46,7 +46,8 @@ public class LuggTicketsController implements Initializable {
     @FXML
     private Label userLabel;
 
-
+    public LuggTicketsController() throws IOException {
+    }
 
 
     @Override
@@ -77,7 +78,9 @@ public class LuggTicketsController implements Initializable {
     void confirmAndPrint(MouseEvent confirmEvent) throws IOException, ClassNotFoundException {
         String bookingNumber = typeBookingHereLabel.getText();
 
-        if (bookingNumber.isEmpty() || !clientCommand.clientBookingNumberCheck(bookingNumber)) {
+        if (bookingNumber.isEmpty()
+                || !clientCommand.clientBookingNumberCheck(bookingNumber)
+        ) {
             textLabel.setText("Unable to find booking reference. \n Please try again");
         }
         // else statement should be a print

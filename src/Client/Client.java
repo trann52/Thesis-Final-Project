@@ -467,7 +467,8 @@ public class Client {
      * -----------------------------------------------------------------------------------------------------------------
      */
     public static void main(String[] args) throws IOException {
-        Client startClient = new Client();
+//        Client startClient = new Client();
+        new Client();
     }
 
 

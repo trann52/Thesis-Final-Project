@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class StaffMenuController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
     String username;
 
     @FXML
@@ -52,6 +52,9 @@ public class StaffMenuController implements Initializable {
 
     @FXML
     private Label userLabel;
+
+    public StaffMenuController() throws IOException {
+    }
 
 
     @Override

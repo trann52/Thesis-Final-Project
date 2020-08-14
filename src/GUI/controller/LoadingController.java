@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class LoadingController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
     String username;
 
     @FXML
@@ -48,6 +48,9 @@ public class LoadingController implements Initializable {
 
     @FXML
     private Label promptLabel;
+
+    public LoadingController() throws IOException {
+    }
 
 
     @Override

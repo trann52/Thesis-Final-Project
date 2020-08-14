@@ -36,7 +36,7 @@ import java.util.ResourceBundle;
  */
 public class CurrentStatusController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
     public static Connection connection;
     String barcodeNumber;
 
@@ -49,6 +49,8 @@ public class CurrentStatusController implements Initializable {
     @FXML
     private TableView tableView;
 
+    public CurrentStatusController() throws IOException {
+    }
 
 
     @Override

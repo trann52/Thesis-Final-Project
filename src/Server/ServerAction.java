@@ -19,8 +19,8 @@ public class ServerAction {
 
     ObjectOutputStream out;
 
-    public ServerAction(ObjectOutputStream out) {
-        this.out = out;
+    public ServerAction(ObjectOutputStream ot) {
+        out = ot;
     }
 
     /**

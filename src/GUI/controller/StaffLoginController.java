@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  */
 public class StaffLoginController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
 
     @FXML
     private Button homeBtn;
@@ -44,6 +44,8 @@ public class StaffLoginController implements Initializable {
     @FXML
     private PasswordField passwordLabel;
 
+    public StaffLoginController() throws IOException {
+    }
 
 
     @Override
@@ -69,7 +71,9 @@ public class StaffLoginController implements Initializable {
         String password = passwordLabel.getText();
 
         if (loginName.isEmpty() && password.isEmpty() || loginName.isEmpty() ||
-                password.isEmpty() || !clientCommand.clientStaffLogin(loginName, password)) {
+                password.isEmpty()
+                || !clientCommand.clientStaffLogin(loginName, password)
+        ) {
             promptLabel.setText("Unable to login. Please try again.");
         } else{
 

@@ -27,7 +27,7 @@ import java.util.ServiceLoader;
  */
 public class LuggSearchController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
 
     @FXML
     private Button homeBtn;
@@ -45,6 +45,8 @@ public class LuggSearchController implements Initializable {
     @FXML
     private Button nextBtn;
 
+    public LuggSearchController() throws IOException {
+    }
 
 
     @Override
@@ -67,7 +69,9 @@ public class LuggSearchController implements Initializable {
     void searchAndCheck(MouseEvent event) throws IOException, ClassNotFoundException {
         String barcodeNumber = barcodeLabel.getText();
 
-        if (barcodeNumber.isEmpty() || clientCommand.clientGetViewStatus(barcodeNumber)) {
+        if (barcodeNumber.isEmpty()
+                || clientCommand.clientGetViewStatus(barcodeNumber)
+        ) {
             promptLabel.setText("Unable to find luggage. Please try again.");
         }
         else {

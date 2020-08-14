@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
  */
 public class LuggInfoController implements Initializable {
 
-    Client clientCommand;
+    Client clientCommand = new Client();
     String username;
     String boardPassNumber;
     public static Connection connection;
@@ -83,6 +83,9 @@ public class LuggInfoController implements Initializable {
 
     @FXML
     private Label userLabel;
+
+    public LuggInfoController() throws IOException {
+    }
 
 
     @Override

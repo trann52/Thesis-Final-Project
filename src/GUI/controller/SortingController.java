@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  * all appropriate methods for the GUI such as moving between different GUI scenes.
  */
 public class SortingController implements Initializable {
-    Client clientCommand;
+    Client clientCommand = new Client();
     String username;
 
     @FXML
@@ -51,6 +51,9 @@ public class SortingController implements Initializable {
 
     @FXML
     private Label promptLabel;
+
+    public SortingController() throws IOException {
+    }
 
 
     @Override
