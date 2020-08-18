@@ -101,17 +101,19 @@ public class MissingSearch1Controller implements Initializable {
         ) {
             promptLabel.setText("Please enter luggage barcode.");
         }
+        else {
+            Node n = (Node) event.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingView.fxml"));
+            Parent root = (Parent) loader.load();
+            MissingViewController missingViewController = loader.getController();
+            missingViewController.getUsername(userLabel.getText());
+            missingViewController.getBarcode(barcodeNumber);
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+        }
 
-        Node n = (Node) event.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/MissingView.fxml"));
-        Parent root = (Parent) loader.load();
-        MissingViewController missingViewController = loader.getController();
-        missingViewController.getUsername(userLabel.getText());
-        missingViewController.getBarcode(barcodeNumber);
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
 
     }
 
