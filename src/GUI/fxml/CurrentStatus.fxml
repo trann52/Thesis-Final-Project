@@ -59,12 +59,11 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <TableView fx:id="tableView" layoutX="179.0" layoutY="179.0" prefHeight="281.0" prefWidth="564.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="179.0">
+      <TableView fx:id="tableView" layoutX="179.0" layoutY="179.0" prefHeight="281.0" prefWidth="480.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="179.0">
         <columns>
-          <TableColumn fx:id="bRow" prefWidth="122.0" text="Barcode" />
-          <TableColumn fx:id="lRow" prefWidth="101.0" text="Location" />
-            <TableColumn fx:id="sRow" prefWidth="135.0" text="Status" />
-            <TableColumn fx:id="dtRow" prefWidth="125.0" text="Date and Time" />
+          <TableColumn fx:id="locationRow" prefWidth="101.0" text="Location" />
+            <TableColumn fx:id="statRow" prefWidth="147.0" text="Status" />
+            <TableColumn fx:id="dtRow" prefWidth="231.0" text="Date and Time" />
         </columns>
       </TableView>
    </children>
