@@ -81,15 +81,21 @@ public class LuggSearchController implements Initializable {
 
     @FXML
     void goToCurrentStatus(MouseEvent statusEvent) throws IOException {
-        Node n = (Node) statusEvent.getSource();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/CurrentStatus.fxml"));
-        Parent root = (Parent) loader.load();
-        CurrentStatusController currentStatusController = loader.getController();
-        currentStatusController.getBarcode(barcodeLabel.getText());
-        Scene scn = new Scene(root);
-        Stage stg = (Stage) n.getScene().getWindow();
-        stg.setScene(scn);
-        stg.show();
+        if (barcodeLabel.getText().isEmpty()){
+            promptLabel.setText("Cannot have empty field");
+        }
+        else {
+            Node n = (Node) statusEvent.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxml/CurrentStatus.fxml"));
+            Parent root = (Parent) loader.load();
+            CurrentStatusController currentStatusController = loader.getController();
+            currentStatusController.getBarcode(barcodeLabel.getText());
+            Scene scn = new Scene(root);
+            Stage stg = (Stage) n.getScene().getWindow();
+            stg.setScene(scn);
+            stg.show();
+        }
+
 
     }
 
