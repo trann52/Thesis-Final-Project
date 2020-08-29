@@ -7,6 +7,7 @@ Items other than the ones mentioned such as parcels and currency will not be con
 Authors
 
 Nicky Tran - nxt930
+MSc Computer Science at the University of Birmingham
 
 Getting Started
 
