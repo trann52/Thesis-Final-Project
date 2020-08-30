@@ -40,7 +40,7 @@ public class Thread implements Runnable {
 
             while (true) {
 
-                SendMessage instruction = (SendMessage) in.readObject();  // this is to receive objects from the server
+                SendMessage instruction = (SendMessage) in.readObject();  // this is to receive objects from the client
                 ServerAction action = new ServerAction(out);
 
                 // This is for checking the booking number
